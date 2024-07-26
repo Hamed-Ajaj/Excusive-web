@@ -84,3 +84,78 @@ export const services = [
         img:"/icons/secure.svg",
     }
 ]
+
+export const exploreProducts = [
+    {
+        id:1,
+        title:"Breed Dry Dog Food",
+        price:100,
+        reviews:10,
+        isNew:false,
+        stars:3,
+        img:"/products/breedDog.svg"
+    },
+    {
+        id:2,
+        title:"Breed Dry Dog Food",
+        price:100,
+        reviews:10,
+        isNew:false,
+        stars:3,
+        img:"/products/breedDog.svg"
+    },
+    {
+        id:3,
+        title:"Breed Dry Dog Food",
+        price:100,
+        reviews:10,
+        isNew:false,
+        stars:3,
+        img:"/products/breedDog.svg"
+    },
+    {
+        id:4,
+        title:"Breed Dry Dog Food",
+        price:100,
+        reviews:10,
+        isNew:false,
+        stars:3,
+        img:"/products/breedDog.svg"
+    },
+    {
+        id:5,
+        title:"Breed Dry Dog Food",
+        price:100,
+        reviews:10,
+        isNew:false,
+        stars:3,
+        img:"/products/breedDog.svg"
+    },
+    {
+        id:6,
+        title:"Breed Dry Dog Food",
+        price:100,
+        reviews:10,
+        isNew:false,
+        stars:3,
+        img:"/products/breedDog.svg"
+    },
+    {
+        id:7,
+        title:"Breed Dry Dog Food",
+        price:100,
+        reviews:10,
+        isNew:false,
+        stars:3,
+        img:"/products/breedDog.svg"
+    },
+    {
+        id:8,
+        title:"Breed Dry Dog Food",
+        price:100,
+        reviews:10,
+        isNew:false,
+        stars:3,
+        img:"/products/breedDog.svg"
+    },
+]
