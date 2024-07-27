@@ -2,16 +2,22 @@ import React from 'react'
 import SectionHeader from './SectionHeader'
 import { exploreProducts } from '@/constants'
 import ProductCard from './ProductCard'
+import Link from 'next/link'
 const Explore = () => {
   return (
     <section className='h-auto py-20 px-4 md:px-20'>
         <SectionHeader title={"Our Products"} sectionTitle={"Explore Our Products"}/>
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 grid-rows-2 gap-12 h-auto '>
+        <div className='grid grid-cols-1 place-items-center sm:grid-cols-2 md:grid-cols-4 grid-rows-2 gap-12 h-auto '>
             {
                 exploreProducts.map((product) =>(
                     <ProductCard product={product} />
                 ))
             }
+        </div>
+        <div className='w-full h-auto flex justify-center items-center'>
+        <Link href="/products">
+          <button className='px-10 py-3 bg-[#DB4444] text-white font-medium rounded-md mt-16'>View all Products</button>
+        </Link>
         </div>
     </section>
   )

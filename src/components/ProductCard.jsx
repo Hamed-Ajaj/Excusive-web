@@ -3,9 +3,13 @@ import React from 'react'
 
 const ProductCard = ({product}) => {
   return (
-    <div className='flex flex-col gap-4 w-[270px] h-auto  relative'>
-      <div className='bg-[#F5F5F5] px-6 py-16 w-full flex justify-center items-center'>
+    <div className='flex flex-col items-center gap-4 w-[270px] h-auto  relative rounded-md'>
+      <div className='bg-[#F5F5F5] px-6 py-16 w-full flex justify-center items-center relative group rounded-md'>
         <img src={"/products/product1.svg" ||product?.img} alt="jacket" />
+        <button className='w-full h-[50px] hidden group-hover:block hover:bg-[#373737] text-white bg-black absolute bottom-0 right-0 rounded-b-md'>Add To Cart</button>
+        {product?.isNew && (
+          <div className='py-1 px-3 bg-[#00FF66] rounded-md font-light text-white text-[12px] absolute top-3 left-3'>New</div>
+        )}
       </div>
       <div className='w-full space-y-3'>
         <h4 className='font-medium'>{"The north coat"|| product?.title} </h4>
@@ -19,7 +23,7 @@ const ProductCard = ({product}) => {
             <img src="/icons/star.png" alt="star review" width={15} height={15}/>
             <img src="/icons/halfStar.png" alt="halfStar review" width={15} height={15}/>
           </div>
-          <div>({product?.reviews})</div>
+          <div className='text-gray-500 text-[0.8rem] font-semibold'>({product?.reviews})</div>
         </div>
       </div>
       <div className='flex flex-col gap-2 absolute top-5 right-5'>

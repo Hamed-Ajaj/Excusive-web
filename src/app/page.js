@@ -8,7 +8,7 @@ import Services from "@/components/Services";
 
 export default function Home() {
   return (
-    <main className="w-full min-h-screen">
+    <main className="w-full min-h-screen relative">
       <Hero />
       <BestSelling />
       <CTA />

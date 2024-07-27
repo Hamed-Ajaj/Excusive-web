@@ -2,7 +2,7 @@ import React from 'react'
 
 const CartPage = () => {
   return (
-    <div>CartPage</div>
+    <div className='min-h-screen'>CartPage</div>
   )
 }
 

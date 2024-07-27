@@ -2,7 +2,7 @@ import React from 'react'
 
 const WhishList = () => {
   return (
-    <div>
+    <div className='min-h-screen'>
         Wishlist
     </div>
   )

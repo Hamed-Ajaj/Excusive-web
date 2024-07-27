@@ -1,3 +1,4 @@
+import { Outdent, ShoppingBag, User } from "lucide-react";
 import { FaInstagram,FaLinkedin,FaGithub,FaFacebook,FaTwitterSquare } from "react-icons/fa";
 
 export const links = [
@@ -118,7 +119,7 @@ export const exploreProducts = [
         title:"Breed Dry Dog Food",
         price:100,
         reviews:10,
-        isNew:false,
+        isNew:true,
         stars:3,
         img:"/products/breedDog.svg"
     },
@@ -127,7 +128,7 @@ export const exploreProducts = [
         title:"Breed Dry Dog Food",
         price:100,
         reviews:10,
-        isNew:false,
+        isNew:true,
         stars:3,
         img:"/products/breedDog.svg"
     },
@@ -154,8 +155,29 @@ export const exploreProducts = [
         title:"Breed Dry Dog Food",
         price:100,
         reviews:10,
-        isNew:false,
+        isNew:true,
         stars:3,
         img:"/products/breedDog.svg"
     },
+]
+
+export const profileMenuItems = [
+    {
+        id:1,
+        name:"Manage My Account",
+        img:<User/> ,
+        href:"/profile"
+    },
+    {
+        id:2,
+        name:"My Orders",
+        img:<ShoppingBag /> ,
+        href:"/orders"
+    },
+    {
+        id:3,
+        name:"Logout",
+        img:<Outdent/> ,
+        href:"/logout"
+    }
 ]
