@@ -35,9 +35,9 @@ const Contact = () => {
         <div className="w-full lg:w-[70%] rounded-lg">
           <form className="flex flex-col gap-16 items-center justify-center shadow-lg h-full p-5 rounded-lg">
             <div className="flex  flex-col w-full lg:flex-row gap-4 flex-wrap">
-              <input type="text" className="py-4 px-4  bg-[#F5F5F5] border-none outline-none rounded-lg" required placeholder="Your Name"/>
-              <input type="email" className="py-4 px-4 bg-[#F5F5F5] border-none outline-none rounded-lg" required placeholder="Your Email"/>
-              <input type="text" className="py-4 px-4 bg-[#F5F5F5] border-none outline-none rounded-lg" required placeholder="Your Phone"/>
+              <input type="text" className="py-4 px-4  bg-[#F5F5F5] border-none outline-none rounded-lg w-full" required placeholder="Your Name"/>
+              <input type="email" className="py-4 px-4 bg-[#F5F5F5] border-none outline-none rounded-lg w-full" required placeholder="Your Email"/>
+              <input type="text" className="py-4 px-4 bg-[#F5F5F5] border-none outline-none rounded-lg w-full" required placeholder="Your Phone"/>
             </div>
             <div className="w-full">
               <textarea className="w-full h-[200px] bg-[#F5F5F5] py-6 px-6 resize-none border-none outline-none" placeholder="Message"></textarea>

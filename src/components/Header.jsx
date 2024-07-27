@@ -49,14 +49,14 @@ const Header = () => {
               onClick={() => setShowMenu(!showMenu)}
             />
             {showMenu && (
-              <div className="flex flex-col gap-4 absolute top-12 -right-0 bg-black p-4 rounded-lg">
+              <div className="flex flex-col gap-4 absolute top-12 -right-0 bg-black p-4 rounded-lg z-20">
                 {links.map((link, index) => (
                   <Link href={link.href} key={index}>
                     <span
                       className={`text-xl font-normal text-white ${
                         pathname === link.href ? "underline" : ""
                       }`}
-                      onClick={() => setActiveLink(index)}
+                      onClick={() => setShowMenu(false)}
                     >
                       {link.label}
                     </span>
@@ -68,8 +68,8 @@ const Header = () => {
           {/* SearchBar component */}
           <SearchBar />
           {user ? (
-            <div className="flex items-center gap-10">
-              <div className="flex justify-center items-center relative">
+            <div className="flex items-center gap-3 md:gap-10">
+              <div className="justify-center items-center relative hidden md:flex ">
                 <Link href={"/Wishlist"}>
                   <Heart
                     size={30}
@@ -80,7 +80,7 @@ const Header = () => {
                   2
                 </div>
               </div>
-              <div className="flex justify-center items-center relative">
+              <div className="hidden sm:flex justify-center items-center relative">
                 <Link href="/cart">
                   <ShoppingCartIcon
                     size={30}
