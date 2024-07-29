@@ -49,7 +49,7 @@ const Header = () => {
               onClick={() => setShowMenu(!showMenu)}
             />
             {showMenu && (
-              <div className="flex flex-col gap-4 absolute top-12 -right-0 bg-black p-4 rounded-lg z-20">
+              <div className="flex flex-col gap-4 absolute top-12 -right-0 border border-white bg-black p-4 rounded-lg z-20">
                 {links.map((link, index) => (
                   <Link href={link.href} key={index}>
                     <span

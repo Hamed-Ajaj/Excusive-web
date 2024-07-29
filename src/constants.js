@@ -181,3 +181,47 @@ export const profileMenuItems = [
         href:"/logout"
     }
 ]
+
+export const statistics = [
+    {
+        id:1,
+        numb:10.5,
+        desc:"sellers active on the platform",
+        img:"/icons/seller.svg"
+    },
+    {
+        id:2,
+        numb:33,
+        desc:"Monthly Product Sale",
+        img:"/icons/monthly.svg"
+    },
+    {
+        id:3,
+        numb:45.5,
+        desc:"Customer active in our site",
+        img:"/icons/customer.svg"
+    },
+    {
+        id:4,
+        numb:25,
+        desc:"Annual gross sale in our site",
+        img:"/icons/annual.svg"
+    },
+]
+
+export const cartItems = [
+    {
+        id:1,
+        title:"Breed Dry Dog Food",
+        price:100,
+        quantity:1,
+        productImg:"/products/breedDog.svg"
+    },
+    {
+        id:1,
+        title:"Breed Dry Dog Food",
+        price:100,
+        quantity:2,
+        productImg:"/products/breedDog.svg"
+    }
+]
