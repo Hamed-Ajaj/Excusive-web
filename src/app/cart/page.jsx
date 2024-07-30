@@ -1,4 +1,5 @@
 import { cartItems } from "@/constants"
+import Link from "next/link"
 
 const CartPage = () => {
   return (
@@ -36,12 +37,7 @@ const CartPage = () => {
         <button className="bg-transparent rounded-md font-medium py-4 px-12 flex items-center justify-center border-2 border-black">Update Cart</button>
       </div>
       <div className="flex flex-col items-center lg:flex-row lg:justify-between gap-10 py-10  mt-10">
-        <div className="flex gap-10 justify-center items-start">
-          <div className="flex items-center gap-6">
-            <input className="py-3 px-2 border-2 border-black rounded-md  outline-none" placeholder="Coupon code" type="text" name="" id="" />
-            {/* <button className="py-[14px] px-10 bg-[#db4444] text-white font-medium rounded-md">Apply coupon</button> */}
-          </div>
-        </div>
+       
         <div className="w-[350px] md:w-[400px] lg:w-[500px] h-[350px] p-4 border-2 gap-5 border-black rounded-md flex flex-col justify-center items-start">
           <h1 className="text-[1.2rem] font-medium">Cart Total</h1>
           <div className="flex w-full justify-between items-center border-b-2 border-b-black border-spacing-8 py-4">
@@ -56,7 +52,11 @@ const CartPage = () => {
             <p>Shipping:</p>
             <p>Free</p>
           </div>
-          <button className="py-4 px-16 mt-2 bg-[#db4444] text-white font-medium rounded-md">Process To Checkout</button>
+          <Link href="/checkout">
+            <button className="py-4 px-16 mt-2 bg-[#db4444] text-white font-medium rounded-md">
+            Process To Checkout
+            </button>
+          </Link>
         </div>
       </div>
     </div>
