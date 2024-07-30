@@ -38,7 +38,7 @@ const CartPage = () => {
       </div>
       <div className="flex flex-col items-center lg:flex-row lg:justify-between gap-10 py-10  mt-10">
        
-        <div className="w-[350px] md:w-[400px] lg:w-[500px] h-[350px] p-4 border-2 gap-5 border-black rounded-md flex flex-col justify-center items-start">
+        <div className="w-[350px] md:w-[400px] lg:w-[500px] h-[350px] p-2 border-2 gap-5 border-black rounded-md flex flex-col justify-center items-start">
           <h1 className="text-[1.2rem] font-medium">Cart Total</h1>
           <div className="flex w-full justify-between items-center border-b-2 border-b-black border-spacing-8 py-4">
             <div>
