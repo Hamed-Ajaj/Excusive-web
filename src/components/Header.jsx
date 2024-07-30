@@ -69,25 +69,14 @@ const Header = () => {
           <SearchBar />
           {user ? (
             <div className="flex items-center gap-3 md:gap-10">
-              <div className="justify-center items-center relative hidden md:flex ">
-                <Link href={"/Wishlist"}>
-                  <Heart
-                    size={30}
-                    className="cursor-pointer hover:text-gray-600"
-                  />
-                </Link>
-                <div className="text-white bg-[#db4444] absolute -top-1 -right-2 py-2 px-2 w-5 h-5 rounded-full flex justify-center items-center text-[12px]">
-                  2
-                </div>
-              </div>
-              <div className="hidden sm:flex justify-center items-center relative">
+              <div className="flex justify-center items-center relative">
                 <Link href="/cart">
                   <ShoppingCartIcon
-                    size={30}
+                    size={25}
                     className="cursor-pointer hover:text-gray-600"
                   />
                 </Link>
-                <div className="text-white bg-[#db4444] absolute -top-1 -right-2 py-2 px-2 w-5 h-5 rounded-full flex justify-center items-center text-[12px]">
+                <div className="text-white bg-[#db4444] absolute -top-1 -right-2 py-2 px-2 w-4 h-4 rounded-full flex justify-center items-center text-[12px]">
                   4
                 </div>
               </div>
