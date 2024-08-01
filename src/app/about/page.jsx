@@ -8,10 +8,10 @@ const AboutPage = () => {
           <div className="w-full lg:w-[45%] flex flex-col justify-center gap-12 leading-7 md:p-8">
             <h1 className="text-[40px] text-nowrap sm:text-[48] md:text-[54px] font-semibold">Our Story</h1>
             <p>
-              Launced in 2015, Exclusive is South Asia’s premier online shopping makterplace with an active presense in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sallers and 300 brands and serves 3 millioons customers across the region. 
+              Launched in 2015, Exclusive is South Asia’s premier online shopping marketplace with an active presence in Bangladesh. Supported by wide range of tailored marketing, data and service solutions, Exclusive has 10,500 sallers and 300 brands and serves 3 millioons customers across the region. 
             </p>
             <p>
-              Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assotment in categories ranging  from consumer.
+              Exclusive has more than 1 Million products to offer, growing at a very fast. Exclusive offers a diverse assortment in categories ranging  from consumer.
             </p>
           </div>
           <div className="w-full lg:w-[45%] h-[500px]">

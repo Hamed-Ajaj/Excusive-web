@@ -218,7 +218,7 @@ export const cartItems = [
         productImg:"/products/breedDog.svg"
     },
     {
-        id:1,
+        id:2,
         title:"Breed Dry Dog Food",
         price:100,
         quantity:2,

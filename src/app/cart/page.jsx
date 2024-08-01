@@ -1,21 +1,29 @@
+"use client"
 import { cartItems } from "@/constants"
 import Link from "next/link"
-
+import { useSelector,useDispatch } from "react-redux"
+import { removeItem } from "../global-redux/Features/cart/cartSlice"
 const CartPage = () => {
+  const cart = useSelector((state) => state.cart.items)
+  const dispatch = useDispatch()
+  console.log(cart)
+  const handleRemoveItem = (id) => {
+    dispatch(removeItem(id))
+  }
   return (
-    <div className='min-h-screen py-20 px-4 md:px-20'>
+    <div className='min-h-screen py-20 px-4 md:px-20 m-auto max-w-[1600px]'>
       <div className="hidden md:grid grid-cols-4 gap-10 place-items-center p-5 shadow-lg rounded-md mb-10">
         <h1>product</h1>
         <h1>price</h1>
         <h1>Quantity</h1>
         <h1>Subtotal</h1>
       </div>
-      {cartItems.map((item) => (
+      {cart?.map((item) => (
         <div key={item.id} className="grid grid-cols-2 md:grid-cols-4 gap-10 place-items-center p-5 shadow-md rounded-md mb-10">
           <div className="flex items-center gap-6 w-full  group">
-            <div className="relative">
+            <div className="relative">  
               <img src={item.productImg} className="min-w-[55px] " width={55} height={55} alt={item.title} />
-              <span className="absolute hidden group-hover:flex cursor-pointer justify-center items-center py-2 px-2 rounded-full -top-2 -right-2 w-[10px] h-[10px] bg-red-600 text-white">x</span>
+              <span className="absolute hidden group-hover:flex cursor-pointer justify-center items-center py-2 px-2 rounded-full -top-2 -right-2 w-[10px] h-[10px] bg-red-600 text-white" onClick={()=> handleRemoveItem(item.id)}>x</span>
             </div>
             <h1 className="text-wrap min-w-[80px]">{item.title}</h1>
           </div>
@@ -45,7 +53,7 @@ const CartPage = () => {
               <p>Total:</p>
             </div>
             <p>${
-              cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
+              cart?.reduce((acc, item) => acc + item.price * item.quantity, 0)
             }</p>
           </div>
           <div className="flex justify-between items-center w-full border-b-2 border-b-black border-spacing-8 py-4">

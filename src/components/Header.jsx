@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <header className="border-b ">
       <ShopNow />
-      <nav className="flex justify-between items-center p-4 sm:p-12">
+      <nav className="flex justify-between items-center m-auto p-4 sm:p-12 max-w-[1600px]">
         <div className="flex items-center">
           <h1 className="text-[19px] md:text-[24px] font-bold">
             <Link href={"/"}>Exclusive</Link>
@@ -72,8 +72,8 @@ const Header = () => {
               <div className="flex justify-center items-center relative">
                 <Link href="/cart">
                   <ShoppingCartIcon
-                    size={25}
-                    className="cursor-pointer hover:text-gray-600"
+                    size={30}
+                    className={`cursor-pointer hover:text-gray-600 `}
                   />
                 </Link>
                 <div className="text-white bg-[#db4444] absolute -top-1 -right-2 py-2 px-2 w-4 h-4 rounded-full flex justify-center items-center text-[12px]">
@@ -86,7 +86,7 @@ const Header = () => {
               >
                 <User
                   className="cursor-pointer hover:text-gray-500"
-                  size={30}
+                  size={32}
                 />
                 {showProfileMenu && (
                   <div className="flex flex-col min-w-[280px] h-auto gap-4 absolute top-12 -right-0 transparent-black-gradient-blur p-3 rounded-lg text-white z-20">

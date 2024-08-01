@@ -1,12 +1,17 @@
 import { Eye, Heart, Star, StarHalfIcon, StarIcon, StarOff } from 'lucide-react'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { addItem } from '@/app/global-redux/Features/cart/cartSlice'
 
 const ProductCard = ({product}) => {
+  const dispatch = useDispatch()
   return (
     <div className='flex flex-col items-center gap-4 w-[270px] h-auto  relative rounded-md'>
       <div className='bg-[#F5F5F5] px-6 py-16 w-full flex justify-center items-center relative group rounded-md'>
-        <img src={"/products/product1.svg" ||product?.img} alt="jacket" />
-        <button className='w-full h-[50px] hidden group-hover:block hover:bg-[#373737] text-white bg-black absolute bottom-0 right-0 rounded-b-md'>Add To Cart</button>
+        <img src={product?.img} alt="jacket" />
+        <button className='w-full h-[50px] hidden group-hover:block hover:bg-[#373737] text-white bg-black absolute bottom-0 right-0 rounded-b-md'
+        onClick={() => dispatch(addItem(product))}
+        >Add To Cart</button>
         {product?.isNew && (
           <div className='py-1 px-3 bg-[#00FF66] rounded-md font-light text-white text-[12px] absolute top-3 left-3'>New</div>
         )}
