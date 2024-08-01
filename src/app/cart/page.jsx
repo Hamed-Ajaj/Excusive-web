@@ -2,7 +2,7 @@
 import { cartItems } from "@/constants"
 import Link from "next/link"
 import { useSelector,useDispatch } from "react-redux"
-import { removeItem } from "../global-redux/Features/cart/cartSlice"
+import { removeItem ,increaseItem,decreaseItem} from "../global-redux/Features/cart/cartSlice"
 const CartPage = () => {
   const cart = useSelector((state) => state.cart.items)
   const dispatch = useDispatch()
@@ -32,16 +32,16 @@ const CartPage = () => {
             </div>
           <div className="flex flex-col md:flex-row gap-4">
             <div>
-              <button className="bg-gray-200 px-2 py-1 rounded-md">-</button>
+              <button className="bg-gray-200 px-2 py-1 rounded-md" onClick={() => dispatch(decreaseItem(item.id))}>-</button>
               <span className="px-2">{item.quantity}</span>
-              <button className="bg-gray-200 px-2 py-1 rounded-md">+</button>
+              <button className="bg-gray-200 px-2 py-1 rounded-md" onClick={() => dispatch(increaseItem(item.id))}>+</button>
             </div>
           </div>
           <h1 className="hidden md:block">{item.price * item.quantity}$</h1>
       </div>
       ))}
       <div className="flex flex-col gap-6 sm:gap-0 sm:flex-row justify-center sm:justify-between sm:items-center">
-        <button className="bg-transparent rounded-md font-medium py-4 px-12 flex items-center justify-center border-2 border-black">Return To Shop</button>
+        <Link href={"/"}><button className="bg-transparent rounded-md font-medium py-4 px-12 flex items-center justify-center border-2 border-black">Return To Shop</button></Link>
         <button className="bg-transparent rounded-md font-medium py-4 px-12 flex items-center justify-center border-2 border-black">Update Cart</button>
       </div>
       <div className="flex flex-col items-center lg:flex-row lg:justify-between gap-10 py-10  mt-10">

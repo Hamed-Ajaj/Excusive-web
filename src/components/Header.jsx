@@ -4,6 +4,7 @@ import ShopNow from "./ShopNow";
 import Link from "next/link";
 import SearchBar from "./SearchBar";
 import { links, profileMenuItems } from "@/constants";
+import { useSelector } from "react-redux";
 import {
   Heart,
   MenuIcon,
@@ -18,6 +19,7 @@ const Header = () => {
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const pathname = usePathname();
   const user = true;
+  const cart = useSelector((state) => state.cart.items);
   return (
     <header className="border-b ">
       <ShopNow />
@@ -77,7 +79,7 @@ const Header = () => {
                   />
                 </Link>
                 <div className="text-white bg-[#db4444] absolute -top-1 -right-2 py-2 px-2 w-4 h-4 rounded-full flex justify-center items-center text-[12px]">
-                  4
+                  {cart.length}
                 </div>
               </div>
               <div

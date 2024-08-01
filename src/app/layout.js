@@ -1,4 +1,3 @@
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -13,13 +12,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-        <body className={`${inter.className}`}>
+      <body className={`${inter.className}`}>
+        <ReduxProvider>
           <Header />
-          <ReduxProvider>
-            {children}
-          </ReduxProvider>
+          {children}
           <Footer />
-        </body>
+        </ReduxProvider>
+      </body>
     </html>
   );
 }
