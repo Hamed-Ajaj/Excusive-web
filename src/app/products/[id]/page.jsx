@@ -19,7 +19,7 @@ const ProductDetails = ({ params }) => {
   }
   return (
     <div className=" flex flex-col justify-center items-center py-12 md:py-20 px-4 md:px-20 max-w-[1600px] min-h-screen">
-      <div className="flex flex-col lg:flex-row gap-[120px] p-10 max-h-[800px] justify-between h-auto">
+      <div className="flex flex-col lg:flex-row gap-[120px] p-10 lg:max-h-[800px] justify-between h-auto">
         <div className="w-full lg:w-[50%] bg-[#f5f5f5] h-auto p-16">
           <img
             src={product?.img}
