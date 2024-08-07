@@ -248,3 +248,104 @@ export const sizes = [
         size:"XL"
     }
 ]
+
+export const ordersTab = [
+    {
+        id:1,
+        title:"On shipping",
+        qty:4
+    },
+    {
+        id:2,
+        title:"Delivered",
+        qty:2
+    },
+    {
+        id:3,
+        title:"Cancelled",
+        qty:0
+    }
+]
+
+export const orderItems = [
+   
+    {
+        items:[
+
+            {
+                id:1,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:1,
+                productImg:"/products/breedDog.svg",
+                status:"Delivered"
+            },
+            {
+                id:2,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:2,
+                productImg:"/products/breedDog.svg",
+                status:"Delivered"
+            }
+        ]
+    },
+    {
+        items:[
+
+            {
+                id:3,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:1,
+                productImg:"/products/breedDog.svg",
+                status:"On shipping"
+            },
+            {
+                id:4,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:2,
+                productImg:"/products/breedDog.svg",
+                status:"On shipping"
+            },
+            {
+                id:5,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:1,
+                productImg:"/products/breedDog.svg",
+                status:"On shipping"
+            },
+            {
+                id:6,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:2,
+                productImg:"/products/breedDog.svg",
+                status:"On shipping"
+            }
+        ]
+    },
+    {
+        items:[
+            {
+                id:5,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:1,
+                productImg:"/products/breedDog.svg",
+                status:"Cancelled"
+            },
+            {
+                id:6,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:2,
+                productImg:"/products/breedDog.svg",
+                status:"Cancelled"
+            }
+        ]
+    }
+]
+
