@@ -253,99 +253,171 @@ export const ordersTab = [
     {
         id:1,
         title:"On shipping",
-        qty:4
     },
     {
         id:2,
         title:"Delivered",
-        qty:2
     },
     {
         id:3,
         title:"Cancelled",
-        qty:0
     }
 ]
 
 export const orderItems = [
-   
     {
+        id:1,
+        title:"Order 1",
+        status:"On shipping",
+        from:"Berlin, Germany",
+        to:"Chicago, USA",
         items:[
-
             {
                 id:1,
                 title:"Breed Dry Dog Food",
                 price:100,
                 quantity:1,
-                productImg:"/products/breedDog.svg",
-                status:"Delivered"
+                productImg:"/products/breedDog.svg"
             },
             {
                 id:2,
                 title:"Breed Dry Dog Food",
                 price:100,
                 quantity:2,
-                productImg:"/products/breedDog.svg",
-                status:"Delivered"
+                productImg:"/products/breedDog.svg"
             }
         ]
     },
     {
+        id:2,
+        title:"Order 2",
+        status:"Delivered",
+        from:"Paris, France",
+        to:"London, UK",
         items:[
+            {
+                id:1,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:1,
+                productImg:"/products/breedDog.svg"
+            },
+            {
+                id:2,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:2,
+                productImg:"/products/breedDog.svg"
+            }
+        ]
+    },
+    {
+        id:2141,
+        title:"Order 2",
+        status:"Delivered",
+        from:"Paris, France",
+        to:"London, UK",
+        items:[
+            {
+                id:1,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:4,
+                productImg:"/products/breedDog.svg"
+            },
+            {
+                id:2,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:2,
+                productImg:"/products/breedDog.svg"
+            },
+            {
+                id:12,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:1,
+                productImg:"/products/breedDog.svg"
+            },
+            {
+                id:20,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:2,
+                productImg:"/products/breedDog.svg"
+            }
+        ]
+    },,
+    {
+        id:3,
+        title:"Order 3",
+        status:"Cancelled",
+        from:"Lebanon,Tripolie",
+        to:"USA,New York",
+        items:[
+            {
+                id:1,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:1,
+                productImg:"/products/breedDog.svg"
+            },
+            {
+                id:2,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:2,
+                productImg:"/products/breedDog.svg"
+            }
+        ]
+    },
+    {
+        id:4,
+        title:"Order 4",
+        status:"On shipping",
+        from:"Berlin, Germany",
+        to:"Chicago, USA",
+        items:[
+            {
+                id:1,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:1,
+                productImg:"/products/breedDog.svg"
+            },
+            {
+                id:2,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:2,
+                productImg:"/products/breedDog.svg"
+            }
+        ]
+    },
+    {
+        id:5,
+        title:"Order 5",
+        status:"Delivered",
+        from:"Iraq,Baghdad",
+        to:"Moroco,Casablanca",
+        items:[
+            {
+                id:1,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:1,
+                productImg:"/products/breedDog.svg"
+            },
+            {
+                id:2,
+                title:"Breed Dry Dog Food",
+                price:100,
+                quantity:2,
+                productImg:"/products/breedDog.svg"
+            }
+        ]
+        }
+    
 
-            {
-                id:3,
-                title:"Breed Dry Dog Food",
-                price:100,
-                quantity:1,
-                productImg:"/products/breedDog.svg",
-                status:"On shipping"
-            },
-            {
-                id:4,
-                title:"Breed Dry Dog Food",
-                price:100,
-                quantity:2,
-                productImg:"/products/breedDog.svg",
-                status:"On shipping"
-            },
-            {
-                id:5,
-                title:"Breed Dry Dog Food",
-                price:100,
-                quantity:1,
-                productImg:"/products/breedDog.svg",
-                status:"On shipping"
-            },
-            {
-                id:6,
-                title:"Breed Dry Dog Food",
-                price:100,
-                quantity:2,
-                productImg:"/products/breedDog.svg",
-                status:"On shipping"
-            }
-        ]
-    },
-    {
-        items:[
-            {
-                id:5,
-                title:"Breed Dry Dog Food",
-                price:100,
-                quantity:1,
-                productImg:"/products/breedDog.svg",
-                status:"Cancelled"
-            },
-            {
-                id:6,
-                title:"Breed Dry Dog Food",
-                price:100,
-                quantity:2,
-                productImg:"/products/breedDog.svg",
-                status:"Cancelled"
-            }
-        ]
-    }
 ]
 

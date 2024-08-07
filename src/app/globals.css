@@ -18,3 +18,28 @@
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
+
+.items::-webkit-scrollbar {
+    width: 7px;
+}
+ 
+/* Track */
+.items::-webkit-scrollbar-track {
+    background: #f1f1f1;
+
+}
+
+
+/* Handle */
+.items::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+    height: 5px;
+    
+    
+}
+ 
+/* Handle on hover */
+.items::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
