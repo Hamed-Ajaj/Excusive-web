@@ -79,12 +79,12 @@ const OrdersPage = () => {
                       </div>
                     </div>
                     <div className='flex w-full gap-3 md:justify-between items-center'>
-                      <div className='flex text-[14px] md:text-[16px] items-center gap-1 p-1 md:p-2 border rounded-full font-medium text-black'><Truck size={18}/> {order.from}</div>
+                      <div className='flex text-[12px] text-nowrap md:text-[16px] items-center gap-1 p-1 md:p-2 border rounded-full font-medium text-black'><Truck size={18}/> {order.from}</div>
                       <div className='font-bold flex items-center'>
                         <p className='pb-2 hidden md:block'>...................</p>
                         <FaArrowRight  /> 
                       </div>
-                      <div className='flex text-[14px] md:text-[16px] items-center gap-1 p-1 md:p-2 border rounded-full font-medium text-black'><IconLocation size={18}/> {order.to}</div>
+                      <div className='flex text-[12px] text-nowrap md:text-[16px] items-center gap-1 p-1 md:p-2 border rounded-full font-medium text-black'><IconLocation size={18}/> {order.to}</div>
                       
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2  gap-10 p-5 rounded-lg justify-start w-full border overflow-visible max-h-[200px] overflow-y-auto items' >
