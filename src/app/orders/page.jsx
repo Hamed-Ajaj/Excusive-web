@@ -68,7 +68,7 @@ const OrdersPage = () => {
               {
                 filterOrders(status)?.map((order) => (
                   <div className='flex flex-col gap-10 p-5 items-start  rounded-lg border relative'>
-                    <div className='flex justify-between items-center gap-5 w-full'>
+                    <div className='flex flex-col md:flex justify-between md:items-center gap-5 w-full'>
                       <div className='flex flex-col gap-1 items-start'>
                         <p className='text-[0.8rem] text-gray-400 font-medium'>OrderId</p>
                         <p className='text-[1.2rem] font-semibold'>#{order.id}</p>
@@ -78,13 +78,13 @@ const OrdersPage = () => {
                         <p className='p-2 bg-green-200 text-green-500 font-medium rounded-full'>{order.status}</p>
                       </div>
                     </div>
-                    <div className='flex w-full justify-between items-center'>
-                      <div className='flex text-[14px] md:text-[16px] items-center gap-2 p-2 border rounded-full font-medium text-black'><Truck size={18}/> {order.from}</div>
+                    <div className='flex w-full gap-3 md:justify-between items-center'>
+                      <div className='flex text-[14px] md:text-[16px] items-center gap-1 p-1 md:p-2 border rounded-full font-medium text-black'><Truck size={18}/> {order.from}</div>
                       <div className='font-bold flex items-center'>
                         <p className='pb-2 hidden md:block'>...................</p>
                         <FaArrowRight  /> 
                       </div>
-                      <div className='flex text-[14px] md:text-[16px] items-center gap-2 p-2 border rounded-full font-medium text-black'><IconLocation size={18}/> {order.to}</div>
+                      <div className='flex text-[14px] md:text-[16px] items-center gap-1 p-1 md:p-2 border rounded-full font-medium text-black'><IconLocation size={18}/> {order.to}</div>
                       
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2  gap-10 p-5 rounded-lg justify-start w-full border overflow-visible max-h-[200px] overflow-y-auto items' >
