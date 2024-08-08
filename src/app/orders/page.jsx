@@ -53,22 +53,10 @@ const OrdersPage = () => {
               </select>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 w-full gap-10'>
-              {/* {
-                filterOrders(status).map((item) => (
-                  <div className='p-4 bg-white flex gap-4 items-center rounded-lg col-span-1'>
-                    <img src={item.productImg} alt='product' className='w-20 h-20' />
-                    <div className='flex-1'>
-                      <p className='text-[#838282]'>{item.title}</p>
-                      <p className='text-[#838282]'>${item.price} x {item.quantity}</p>
-                    </div>
-                    <p className='text-[#838282]'>{item.status}</p>
-                  </div>
-                ))
-              } */}
               {
                 filterOrders(status)?.map((order) => (
-                  <div className='flex flex-col gap-10 p-5 items-start  rounded-lg border relative'>
-                    <div className='flex flex-col md:flex justify-between md:items-center gap-5 w-full'>
+                  <div className='flex flex-col gap-6 p-5 items-start  rounded-lg border relative min-h-[400px]'>
+                    <div className='flex flex-col md:flex-row justify-between md:items-center gap-5 w-full'>
                       <div className='flex flex-col gap-1 items-start'>
                         <p className='text-[0.8rem] text-gray-400 font-medium'>OrderId</p>
                         <p className='text-[1.2rem] font-semibold'>#{order.id}</p>

@@ -41,12 +41,12 @@ const CartPage = () => {
       </div>
       ))}
       <div className="flex flex-col gap-6 sm:gap-0 sm:flex-row justify-center sm:justify-between sm:items-center">
-        <Link href={"/"}><button className="bg-transparent rounded-md font-medium py-4 px-12 flex items-center justify-center border-2 border-black">Return To Shop</button></Link>
+        <Link href={"/"}><button className="bg-transparent rounded-md font-medium py-4 px-12 flex items-center justify-center border-2 border-black w-full md:w-auto">Return To Shop</button></Link>
         <button className="bg-transparent rounded-md font-medium py-4 px-12 flex items-center justify-center border-2 border-black">Update Cart</button>
       </div>
       <div className="flex flex-col items-center lg:flex-row lg:justify-between gap-10 py-10  mt-10">
        
-        <div className="w-[350px] md:w-[400px] lg:w-[500px] h-[350px] p-2 border-2 gap-5 border-black rounded-md flex flex-col justify-center items-start">
+        <div className="w-[380px] md:w-[400px] lg:w-[500px] h-[350px] p-2 border-2 gap-5 border-black rounded-md flex flex-col justify-center items-start">
           <h1 className="text-[1.2rem] font-medium">Cart Total</h1>
           <div className="flex w-full justify-between items-center border-b-2 border-b-black border-spacing-8 py-4">
             <div>
@@ -60,7 +60,7 @@ const CartPage = () => {
             <p>Shipping:</p>
             <p>Free</p>
           </div>
-          <Link href="/checkout">
+          <Link href="/checkout" className="flex justify-center items-center w-full">
             <button className="py-4 px-16 mt-2 bg-[#db4444] text-white font-medium rounded-md">
             Process To Checkout
             </button>

@@ -1,4 +1,4 @@
-import { Outdent, ShoppingBag, User } from "lucide-react";
+import { Contact, CreditCard, DollarSign, EarthIcon, Outdent, ShoppingBag, Truck, User } from "lucide-react";
 import { FaInstagram,FaLinkedin,FaGithub,FaFacebook,FaTwitterSquare } from "react-icons/fa";
 
 export const links = [
@@ -421,3 +421,44 @@ export const orderItems = [
 
 ]
 
+// create faqs for ecommerce website with icons for each faq
+
+
+export const faqs = [
+    {
+        id:1,
+        question:"How do I place an order?",
+        answer:"To place an order, you can either register for an account or checkout as a guest. Once you have added the items you want to your cart, click on the cart icon in the top right corner of the page. From there, you can review your order and proceed to checkout. You will need to enter your shipping and payment information to complete the order.",
+        icon:<ShoppingBag/>
+    },
+    {
+        id:2,
+        question:"How do I track my order?",
+        answer:"Once your order has been shipped, you will receive a tracking number via email. You can use this tracking number to track your order on the carrier's website. If you have an account, you can also log in to view the status of your order.",
+        icon:<Truck/>
+    },
+    {
+        id:3,
+        question:"What payment methods do you accept?",
+        answer:"We accept all major credit and debit cards, as well as PayPal. You can also choose to pay with Apple Pay or Google Pay if you have those set up on your device.",
+        icon:<CreditCard/>
+    },
+    {
+        id:4,
+        question:"How do I return an item?",
+        answer:"If you are not satisfied with your purchase, you can return it within 30 days for a full refund. To initiate a return, please contact our customer service team with your order number and the reason for the return. We will provide you with a return label to send the item back to us.",
+        icon:<Outdent/>
+    },
+    {
+        id:5,
+        question:"Do you offer international shipping?",
+        answer:"Yes, we offer international shipping to most countries. Shipping rates and delivery times will vary depending on your location. You can enter your address at checkout to see the available shipping options for your country.",
+        icon:<EarthIcon/>
+    },
+    {
+        id:6,
+        question:"How do I contact customer service?",
+        answer:"If you have any questions or concerns, you can contact our customer service team by email at Hamed@gmail.com or Exlusive@gmail.com",
+        icon:<Contact />,
+    }
+]

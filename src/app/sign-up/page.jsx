@@ -1,12 +1,26 @@
 "use client"
 import Link from 'next/link';
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
-
+import {auth} from '../firebase/firebase'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useRouter } from 'next/navigation';
+// import { useSelector,useDispatch } from 'react-redux';
+// import { signUp } from '../global-redux/Features/auth/authSlice';
 const SignUpPage = () => {
+  const [user, setUser] = useState(null)
+  const router = useRouter()
+  console.log(user)
   const { register, handleSubmit, formState: { errors },reset } = useForm();
-  const onSubmit = data => {
-    console.log(data);
+  const onSubmit = async data => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password)
+      const user = userCredential.user
+      setUser(user)
+      router.push('/')
+    } catch (error) {
+      console.log(error)
+    }
     reset();
   };
   return (
