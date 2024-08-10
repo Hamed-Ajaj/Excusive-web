@@ -8,17 +8,24 @@ import { useSelector } from "react-redux";
 import {
   Heart,
   MenuIcon,
+  Outdent,
   ShoppingBag,
   ShoppingCartIcon,
   User,
   User2,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { auth } from "@/app/firebase/firebase";
+import { logOut } from "@/app/firebase/auth";
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const pathname = usePathname();
   const user = true;
+  const handleLogout = () => {
+    window.location.reload()
+    logOut()
+  }
   const cart = useSelector((state) => state.cart.items);
   return (
     <header className="border-b ">
@@ -41,6 +48,11 @@ const Header = () => {
               </span>
             </Link>
           ))}
+            <Link href={`${auth.currentUser?"/products":"/sign-up"}`}>
+              <span className={`text-xl font-normal text-black ${pathname===("/products"||"/sign-up")?"underline":""}`}>
+                  {auth.currentUser?"Products":"Sign up"}
+              </span>
+            </Link> 
         </div>
         <div className="flex gap-4 sm:gap-8 items-center ">
           <div className="block lg:hidden relative">
@@ -100,6 +112,10 @@ const Header = () => {
                         </div>
                       </Link>
                     ))}
+                        <div className="flex gap-6 items-center">
+                          <div><Outdent size={25}/></div>
+                          <button type="submit" onClick={handleLogout}>Log Out</button>
+                        </div>
                   </div>
                 )}
               </div>

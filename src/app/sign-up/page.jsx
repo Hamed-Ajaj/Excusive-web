@@ -1,28 +1,23 @@
 "use client"
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
-import {auth} from '../firebase/firebase'
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { signUp } from '../firebase/auth';
+import { auth } from '../firebase/firebase';
 import { useRouter } from 'next/navigation';
-// import { useSelector,useDispatch } from 'react-redux';
-// import { signUp } from '../global-redux/Features/auth/authSlice';
+
 const SignUpPage = () => {
-  const [user, setUser] = useState(null)
-  const router = useRouter()
-  console.log(user)
   const { register, handleSubmit, formState: { errors },reset } = useForm();
+  const router = useRouter()
   const onSubmit = async data => {
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password)
-      const user = userCredential.user
-      setUser(user)
-      router.push('/')
-    } catch (error) {
-      console.log(error)
-    }
+    await signUp(data.email,data.password)
+    auth.displayName = data.name
     reset();
   };
+
+  if(auth.currentUser) router.push("/")
+    console.log(auth.currentUser)
+
   return (
     <section className='flex justify-center items-center p-10 gap-10'>
         <div className='hidden md:block w-[45%] h-[750px] '>
@@ -51,8 +46,9 @@ const SignUpPage = () => {
               {/* {errors.name && errors.name.type === "required" && <span>This is required</span>}
               {errors.name && errors.name.type === "maxLength" && <span>Max length exceeded</span> } */}
               <div className='flex flex-col justify-center items-center gap-8 w-full'>
-                <button className='bg-[#DB4444] px-[10px] py-[16px] w-full text-white font-medium rounded-md'>Create Account</button>
-                <button className='flex gap-4 items-center justify-center bg-transparent px-[10px] py-[16px] w-full text-black font-medium rounded-md border-2 border-black'><img src="/icons/google.svg" className='w-4 h-4' alt="" /> Sign up with Google</button>
+                <button type='submit' className='bg-[#DB4444] px-[10px] py-[16px] w-full text-white font-medium rounded-md'>Create Account</button>
+                <button  className='flex gap-4 items-center justify-center bg-transparent px-[10px] py-[16px] w-full text-black font-medium rounded-md border-2 border-black'><img src="/icons/google.svg" className='w-4 h-4' alt=""/> Sign up with Google</button>
+                
               </div>
                 <p className='text-center'>Already Have an Account? <Link href="/sign-in" className='text-blue-500 underline'>Log In</Link></p>
             </form>

@@ -3,14 +3,17 @@ import Link from 'next/link';
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
+import { login } from '../firebase/auth';
+import { auth } from '../firebase/firebase';
 
 const SignUpPage = () => {
     const { register, handleSubmit, formState: { errors },reset, } = useForm();
-    const onSubmit = data => {
-        console.log(data);
+    const router = useRouter();
+    const onSubmit = async data => {
+        await login(data.email,data.password)
         reset();
     };
-    const router = useRouter();
+    if(auth.currentUser) router.push("/")
   return (
     <section className='flex justify-center items-center p-10 gap-10'>
             <div className='hidden md:block w-[45%] h-[750px] '>

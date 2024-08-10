@@ -5,7 +5,6 @@ export const links = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
-    { href: "/sign-up", label: "Sign up" },
 ];
 
 export const myAccountLinks = [
@@ -173,12 +172,6 @@ export const profileMenuItems = [
         name:"My Orders",
         img:<ShoppingBag /> ,
         href:"/orders"
-    },
-    {
-        id:3,
-        name:"Logout",
-        img:<Outdent/> ,
-        href:"/logout"
     }
 ]
 

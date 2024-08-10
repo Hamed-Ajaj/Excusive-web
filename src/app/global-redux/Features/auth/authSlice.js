@@ -11,12 +11,14 @@ export const authSlice= createSlice({
     reducers: {
         signUp : async (state, action) => {
             try {
-                const userCredential = await createUserWithEmailAndPassword(auth, action.payload.email, action.payload.password)
-                const user = userCredential.user
+                const {name,email,password} = action.payload.data
+                const user = await createUserWithEmailAndPassword(auth,email,password)
                 state.user = user
-            } catch (error) {
+                router.push('/')
+              } catch (error) {
                 console.log(error)
-            }
+              }
+
         },
     }
 })
