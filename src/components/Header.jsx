@@ -76,6 +76,14 @@ const Header = () => {
                     </span>
                   </Link>
                 ))}
+                  <Link href={`${auth.currentUser?"/products":"/sign-up"}`}>
+                    <span 
+                    className={`text-xl font-normal text-white ${pathname===("/products"||"/sign-up")?"underline":""}`}
+                    onClick={() => setShowMenu(false)}
+                    >
+                        {auth.currentUser?"Products":"Sign up"}
+                    </span>
+                  </Link> 
               </div>
             )}
           </div>
@@ -103,16 +111,16 @@ const Header = () => {
                   size={32}
                 />
                 {showProfileMenu && (
-                  <div className="flex flex-col min-w-[280px] h-auto gap-4 absolute top-12 -right-0 transparent-black-gradient-blur p-3 rounded-lg text-white z-20">
+                  <div className="flex flex-col w-[200px] md:w-[280px] h-auto gap-4 absolute top-12 -right-0 transparent-black-gradient-blur p-1 md:p-3 rounded-lg text-white z-20">
                     {profileMenuItems.map((item, index) => (
                       <Link href={item?.href} key={index}>
-                        <div className="flex gap-6 items-center">
+                        <div className="flex gap-4 md:gap-6 text-[14px] text-nowrap items-center">
                           <div>{item.img}</div>
                           <div>{item.name}</div>
                         </div>
                       </Link>
                     ))}
-                        <div className="flex gap-6 items-center">
+                        <div className="flex gap-4 md:gap-6 text-[14px] items-center">
                           <div><Outdent size={25}/></div>
                           <button type="submit" onClick={handleLogout}>Log Out</button>
                         </div>
