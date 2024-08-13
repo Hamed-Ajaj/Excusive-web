@@ -413,8 +413,13 @@ export const orderItems = [
     
 
 ]
-
-// create faqs for ecommerce website with icons for each faq
+export const productsCategories = [
+    {id:1,title:"All"},
+    {id:2,title:"Electronics"},
+    {id:3,title:"Clothing"},
+    {id:4,title:"Shoes"},
+    {id:5,title:"Accessories"},
+]
 
 
 export const faqs = [
