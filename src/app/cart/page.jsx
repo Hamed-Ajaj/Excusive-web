@@ -22,7 +22,7 @@ const CartPage = () => {
         <div key={item.id} className="grid grid-cols-2 md:grid-cols-4 gap-10 place-items-center p-5 shadow-md rounded-md mb-10">
           <div className="flex items-center gap-6 w-full  group">
             <div className="relative">  
-              <img src={item.productImg} className="min-w-[55px] " width={55} height={55} alt={item.title} />
+              <img src={item.img} className="min-w-[55px] " width={55} height={55} alt={item.title} />
               <span className="absolute hidden group-hover:flex cursor-pointer justify-center items-center py-2 px-2 rounded-full -top-2 -right-2 w-[10px] h-[10px] bg-red-600 text-white" onClick={()=> handleRemoveItem(item.id)}>x</span>
             </div>
             <h1 className="text-wrap min-w-[80px]">{item.title}</h1>

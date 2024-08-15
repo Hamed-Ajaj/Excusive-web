@@ -3,20 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
     items: [
-        {
-            id:1,
-            title:"Breed Dry Dog Food",
-            price:100,
-            quantity:1,
-            productImg:"/products/breedDog.svg"
-        },
-        {
-            id:2,
-            title:"Breed Dry Dog Food",
-            price:100,
-            quantity:2,
-            productImg:"/products/breedDog.svg"
-        }
+
     ],
 }
 

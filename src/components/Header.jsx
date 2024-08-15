@@ -40,7 +40,7 @@ const Header = () => {
           {links.map((link, index) => (
             <Link href={link.href} key={index}>
               <span
-                className={`text-xl font-normal text-black ${
+                className={`text-xl  font-normal text-black ${
                   pathname === link.href ? "underline" : ""
                 }`}
               >
