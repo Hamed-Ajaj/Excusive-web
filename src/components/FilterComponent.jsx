@@ -1,21 +1,58 @@
-"use client"
-import { colors, sizes } from "@/constants";
+"use client";
+import { categoryFilter, colors, sizes } from "@/constants";
+import { color } from "framer-motion";
 import { FilterIcon } from "lucide-react";
 import { X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import FilterMenu from "./filterMenu";
+import ntc from "ntc";
 const FilterComponent = () => {
   const [activeSize, setActiveSize] = useState(null);
   const [activeColor, setActiveColor] = useState(null);
+  const [checkBox,setCheckBox] = useState(categoryFilter)
+  const [appliedFilters, setAppliedFilters] = useState();
+  console.log(appliedFilters)
 
+  // let result = ntc.name('#000');
+  // console.log(result[1])
+  // handle checkboxes state change 
+
+  // useEffect(() => {
+
+  // },[])
+
+  const handleCheckBox = (e) => {
+    const {name,checked} = e.target;
+    const newCheckBox = checkBox.map((item) => {
+      if(item.name === name){
+        item.checked = checked
+      }
+      return item
+    })
+    setCheckBox(newCheckBox)
+
+  }
+
+  // const handleAddAppliedFilter = (filter) => {
+  //   if (!appliedFilters.includes(filter)) {
+  //     setAppliedFilters([...appliedFilters, filter]);
+  //   }
+  // }
+
+  
   const handleChangeColor = (color) => {
     setActiveColor(color);
-  }
+  };
 
   const handleChangeSize = (size) => {
     setActiveSize(size);
   };
+
+  const handleDeleteAppliedFilter = (filter) => {
+    setAppliedFilters(appliedFilters.filter((appliedFilter) => appliedFilter !== filter));
+  }
   return (
-    <nav className="px-3 w-full min-h-full border-r">
+    <nav className="px-3 w-full min-w-[250px] min-h-full border-r">
       <h5 className=" flex items-center text-[24px] gap-4 pb-4 border-b">
         <FilterIcon size={22} /> Filters
       </h5>
@@ -23,100 +60,47 @@ const FilterComponent = () => {
       <div className="flex flex-col py-4 w-full gap-5 ">
         <div className="w-full flex items-center justify-between">
           <p>Applied Filters</p>
-          <p className="font-medium text-[13px] underline cursor-pointer">
+          <p className="font-medium text-[13px] underline cursor-pointer" 
+          onClick={() => setAppliedFilters("")}
+          >
             Clear All
           </p>
         </div>
-        <div className="flex gap-2 items-center">
-          <div className="bg-[#ECEFF1] p-1 font-medium text-[12px] flex items-center gap-2  rounded-sm">
-            Filter1{" "}
-            <span className="cursor-pointer text-red-500">
-              <X size={12} />
-            </span>
-          </div>
-          <div className="bg-[#ECEFF1] p-1 font-medium text-[12px] flex items-center gap-2  rounded-sm">
-            Filter2{" "}
-            <span className="cursor-pointer text-red-500">
-              <X size={12} />
-            </span>
-          </div>
-          <div className="bg-[#ECEFF1] p-1 font-medium text-[12px] flex items-center gap-2  rounded-sm">
-            Filter3{" "}
-            <span className="cursor-pointer text-red-500">
-              <X size={12} />
-            </span>
-          </div>
+        <div className="flex flex-wrap gap-1 items-center">
+          {categoryFilter && categoryFilter?.map((filter) => (
+            filter.checked && 
+              (
+              <div key={filter.id} className="flex gap-2 items-center bg-[#F5F5F5] p-2 rounded-[5px]">
+                <p className="text-[12px]">{filter.name}</p>
+                <X size={12} className="cursor-pointer text-red-500"/>
+              </div>
+              )
+          ))}
         </div>
         <hr className="w-full" />
       </div>
-      <div className="py-2 border-b">
-        <div className="flex items-center justify-between">
-          <p>Category</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`h-4 w-4  duration-100 cursor-pointer`}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </div>
+      {/* category filter */}
+      <FilterMenu filter={"Category"}>
         <div>
           <ul className="py-2  space-y-1 accent-black">
-            <div className="flex gap-3 items-center">
+          {categoryFilter?.map((category,index) => (
+            <div key={category.id} className="flex gap-3 items-center">
               <input
                 type="checkbox"
-                name="category1"
-                id="category1"
+                name={category.name}
+                id={category.name}
                 className="h-4 w-4"
+                onChange={handleCheckBox}
+                checked={category.checked}
               />
-              <label htmlFor="category1">Category1</label>
+              <label htmlFor="category1">{category.name}</label>
             </div>
-            <div className="flex gap-3 items-center ">
-              <input
-                type="checkbox"
-                name="category2"
-                id="category2"
-                className="h-4 w-4"
-              />
-              <label htmlFor="category2">Category2</label>
-            </div>
-            <div className="flex gap-3 items-center">
-              <input
-                type="checkbox"
-                name="category3"
-                id="category3"
-                className="h-4 w-4"
-              />
-              <label htmlFor="category3">Category3</label>
-            </div>
+          ))}
           </ul>
         </div>
-      </div>
-      <div className="py-2 border-b">
-        <div className="flex items-center justify-between">
-          <p>Status</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`h-4 w-4  duration-100 cursor-pointer`}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </div>
+      </FilterMenu>
+      {/* status filter */}
+      <FilterMenu filter={"Status"}>
         <div>
           <ul className="py-2  space-y-1 accent-black">
             {/* create two radio button in stock and out of stock */}
@@ -140,73 +124,47 @@ const FilterComponent = () => {
             </div>
           </ul>
         </div>
-      </div>
-      <div className="py-4 space-y-5 border-b">
-        <div className="flex items-center justify-between">
-          <p>Size</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`h-4 w-4  duration-100 cursor-pointer`}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </div>
-        <div className="flex flex-wrap gap-3 items-center">
-              {sizes.map((size) => (
-                <div
-                  key={size.id}
-                  onClick={() => handleChangeSize(size.size)}
-                  className={`w-[35px] p-2 h-[35px] cursor-pointer ${
-                    activeSize === size.size
-                      ? "bg-[#db4444] border-none text-white"
-                      : "text-black"
-                  }  text-[14px] font-medium flex justify-center items-center border border-black rounded-[5px]`}
-                >
-                  {size.size}
-                </div>
-              ))}
-            </div>
-      </div>
-      <div className="py-5 border-b space-y-4">
-        <div className="flex items-center justify-between">
-          <p>Color</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className={`h-4 w-4  duration-100 cursor-pointer`}
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </div>
-        <div className="flex gap-4 flex-wrap items-center">
-          {colors.map((color) => (
+      </FilterMenu>
+      {/* size filter */}
+      <FilterMenu filter={"Size"}>
+        <div className="flex flex-wrap mt-5 gap-3 items-center">
+          {sizes.map((size) => (
             <div
-              key={color.id}
-              onClick={() => handleChangeColor(color.color)}
-              className={`w-[30px] h-[30px] flex justify-center items-center cursor-pointer bg-[#${color.color}] rounded-full`}
+              key={size.id}
+              onClick={() => handleChangeSize(size.size)}
+              className={`w-[35px] p-2 h-[35px] cursor-pointer ${
+                activeSize === size.size
+                  ? "bg-[#db4444] border-none text-white"
+                  : "text-black"
+              }  text-[14px] font-medium flex justify-center items-center border border-black rounded-[5px]`}
+            >
+              {size.size}
+            </div>
+          ))}
+        </div>
+      </FilterMenu>
+      {/* color filter */}
+      <FilterMenu filter={"Color"}>
+        <div className="flex gap-4 mt-5 flex-wrap items-center">
+          {colors.map(({ id, color }) => (
+            <div
+              key={id}
+              onClick={() => handleChangeColor(color)}
+              className={`w-[30px] h-[30px] flex justify-center items-center cursor-pointer bg-${color} bg-black rounded-full`}
             >
               <div className="w-full flex justify-center items-center">
-                <img src="/icons/selected.svg" alt="selected"  className={` ${activeColor=== color.color?"block":"hidden"} w-[60%] object-cover`}/>
+                <img
+                  src="/icons/selected.svg"
+                  alt="selected"
+                  className={` ${
+                    activeColor === color ? "block" : "hidden"
+                  } w-[60%] object-cover`}
+                />
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </FilterMenu>
     </nav>
   );
 };

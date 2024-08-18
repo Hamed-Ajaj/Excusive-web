@@ -62,13 +62,17 @@ const ProductsPageHeader = () => {
               type="text"
               className="w-full bg-[#ECEFF1] py-3 px-3 lg:bg-white  border-l-[1px] border-black border- outline-none"
               placeholder="Search"
+              value={search}
               onChange={(e) => setSearch(e.target.value)}
-              name=""
-              id=""
+              name="search-products"
+              id="search-products"
             />
             {
               search.length>0 &&(
-                <p className="absolute top-5 right-5">x</p>
+                <p 
+                onClick={() => setSearch("")}
+                className="absolute top-[2px] cursor-pointer text-[25px] font-medium right-5"
+                >x</p>
               )
             }
           </div>

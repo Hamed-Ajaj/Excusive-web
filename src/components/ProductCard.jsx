@@ -14,7 +14,7 @@ import Link from "next/link";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   return (
-    <div className="flex flex-col items-center gap-4 w-[270px] h-auto  relative rounded-md">
+    <div className="flex flex-col items-center gap-4 w-[180px] md:w-[270px] h-auto  relative rounded-md">
       <div className="bg-[#F5F5F5] px-6 py-16 w-full flex justify-center items-center relative group rounded-md">
         <img src={product?.img || "/products/product1.svg"} alt="jacket" />
         <button

@@ -8,6 +8,7 @@ import {
   Truck,
   User,
 } from "lucide-react";
+import { East_Sea_Dokdo } from "next/font/google";
 import {
   FaInstagram,
   FaLinkedin,
@@ -585,23 +586,23 @@ export const products = [
 export const colors = [
   {
     id: 1,
-    color: "f01111",
+    color: `red-400`,
   },
   {
     id: 2,
-    color: "111cf0",
+    color: "red-500",
   },
   {
     id: 3,
-    color: "1ade10",
+    color: "blue-500",
   },
   {
     id: 4,
-    color: "ded410",
+    color: "slate-300",
   },
   {
     id: 5,
-    color: "000",
+    color: `pink-500`,
   },
 ];
 
@@ -611,3 +612,55 @@ export const sorting = [
   "Rating: Low to High",
   "Rating: High to Low",
 ];
+
+export const categoryFilter = [
+  {
+    id:1,
+    name:"Running shoes",
+    checked:false
+  },
+  {
+    id:2,
+    name:"Casual shoes",
+    checked:false
+  },
+  {
+    id:3,
+    name:"Sneakers",
+    checked:false
+  },
+  {
+    id:4,
+    name:"Sandals",
+    checked:false
+  },
+  {
+    id:5,
+    name:"Boots",
+    checked:false
+  },
+  {
+    id:6,
+    name:"Slippers",
+    checked:false
+  }
+]
+
+export const allFilters =[
+  {
+    id:1,
+    name:"Category",
+    filters:categoryFilter
+  },
+  {
+    id:2,
+    name:"Size",
+    filters:sizes
+  },
+  {
+    id:3,
+    name:"Color",
+    filters:colors
+  }
+
+]
