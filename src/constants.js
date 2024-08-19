@@ -581,6 +581,18 @@ export const products = [
     isOnSale: false,
     isInStock: true,
   },
+  {
+    id: 9,
+    title: "Ultraboost Light Running Shoes",
+    price: 70,
+    category: "Shoes",
+    reviews: 10,
+    isNew: true,
+    stars: 3,
+    img: "/products/product2.svg",
+    isOnSale: false,
+    isInStock: true,
+  },
 ];
 
 export const colors = [
