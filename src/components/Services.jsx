@@ -8,7 +8,7 @@ function Services() {
         <div className='flex flex-wrap justify-center items-center gap-16 gap-x-20'>
             {
                 services.map(service => (
-                    <ServiceCard service={service} />
+                    <ServiceCard key={service.id} service={service} />
                 ))
             }
         </div>

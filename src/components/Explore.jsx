@@ -10,7 +10,7 @@ const Explore = () => {
         <div className='grid grid-cols-1 place-items-center sm:grid-cols-2 md:grid-cols-4 grid-rows-2 gap-12 h-auto '>
             {
                 exploreProducts.map((product) =>(
-                    <ProductCard product={product} />
+                    <ProductCard key={product.id} product={product} />
                 ))
             }
         </div>

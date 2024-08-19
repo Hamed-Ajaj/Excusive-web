@@ -84,7 +84,7 @@ const FilterComponent = () => {
         <div>
           <ul className="py-2  space-y-1 accent-black">
           {categoryFilter?.map((category,index) => (
-            <div key={category.id} className="flex gap-3 items-center">
+            <div key={index} className="flex gap-3 items-center">
               <input
                 type="checkbox"
                 name={category.name}
