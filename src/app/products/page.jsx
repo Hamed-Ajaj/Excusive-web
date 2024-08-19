@@ -66,7 +66,7 @@ const ProductsPage = () => {
                 </div>
               </div>
             </div>
-            <div className="flex  justify-start w-full flex-wrap gap-10 md:gap-6 ">
+            <div className="flex  justify-start w-full sm:flex-wrap gap-10 md:gap-6 ">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
