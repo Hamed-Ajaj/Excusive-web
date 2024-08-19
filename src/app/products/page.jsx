@@ -12,20 +12,20 @@ const ProductsPage = () => {
 
   return (
     <section className="min-h-[100vh] mb-10 h-auto ">
-      <div className="flex flex-col w-full gap-10 ">
+      <div className="flex flex-col items-center w-full gap-10 ">
         <div className="w-full flex justify-center items-center">
           <ProductsPageHeader />
         </div>
-        <div className="flex gap-10 h-full items-start px-4 sm:px-10 lg:px-4 ">
+        <div className="flex gap-10 h-full items-start px-5 sm:px-10 lg:px-4 ">
           <aside className="hidden w-[250px] min-h-screen md:flex  ">
             <FilterComponent />
           </aside>
           <div className="flex h-full  flex-col gap-10 lg:px-5 py-4 max-w-[1600px]">
             <div className="flex justify-between items-center w-full relative">
               <div className="flex flex-col gap-4 items-start md:flex-row md:items-center">
-                <h1 className="text-[20px] italic lg:text-[30px] font-medium">“Running Shoes”</h1>
+                <h1 className="sm:text-[20px] italic lg:text-[30px] font-medium">“Running Shoes”</h1>
                 <span className="hidden md:block">____</span>
-                <p className="text-[18px] italic">{products.length} Results</p>
+                <p className="sm:text-[18px] italic">{products.length} Results</p>
               </div>
               <div className="flex items-center gap-3 md:gap-6">
                 {/* <div className="flex gap-5 items-center">
@@ -66,7 +66,7 @@ const ProductsPage = () => {
                 </div>
               </div>
             </div>
-            <div className="flex  justify-start w-full sm:flex-wrap gap-10 md:gap-6 ">
+            <div className="grid grid-cols-2 sm:flex sm:justify-start w-full sm:flex-wrap gap-6 sm:gap-10 md:gap-6 ">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
