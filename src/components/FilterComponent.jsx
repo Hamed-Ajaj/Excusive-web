@@ -3,7 +3,7 @@ import { categoryFilter, colors, sizes } from "@/constants";
 import { FilterIcon } from "lucide-react";
 import { X } from "lucide-react";
 import { useState } from "react";
-import FilterMenu from "./filterMenu";
+// import FilterMenu from "./filterMenu";
 const FilterComponent = () => {
   const [activeSize, setActiveSize] = useState(null);
   const [activeColor, setActiveColor] = useState(null);
