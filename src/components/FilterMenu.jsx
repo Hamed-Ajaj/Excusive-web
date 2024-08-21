@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+
 const FilterMenu = ({filter,children}) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -28,6 +29,7 @@ const FilterMenu = ({filter,children}) => {
           className={`${
             isOpen ? "block" : "hidden"
           } `}
+          key={children}
         >
           {children}
         </div>
