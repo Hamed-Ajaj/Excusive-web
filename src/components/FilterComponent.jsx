@@ -9,7 +9,6 @@ const FilterComponent = () => {
   const [activeColor, setActiveColor] = useState(null);
   const [checkBox,setCheckBox] = useState(categoryFilter)
   const [appliedFilters, setAppliedFilters] = useState();
-  console.log(appliedFilters)
 
   // let result = ntc.name('#000');
   // console.log(result[1])

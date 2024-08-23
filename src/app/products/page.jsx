@@ -2,13 +2,31 @@
 import FilterComponent from "@/components/FilterComponent";
 import ProductCard from "@/components/ProductCard";
 import ProductsPageHeader from "@/components/ProductsPageHeader";
-import { products, sorting } from "@/constants";
-import { SortDescIcon,List,Grid, Filter } from "lucide-react";
-import React, { useState } from "react";
+import { products, sorting , api} from "@/constants";
+import { SortDescIcon, Filter } from "lucide-react";
+import axios from "axios";
+import  { useEffect, useState } from "react";
 
 const ProductsPage = () => {
   const [sortingIsOpen, setSortingIsOpen] = useState(false);
   // const [itemsPosition, setItemsPosition] = useState('grid');
+  const [fakeProducts, setFakeProducts] = useState();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    axios.get("https://dummyjson.com/products")
+    .then((response) => {
+      setFakeProducts(response.data)
+      setLoading(false)
+    })
+    .catch((error) => {
+      setError(error)
+    })
+  },[])
+  console.log(fakeProducts)
+  if(loading) return <p>Loading...</p>
+  if(error) return <p>Error...</p>
 
   return (
     <section className="min-h-[100vh] mb-10 h-auto ">
@@ -58,7 +76,7 @@ const ProductsPage = () => {
                         >
                           <div className="">
                             <p>{sort}</p>
-                          </div>
+                        </div>
                         </div>
                       ))}
                     </div>
@@ -67,9 +85,12 @@ const ProductsPage = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 sm:flex sm:justify-start w-full sm:flex-wrap gap-6 sm:gap-10 md:gap-6 ">
-              {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
+              { fakeProducts?.products?.map((product) => {
+                return(
+                <ProductCard key={product.id} {...product} />
+                )
+              } 
+              )}
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   Contact,
   CreditCard,
@@ -676,3 +677,7 @@ export const allFilters =[
   }
 
 ]
+
+export const api = axios.create({
+  baseURL: "https://api.escuelajs.co/api/v1",
+})
