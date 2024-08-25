@@ -620,10 +620,30 @@ export const colors = [
 ];
 
 export const sorting = [
-  "Price: Low to High",
-  "Price: High to Low",
-  "Rating: Low to High",
-  "Rating: High to Low",
+  {
+    id:1,
+    sortBy:"price",
+    order:"asc",
+    name:"Price: low to high"
+  },
+  {
+    id:2,
+    sortBy:"price",
+    order:"desc",
+    name:"Price: high to low"
+  },
+  {
+    id:3,
+    sortBy:"rating",
+    order:"asc",
+    name:"Rating: low to high"
+  },
+  {
+    id:4,
+    sortBy:"rating",
+    order:"desc",
+    name:"Rating: high to low"
+  }
 ];
 
 export const categoryFilter = [

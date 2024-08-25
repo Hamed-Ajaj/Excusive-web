@@ -5,6 +5,7 @@ import { orderItems } from '@/constants'
 import { FaArrowRight } from 'react-icons/fa'
 import { Truck } from 'lucide-react'
 import { IconLocation } from '@tabler/icons-react'
+import Link from 'next/link'
 const OrdersPage = () => {
   const [activeTab, setActiveTab] = useState('On shipping')
   const [status, setStatus] = useState('On shipping')
@@ -101,7 +102,9 @@ const OrdersPage = () => {
                       </p>
                       </div>
                       <div>
-                        <button className='bg-black text-white text-[14px] font-medium py-2 px-6 rounded-full hover:bg-[#313131] '>Details</button>
+                        <Link href={`/orders/${order.id}`}>
+                          <button className='bg-black text-white text-[14px] font-medium py-2 px-6 rounded-full hover:bg-[#313131] '>Details</button>
+                        </Link>
                       </div>
                     </div>
                   </div>

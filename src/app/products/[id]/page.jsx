@@ -1,12 +1,21 @@
 "use client";
 import { exploreProducts, products } from "@/constants";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { sizes } from "@/constants";
 const ProductDetails = ({ params }) => {
   const [activeColor, setActiveColor] = useState(null);
   const [activeSize, setActiveSize] = useState(null);
+  const { data, isLoading,isFetching, isError,refetch } = useQuery({
+    queryKey: ['explore-products'],
+    // https://dummyjson.com/products?sortBy=price&order=desc&/search?q=food
+    queryFn: () => axios.get(`https://dummyjson.com/products?limit=0`), 
+  }
+  )
   const { id } = params;
-  const product = products.find((product) => product.id === parseInt(id));
+  const product = data?.data?.products.find((product) => product.id === parseInt(id));
+  console.log(product);
   const isInStock = true;
   const handleChangeColor = (color) => {
     setActiveColor(color);
@@ -20,15 +29,15 @@ const ProductDetails = ({ params }) => {
       <div className="flex flex-col w-full max-w-[1200px] justify-center items-center lg:flex-row gap-[120px] p-10 lg:max-h-[800px]  ">
         <div className="w-full lg:w-[45%] bg-[#f5f5f5] lg:max-h-[700px] p-16">
           <img
-            src={product?.img}
+            src={product?.thumbnail}
             className="w-full h-full object-contain"
-            alt={product.title}
+            alt={product?.title}
           />
         </div>
         <div className="flex flex-col gap-8 w-full lg:w-[40%]">
           <div className="flex flex-col gap-4">
             <h1 className="text-[20px] sm:text-[24px] font-semibold">
-              Havic HV G-92 Gamepad
+              {product?.title}
             </h1>
             <div className="flex gap-2">
               <p>stars</p>
@@ -36,18 +45,17 @@ const ProductDetails = ({ params }) => {
               <p>
                 |{" "}
                 <span
-                  className={`${isInStock ? "text-green-500" : "text-red-500"}`}
+                  className={`${product?.stock>0 ? "text-green-500" : "text-red-500"}`}
                 >
-                  In stock
+                  {product?.stock>0 ? "In Stock" : "Out of Stock"}
                 </span>
               </p>
             </div>
-            <p className="text-[20px] sm:text-[24px]">{product.price}$</p>
+            <p className="text-[20px] sm:text-[24px]">{product?.price}$</p>
             <p className="text-[14px] w-full lg:max-w-[357px]">
-              PlayStation 5 Controller Skin High quality vinyl with air channel
-              adhesive for easy bubble free install & mess free removal Pressure
-              sensitive.
+              {product?.description}
             </p>
+            <p className="tet-[20px] font-bold">{product?.warrantyInformation}</p>
           </div>
           <hr />
           <div className="flex gap-5 items-center">

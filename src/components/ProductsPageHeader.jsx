@@ -2,10 +2,10 @@
 import { productsCategories } from "@/constants";
 import { ShoppingBag } from "lucide-react";
 import { useState } from "react";
-const ProductsPageHeader = () => {
+const ProductsPageHeader = ({search,setSearch}) => {
   const [currentCategory, setCurrentCategory] = useState("All");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   const handleCategoryChange = (category) => {
     setCurrentCategory(category);
     setIsCategoryOpen(false);
