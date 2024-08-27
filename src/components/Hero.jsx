@@ -1,18 +1,26 @@
-"use"
+"use client"
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { categories } from "@/constants";
 import SectionHeader from "./SectionHeader";
 import CategoryCard from "./CategoryCard";
+import { useRef, useState } from "react";
 const Hero = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-  };
+    let [scrollCard,setScrollCard]=useState(0);
+    const containerRef = useRef();
+
+    const handleScrollLeft=()=>{
+        containerRef.current.scrollLeft -= 600;
+        console.log(containerRef.current.scrollLeft)
+
+    }
+
+    const handleScrollRight=()=>{
+        containerRef.current.scrollLeft += 600;
+        console.log(containerRef.current.scrollLeft)
+
+    }
   return (
     <section className="w-full py-20 px-4 md:p-20 mb-10 ">
       {/* Hero Section */}
@@ -44,13 +52,15 @@ const Hero = () => {
       </div>
 
       {/* Categories section */}
-      <section className="flex flex-col gap-10 border-b-2 py-20">
+      <section className="flex flex-col max-w-[1500px] gap-10 border-b-2 py-20  ">
         <SectionHeader
           title={"Categories"}
           sectionTitle={"Browse By Category"}
           arrows
+          handleScrollLeft={handleScrollLeft}
+          handleScrollRight={handleScrollRight}
         />
-        <div className="grid grid-cols-6 gap-6">
+        <div className="scrollingCategories flex overflow-x-scroll duration-150  gap-6" style={{scrollLeft:scrollCard}} ref={containerRef}>
                 {categories.map((category) => (            
                     <CategoryCard category={category} key={category.id} />
                 ))}

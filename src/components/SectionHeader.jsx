@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import React from 'react'
 
-const SectionHeader = ({title,sectionTitle,arrows,button}) => {
+const SectionHeader = ({title,sectionTitle,arrows,button,handleScrollRight,handleScrollLeft}) => {
   return (
     <div className='flex flex-col gap-10 mb-10'>
         <div className='flex gap-4 items-center'>
@@ -14,10 +14,10 @@ const SectionHeader = ({title,sectionTitle,arrows,button}) => {
                 {arrows &&(
                     <>
                         <div className='w-[50px] h-[50px] rounded-full bg-[#F5F5F5] hover:bg-[#dfdfdf] cursor-pointer flex items-center justify-center'>
-                            <ArrowLeft size={28} />
+                            <ArrowLeft size={28} onClick={handleScrollLeft && handleScrollLeft}/>
                         </div>
                         <div className='w-[50px] h-[50px] rounded-full bg-[#F5F5F5] hover:bg-[#dfdfdf] cursor-pointer flex items-center justify-center'>
-                            <ArrowRight size={28} />
+                            <ArrowRight size={28} onClick={handleScrollRight && handleScrollRight}/>
                         </div>
                     </>
                 )

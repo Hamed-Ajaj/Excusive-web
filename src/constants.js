@@ -77,7 +77,7 @@ export const categories = [
   {
     id: 7,
     title: "fragrances",
-    img: "/icons/gaming.svg",
+    img: "/icons/perfume-svgrepo-com.svg",
   },
   {
     id: 8,

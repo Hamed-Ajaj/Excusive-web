@@ -44,3 +44,7 @@
 .items::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+.scrollingCategories::-webkit-scrollbar {
+    width: 0;
+}
