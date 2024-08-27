@@ -59,16 +59,16 @@ const ProductsPage = () => {
   if(isError) return <p>Error...</p>
   // if(isFetching) return <p>Fetching...</p>
   return (
-    <section className=" h-full min-h-[100vh] mb-10 ">
-      <div className="flex flex-col items-center  w-full gap-10 ">
+    <section className=" h-full min-h-[100vh] mb-10   ">
+      <div className="flex flex-col  items-center  gap-10 ]">
         <div className="w-full flex justify-center items-center">
           <ProductsPageHeader search={search} setSearch={setSearch}/>
         </div>
-        <div className="flex gap-10 h-full justify-between items-start px-5 sm:px-10 lg:px-4 ">
+        <div className="flex gap-10 h-full justify-between items-start px-5 sm:px-10 lg:px-4 max-w-[1600px]">
           <aside className="hidden w-[250px] min-h-screen md:flex  ">
             <FilterComponent />
           </aside>
-          <div className="flex h-full  flex-col gap-10 lg:px-5 py-4 max-w-[1600px]">
+          <div className="flex h-full w-full  flex-col gap-10 lg:px-5 py-4 items-center">
             <div className="flex justify-between items-center w-full relative">
               {search&&<div className="flex flex-col gap-4 items-start md:flex-row md:items-center">
                 <h1 className="sm:text-[20px] italic lg:text-[30px] font-medium">“{search}”</h1>
@@ -115,7 +115,7 @@ const ProductsPage = () => {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-2 sm:flex sm:justify-start w-full sm:flex-wrap gap-4 sm:gap-10 md:gap-4 ">
+            <div className="grid grid-cols-2  sm:flex sm:justify-start md:justify-center  sm:flex-wrap gap-4 sm:gap-10 md:gap-4 ">
               {isLoading?"...loading": (data?.data?.products?.map((product) => {
                 return(
                 <ProductCard key={product.id} {...product} />

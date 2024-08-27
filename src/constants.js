@@ -8,8 +8,9 @@ import {
   ShoppingBag,
   Truck,
   User,
+  HomeIcon,
+  
 } from "lucide-react";
-import { East_Sea_Dokdo } from "next/font/google";
 import {
   FaInstagram,
   FaLinkedin,
@@ -50,34 +51,50 @@ export const socialMediaLinks = [
 export const categories = [
   {
     id: 1,
-    title: "Phones",
+    title: "smartphones",
     img: "/icons/phone.svg",
   },
   {
     id: 2,
-    title: "Computers",
-    img: "/icons/computer.svg",
+    title: "beauty",
+    img: "/icons/cosmetic-svgrepo-com.svg",
   },
   {
     id: 3,
-    title: "Smart Watches",
-    img: "/icons/watch.svg",
-  },
-  {
-    id: 4,
-    title: "Cameras",
-    img: "/icons/camera.svg",
+    title: "home-decoration",
+    img: "/icons/decoration-furniture-home-svgrepo-com.svg",
   },
   {
     id: 5,
-    title: "HeadPhones",
-    img: "/icons/headerphone.svg",
+    title: "kitchen-accessories",
+    img: "/icons/kitchen-cabinets-svgrepo-com.svg",
   },
   {
     id: 6,
-    title: "Gaming",
+    title: "laptops",
+    img: "/icons/laptop-alt-2-svgrepo-com (1).svg",
+  },
+  {
+    id: 7,
+    title: "fragrances",
     img: "/icons/gaming.svg",
   },
+  {
+    id: 8,
+    title: "vehicle",
+    img: "/icons/vehicle-car-svgrepo-com.svg",
+  },
+  {
+    id: 9,
+    title: "sports-accessories",
+    img: "/icons/sport-bag-gym-svgrepo-com.svg",
+  },
+  {
+    id: 10,
+    title: "mens-shoes",
+    img: "/icons/shoes-4-svgrepo-com.svg",
+  },
+  
 ];
 
 export const services = [

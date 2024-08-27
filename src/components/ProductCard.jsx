@@ -17,7 +17,7 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
   return (
     <div className="flex flex-col items-center gap-4 w-[175px] sm:w-[200px]  md:w-[250px] lg:w-[270px] h-auto  relative rounded-md">
       <div className="bg-[#F5F5F5] px-6 py-16 w-full flex justify-center items-center relative group rounded-md h-[220px]  sm:h-[280px]">
-        <img src={images&&images[0] || thumbnail} className="object-cover max-h-[200px]" alt={title} />
+        <img src={images&&images[0]} className="object-cover max-h-[200px]" alt={title} />
         <button
           className="w-full h-[50px] hidden group-hover:block hover:bg-[#373737] text-white bg-black absolute bottom-0 right-0 rounded-b-md"
           onClick={() => dispatch(addItem(product))}
