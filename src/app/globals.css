@@ -48,3 +48,9 @@
 .scrollingCategories::-webkit-scrollbar {
     width: 0;
 }
+.scrollingCategories{
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior : smooth;
+
+}

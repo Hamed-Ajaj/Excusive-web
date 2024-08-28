@@ -13,11 +13,11 @@ const SectionHeader = ({title,sectionTitle,arrows,button,handleScrollRight,handl
                 <div className='flex gap-4 items-center'>
                 {arrows &&(
                     <>
-                        <div className='w-[50px] h-[50px] rounded-full bg-[#F5F5F5] hover:bg-[#dfdfdf] cursor-pointer flex items-center justify-center'>
-                            <ArrowLeft size={28} onClick={handleScrollLeft && handleScrollLeft}/>
+                        <div className='w-[50px] h-[50px] rounded-full bg-[#F5F5F5] hover:bg-[#dfdfdf] cursor-pointer flex items-center justify-center' onClick={handleScrollLeft}>
+                            <ArrowLeft size={28} />
                         </div>
-                        <div className='w-[50px] h-[50px] rounded-full bg-[#F5F5F5] hover:bg-[#dfdfdf] cursor-pointer flex items-center justify-center'>
-                            <ArrowRight size={28} onClick={handleScrollRight && handleScrollRight}/>
+                        <div className='w-[50px] h-[50px] rounded-full bg-[#F5F5F5] hover:bg-[#dfdfdf] cursor-pointer flex items-center justify-center' onClick={handleScrollRight}>
+                            <ArrowRight size={28} />
                         </div>
                     </>
                 )

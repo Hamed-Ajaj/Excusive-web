@@ -23,8 +23,9 @@ const CategoryItems = ({params}) => {
 
       console.log(data)
   return (
-    <section className='min-h-screen py-20 px-4 md:px-10 flex justify-center items-center'>
-        <div className='grid grid-cols-5 gap-6'>
+    <section className='min-h-screen  flex flex-col gap-5 py-20 px-4 md:px-10  justify-center items-center w-full'>
+        <div className="w-full"><h1 className="text-start sm:text-center lg:text-start  mb-10 text-[30px] font-semibold italic ">"{categoryName}"  <span className=" ml-5 text-[16px] font-medium">{data?.data?.products?.length} results</span></h1></div>
+        <div className='flex flex-wrap justify-center gap-4 sm:justify-center overflow-hidden'>
               {data?.data?.products?.map((product) => (
                   <ProductCard {...product} key={product.id}/>
               ))}

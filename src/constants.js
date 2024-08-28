@@ -94,6 +94,16 @@ export const categories = [
     title: "mens-shoes",
     img: "/icons/shoes-4-svgrepo-com.svg",
   },
+  {
+    id: 12,
+    title: "mens-shirts",
+    img: "/icons/polo-svgrepo-com.svg",
+  },
+  {
+    id: 13,
+    title: "mens-watches",
+    img: "/icons/watch-round-svgrepo-com.svg",
+  },
   
 ];
 

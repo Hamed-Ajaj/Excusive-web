@@ -9,14 +9,13 @@ const ProductDetails = ({ params }) => {
   const [activeSize, setActiveSize] = useState(null);
   const { data, isLoading,isFetching, isError,refetch } = useQuery({
     queryKey: ['explore-products'],
-    // https://dummyjson.com/products?sortBy=price&order=desc&/search?q=food
     queryFn: () => axios.get(`https://dummyjson.com/products?limit=0`), 
   }
   )
   const { id } = params;
   const product = data?.data?.products.find((product) => product.id === parseInt(id));
   console.log(product);
-  const isInStock = true;
+  const [activeImage, setActiveImage] = useState(product?.thumbnail);
   const handleChangeColor = (color) => {
     setActiveColor(color);
   };
@@ -27,12 +26,25 @@ const ProductDetails = ({ params }) => {
   return (
     <div className=" flex flex-col justify-center items-center py-12 md:py-20 sm:px-4 md:px-20 max-w-[1600px] min-h-screen">
       <div className="flex flex-col w-full max-w-[1200px] justify-center items-center lg:flex-row gap-[120px] p-10 lg:max-h-[800px]  ">
-        <div className="w-full lg:w-[45%] bg-[#f5f5f5] lg:max-h-[700px] p-16">
-          <img
-            src={product?.thumbnail}
-            className="w-full h-full object-contain"
-            alt={product?.title}
-          />
+        <div className="w-full flex flex-col gap-5 lg:w-[45%] ">
+          <div className="bg-[#f5f5f5] lg:max-h-[700px] p-16">
+            <img
+              src={activeImage}
+              className="w-full h-full object-contain"
+              alt={product?.title}
+            />
+          </div>
+          <div className="cursor-pointer flex gap-5 w-full">
+            {product?.images?.map((image,index) => (
+              <img
+                key={index}
+                src={image}
+                className="w-1/3 bg-[#f5f5f5] h-[150px] object-contain"
+                alt={product.title}
+                onClick={() => setActiveImage(image)}
+              />
+            ))}
+          </div>
         </div>
         <div className="flex flex-col gap-8 w-full lg:w-[40%]">
           <div className="flex flex-col gap-4">

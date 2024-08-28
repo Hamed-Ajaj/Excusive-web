@@ -11,15 +11,11 @@ const Hero = () => {
     const containerRef = useRef();
 
     const handleScrollLeft=()=>{
-        containerRef.current.scrollLeft -= 600;
-        console.log(containerRef.current.scrollLeft)
-
+        containerRef.current.scrollLeft -= 300;
     }
 
     const handleScrollRight=()=>{
-        containerRef.current.scrollLeft += 600;
-        console.log(containerRef.current.scrollLeft)
-
+        containerRef.current.scrollLeft += 300;
     }
   return (
     <section className="w-full py-20 px-4 md:p-20 mb-10 ">
