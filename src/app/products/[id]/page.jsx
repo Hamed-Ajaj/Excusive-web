@@ -14,8 +14,9 @@ const ProductDetails = ({ params }) => {
   )
   const { id } = params;
   const product = data?.data?.products.find((product) => product.id === parseInt(id));
-  console.log(product);
-  const [activeImage, setActiveImage] = useState(product?.thumbnail);
+  // console.log(product);
+  const [activeImage, setActiveImage] = useState(product?.thumbnail||product?.images[0]);
+  console.log(activeImage);
   const handleChangeColor = (color) => {
     setActiveColor(color);
   };
@@ -29,7 +30,7 @@ const ProductDetails = ({ params }) => {
         <div className="w-full flex flex-col gap-5 lg:w-[45%] ">
           <div className="bg-[#f5f5f5] lg:max-h-[700px] p-16">
             <img
-              src={activeImage}
+              src={activeImage&&activeImage}
               className="w-full h-full object-contain"
               alt={product?.title}
             />

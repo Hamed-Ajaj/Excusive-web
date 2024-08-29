@@ -1,5 +1,9 @@
+"use client"
 import { cartItems } from "@/constants";
+import { useState } from "react";
 const CheckoutPage = () => {
+  const [selectedPayment, setSelectedPayment] = useState(null);
+  console.log(selectedPayment);
   return (
     <section className="py-20 px-4 md:px-20 min-h-screen">
       <div className="flex flex-col p-5 justify-center md:flex-row md:justify-between gap-12 md:items-center">
@@ -132,36 +136,78 @@ const CheckoutPage = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col gap-12 w-full">
-            <div className="flex justify-between items-center">
-              <div className="flex gap-6">
+          <div className="flex flex-col gap-10 w-full">
+            <ul className="py-2  space-y-4 accent-black">
+              {/* create two radio button in stock and out of stock */}
+              <div className="flex gap-3 items-center">
                 <input
                   type="radio"
-                  name="bank"
-                  id="bank"
-                  className="w-8 accent-black"
+                  name="status"
+                  id="inStock"
+                  className="h-5 w-5"
+                  onClick={() => setSelectedPayment("cash")}
                 />
-                <label htmlFor="">Bank</label>
+                <label htmlFor="inStock">Cash On delivery</label>
+              </div>
+              <div className="flex gap-3 justify-between items-center ">
+              <div className="flex gap-3 items-center">
+                <input
+                  type="radio"
+                  name="status"
+                  id="outOfStock"
+                  className="h-5 w-5"
+                  onClick={() => setSelectedPayment("bank")}
+
+                />
+                <label htmlFor="outOfStock">Bank</label>
               </div>
               <div>
-                <img
-                  src="/icons/Bank.svg"
-                  className="w-full flex items-center object-cover"
-                  alt=""
-                />
+                <img src="/icons/Bank.svg" alt="" />
               </div>
-            </div>
-            <div>
-              <div className="flex gap-6">
+              </div>
+            </ul>
+            {selectedPayment === "bank" && (
+              <div className="flex flex-col gap-2 w-full">
+
+                <label htmlFor="first name" className="text-[#7D8184]">
+                  Card Number <span className="text-[#db4444]">*</span>
+                </label>
                 <input
-                  type="radio"
-                  name="cash"
-                  id="cash"s
-                  className="w-8 accent-black"
+                  type="password"
+                  name="card-number"
+                  id="card-number"
+                  className="w-full py-3 px-2 border-none outline-none bg-[#F5F5F5]  rounded-md"
+                  placeholder="**** **** **** ****"
+                  c
                 />
-                <label htmlFor="">Cash on delivery</label>
+                <div className="flex w-full space-x-8 justify-between">
+                  <div className="flex flex-col gap-2 w-full">
+                    <label htmlFor="first name" className="text-[#7D8184]">
+                      Expiry Date <span className="text-[#db4444]">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="expiry-date"
+                      id="expiry-date"
+                      className="w-full py-3 px-3 border-none outline-none bg-[#F5F5F5]  rounded-md"
+                      placeholder="MM/YY"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-2 w-full">
+                    <label htmlFor="first name" className="text-[#7D8184]">
+                      Card Security Code <span className="text-[#db4444]">*</span>
+                    </label>
+                    <input
+                      type="password"
+                      name="cvv"
+                      id="cvv"
+                      className="w-full py-3 px-3 border-none outline-none bg-[#F5F5F5]  rounded-md"
+                      placeholder="CSC"
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
           </div>
             <button className="bg-[#db4444] px-8 py-4 text-white">Place Order</button>
         </div>
