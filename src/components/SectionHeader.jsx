@@ -9,7 +9,7 @@ const SectionHeader = ({title,sectionTitle,arrows,button,handleScrollRight,handl
             <h4 className='text-[1rem] font-semibold text-[#DB4444]'>{title}</h4>   
         </div>
         <div className='flex justify-between items-center'>
-                <h2 className='text-[36px] font-semibold'>{sectionTitle}</h2>
+                <h2 className='text-[25px] sm:text-[30px] md:text-[36px] font-semibold'>{sectionTitle}</h2>
                 <div className='flex gap-4 items-center'>
                 {arrows &&(
                     <>

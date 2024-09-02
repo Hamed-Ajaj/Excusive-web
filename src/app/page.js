@@ -5,6 +5,8 @@ import Explore from "@/components/Explore";
 import Hero from "@/components/Hero";
 import NewArrival from "@/components/NewArrival";
 import Services from "@/components/Services";
+import ProductsGroupLoader from "@/loaders/ProductsGrouploader";
+import { Suspense } from "react";
 
 export default function Home() {
   return (

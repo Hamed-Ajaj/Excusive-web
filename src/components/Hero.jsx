@@ -5,7 +5,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { categories } from "@/constants";
 import SectionHeader from "./SectionHeader";
 import CategoryCard from "./CategoryCard";
-import { useRef, useState } from "react";
+import { Suspense, useRef, useState } from "react";
+import ProductsGroupLoader from "@/loaders/ProductsGrouploader";
 const Hero = () => {
     let [scrollCard,setScrollCard]=useState(0);
     const containerRef = useRef();
@@ -57,9 +58,11 @@ const Hero = () => {
           handleScrollRight={handleScrollRight}
         />
         <div className="scrollingCategories flex overflow-x-scroll duration-150  gap-6" style={{scrollLeft:scrollCard}} ref={containerRef}>
+          <Suspense fallback={<ProductsGroupLoader />}>
                 {categories.map((category) => (            
                     <CategoryCard category={category} key={category.id} />
                 ))}
+          </Suspense>
         </div>
       </section>
     </section>

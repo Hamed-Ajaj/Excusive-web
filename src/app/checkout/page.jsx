@@ -3,6 +3,7 @@ import { cartItems } from "@/constants";
 import { useState } from "react";
 const CheckoutPage = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
+  const totalPrice = 0
   console.log(selectedPayment);
   return (
     <section className="py-20 px-4 md:px-20 min-h-screen">
@@ -91,6 +92,9 @@ const CheckoutPage = () => {
         </div>
         <div className=" flex flex-col gap-12 md:w-[40%]">
           <div className="flex flex-col gap-6">
+          {/* so whenever we click place older we will put the items or item in a state and put the in the orders page */}
+          {/* we have to use the context api or redux to get the items from cart or from direct buy ex:product detail buy  */}
+          {/* it's not necessary to use backend but it's better (firebase) */}
             {cartItems.map((item) => (
               <div className="flex justify-between items-center w-full">
                 <div className="flex items-center gap-4">
@@ -130,8 +134,8 @@ const CheckoutPage = () => {
               <p>
                 $
                 {cartItems.reduce(
-                  (acc, item) => acc + item.price * item.quantity + 5,
-                  0
+                  (acc, item) => acc + item.price * item.quantity,
+                  totalPrice+10
                 )}
               </p>
             </div>

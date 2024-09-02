@@ -2,7 +2,7 @@
 import { exploreProducts, products } from "@/constants";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { sizes } from "@/constants";
 const ProductDetails = ({ params }) => {
   const [activeColor, setActiveColor] = useState(null);
@@ -13,10 +13,14 @@ const ProductDetails = ({ params }) => {
   }
   )
   const { id } = params;
+
+  const {data:fetchedProduct} = useQuery({
+    queryKey: ['fetched-product'],
+    queryFn: () => axios.get(`https://dummyjson.com/products/${id}`),
+  })
+  console.log(fetchedProduct)
   const product = data?.data?.products.find((product) => product.id === parseInt(id));
-  // console.log(product);
-  const [activeImage, setActiveImage] = useState(product?.thumbnail||product?.images[0]);
-  console.log(activeImage);
+  const [activeImage, setActiveImage] = useState(product?.images[0]);
   const handleChangeColor = (color) => {
     setActiveColor(color);
   };
@@ -30,21 +34,23 @@ const ProductDetails = ({ params }) => {
         <div className="w-full flex flex-col gap-5 lg:w-[45%] ">
           <div className="bg-[#f5f5f5] lg:max-h-[700px] p-16">
             <img
-              src={activeImage&&activeImage}
-              className="w-full h-full object-contain"
+              src={!!activeImage ? activeImage : product?.images[0]}
+              className="w-full max-h-[400px] object-contain"
               alt={product?.title}
             />
           </div>
-          <div className="cursor-pointer flex gap-5 w-full">
-            {product?.images?.map((image,index) => (
-              <img
-                key={index}
-                src={image}
-                className="w-1/3 bg-[#f5f5f5] h-[150px] object-contain"
-                alt={product.title}
-                onClick={() => setActiveImage(image)}
-              />
-            ))}
+          <div className="cursor-pointer flex flex-wrap gap-5 w-full">
+            <Suspense fallback={<p>Loading...</p>}>
+              {product?.images?.map((image,index) => (
+                <img
+                  key={index}
+                  src={image}
+                  className="aspect-square w-[100px] bg-[#f5f5f5]  object-contain"
+                  alt={product.title}
+                  onClick={() => setActiveImage(image)}
+                />
+              ))}
+            </Suspense>
           </div>
         </div>
         <div className="flex flex-col gap-8 w-full lg:w-[40%]">

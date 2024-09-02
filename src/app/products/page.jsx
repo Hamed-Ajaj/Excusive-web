@@ -5,8 +5,10 @@ import ProductsPageHeader from "@/components/ProductsPageHeader";
 import { products, sorting , api} from "@/constants";
 import { SortDescIcon, Filter } from "lucide-react";
 import axios from "axios";
-import  { useEffect, useState } from "react";
+import  { Suspense, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import ProductCardSkeleton from "@/loaders/ProductCardSkeleton";
+import ProductsGroupLoader from "@/loaders/ProductsGrouploader";
 
 const ProductsPage = () => {
   const [sortingIsOpen, setSortingIsOpen] = useState(false);
@@ -65,9 +67,9 @@ const ProductsPage = () => {
           <ProductsPageHeader search={search} setSearch={setSearch}/>
         </div>
         <div className="flex gap-10 h-full justify-between items-start px-5 sm:px-10 lg:px-4 max-w-[1600px]">
-          <aside className="hidden w-[250px] min-h-screen md:flex  ">
+          {/* <aside className="hidden w-[250px] min-h-screen md:flex  ">
             <FilterComponent />
-          </aside>
+          </aside> */}
           <div className="flex h-full w-full  flex-col gap-10 lg:px-5 py-4 items-center">
             <div className="flex justify-between items-center w-full relative">
               {search&&<div className="flex flex-col gap-4 items-start md:flex-row md:items-center">
@@ -116,12 +118,12 @@ const ProductsPage = () => {
               </div>
             </div>
             <div className="grid grid-cols-2  sm:flex sm:justify-start md:justify-center  sm:flex-wrap gap-4 sm:gap-10 md:gap-4 ">
-              {isLoading?"...loading": (data?.data?.products?.map((product) => {
-                return(
-                <ProductCard key={product.id} {...product} />
-                )
-              }) 
-              )}
+                {isFetching?<ProductsGroupLoader />: (data?.data?.products?.map((product) => {
+                  return(
+                  <ProductCard key={product.id} {...product} />
+                  )
+                }) 
+                )}
             </div>
           </div>
         </div>
