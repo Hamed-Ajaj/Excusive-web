@@ -20,7 +20,9 @@ const AboutPage = () => {
           </div>
         </div>
           <div>
-            <Statistics />
+            <Suspense fallback={<p>Loading...</p>} >
+              <Statistics />
+            </Suspense>
           </div>
         {/* <div></div> */}
           <div className="flex justify-center items-center flex-wrap gap-12 ">

@@ -3,12 +3,13 @@ import ProductCardSkeleton from './ProductCardSkeleton'
 
 const ProductsGroupLoader = () => {
   return (
-    <section className='grid grid-cols-2  sm:flex sm:justify-start md:justify-center  sm:flex-wrap gap-4 sm:gap-10 md:gap-4'>
-        <ProductCardSkeleton />
-        <ProductCardSkeleton />
-        <ProductCardSkeleton />
-        <ProductCardSkeleton />
-        <ProductCardSkeleton />
+    <section className='flex justify-center items-center'>
+      <div className='flex flex-wrap gap-6'>
+          <ProductCardSkeleton />
+          <ProductCardSkeleton />
+          <ProductCardSkeleton />
+          <ProductCardSkeleton />
+      </div>
     </section>
   )
 }

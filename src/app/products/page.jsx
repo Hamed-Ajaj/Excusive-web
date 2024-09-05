@@ -117,14 +117,16 @@ const ProductsPage = () => {
                 </div>
               </div>
             </div>
-            <div className="grid grid-cols-2  sm:flex sm:justify-start md:justify-center  sm:flex-wrap gap-4 sm:gap-10 md:gap-4 ">
-                {isFetching?<ProductsGroupLoader />: (data?.data?.products?.map((product) => {
-                  return(
-                  <ProductCard key={product.id} {...product} />
-                  )
-                }) 
-                )}
-            </div>
+            <Suspense fallback={<ProductCardSkeleton />}>
+              <div className="grid grid-cols-2  sm:flex sm:justify-start md:justify-center  sm:flex-wrap gap-4 sm:gap-10 md:gap-4 ">
+                  {isFetching?<ProductsGroupLoader />: (data?.data?.products?.map((product) => {
+                    return(
+                    <ProductCard key={product.id} {...product} />
+                    )
+                  }) 
+                  )}
+              </div>
+            </Suspense>
           </div>
         </div>
       </div>
