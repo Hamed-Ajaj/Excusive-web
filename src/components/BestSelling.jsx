@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import SectionHeader from "./SectionHeader";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import ProductsGroupLoader from "@/loaders/ProductsGrouploader";
+import ProductsGroupLoader from "@/loaders/ProductsGroupLoader";
 
 const BestSelling = () => {
   const { data, isLoading, isFetching, isError, refetch } = useQuery({

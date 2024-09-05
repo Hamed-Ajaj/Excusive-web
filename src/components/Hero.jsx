@@ -6,7 +6,7 @@ import { categories } from "@/constants";
 import SectionHeader from "./SectionHeader";
 import CategoryCard from "./CategoryCard";
 import { Suspense, useRef, useState } from "react";
-import ProductsGroupLoader from "@/loaders/ProductsGrouploader";
+import ProductsGroupLoader from "@/loaders/ProductsGroupLoader";
 const Hero = () => {
     let [scrollCard,setScrollCard]=useState(0);
     const containerRef = useRef();

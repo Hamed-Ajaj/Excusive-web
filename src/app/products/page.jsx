@@ -8,7 +8,7 @@ import axios from "axios";
 import  { Suspense, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProductCardSkeleton from "@/loaders/ProductCardSkeleton";
-import ProductsGroupLoader from "@/loaders/ProductsGrouploader";
+import ProductsGroupLoader from "@/loaders/ProductsGroupLoader";
 
 const ProductsPage = () => {
   const [sortingIsOpen, setSortingIsOpen] = useState(false);

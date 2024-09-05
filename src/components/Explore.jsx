@@ -5,7 +5,7 @@ import ProductCard from "./ProductCard";
 import Link from "next/link";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import ProductsGroupLoader from "@/loaders/ProductsGrouploader";
+import ProductsGroupLoader from "@/loaders/ProductsGroupLoader";
 const Explore = () => {
   const { data, isLoading, isFetching, isError, refetch } = useQuery({
     queryKey: ["explore-products"],
