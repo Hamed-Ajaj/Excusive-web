@@ -9,9 +9,13 @@ import {
   Truck,
   User,
   HomeIcon,
-  
+  LucideCalendarClock,
+  Heart,
+  MessageSquareWarning,
+  LocateFixed
 } from "lucide-react";
 import {
+
   FaInstagram,
   FaLinkedin,
   FaGithub,
@@ -214,7 +218,31 @@ export const profileMenuItems = [
     id: 2,
     name: "My Orders",
     img: <ShoppingBag />,
-    href: "/orders",
+    href: "/profile/orders",
+  },
+  {
+    id: 3,
+    name: "Recently Viewed",
+    img: <LucideCalendarClock />,
+    href: "/profile/recently-viewed",
+  },
+  {
+    id: 4,
+    name: "Addresses",
+    img: <LocateFixed />,
+    href: "/profile/addresses",
+  },
+  {
+    id: 5,
+    name: "WishList",
+    img: <Heart />,
+    href: "/profile/wishlist",
+  },
+  {
+    id: 5,
+    name: "Feedback",
+    img: <MessageSquareWarning />,
+    href: "/profile/feedback",
   },
 ];
 

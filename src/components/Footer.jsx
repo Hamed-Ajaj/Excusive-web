@@ -6,7 +6,9 @@ const Footer = () => {
   return (
     <footer className='w-full h-auto p-4 md:p-12 bg-black text-white flex flex-col md:flex-row gap-14 justify-center  md:justify-between md:items-start overflow-hidden'>
         <div className='flex flex-col gap-5'>
-            <h1 className='text-[30px] font-semibold'>Exclusive</h1>
+            <Link href='/'>
+                <h1 className='text-[30px] font-semibold flex items-center'>Exclusive <img src="/icons/transparent_logo.png" className='invert' width={50} height={50} alt="" /></h1>
+            </Link>
             <p>Subscribe & <br /> get 10% off on your first order!</p>
             <div className='flex relative max-w-[300px]'>
                 <input type="email" name="email" id="email" placeholder='enter your email'  className=' w-full md:w-[250px] py-2 px-2 bg-transparent border border-white outline-none '/>

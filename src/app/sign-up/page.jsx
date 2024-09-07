@@ -3,21 +3,30 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { signUp } from '../firebase/auth';
-import { auth } from '../firebase/firebase';
+import { collection, addDoc, getDoc, setDoc, doc } from 'firebase/firestore';
+import { auth ,db} from '../firebase/firebase';
 import { useRouter } from 'next/navigation';
 
 const SignUpPage = () => {
   const { register, handleSubmit, formState: { errors },reset } = useForm();
+  const usersCollection = collection(db,"users")
   const router = useRouter()
   const onSubmit = async data => {
     await signUp(data.email,data.password)
-    auth.displayName = data.name
+    await setDoc(doc(db, "users", auth?.currentUser?.uid), {
+      first:data.fname,
+      last:data.lname,
+      email:data.email
+    })
     reset();
   };
+
+  
 
   if(auth.currentUser) router.push("/")
     console.log(auth.currentUser)
 
+  
   return (
     <section className='flex justify-center items-center p-10 gap-10'>
         <div className='hidden md:block w-[45%] h-[750px] '>
@@ -32,7 +41,11 @@ const SignUpPage = () => {
               </div>
               <div  className='flexCol w-full'>
                 {/* <label htmlFor="name">Name</label> */}
-                <input placeholder='Name' className='py-2 outline-none border-b-2 border-black w-full' id="name" {...register('name', { required: true, maxLength: 30 })} />
+                <input placeholder='FirstName' className='py-2 outline-none border-b-2 border-black w-full' id="fname" {...register('fname', { required: true, maxLength: 30 })} />
+              </div>
+              <div  className='flexCol w-full'>
+                {/* <label htmlFor="name">Name</label> */}
+                <input placeholder='LastName' className='py-2 outline-none border-b-2 border-black w-full' id="lname" {...register('lname', { required: true, maxLength: 30 })} />
               </div>
               <div className='flexCol w-full'>
                 {/* <label htmlFor="email">Email or Phone Number</label> */}

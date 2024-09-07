@@ -102,7 +102,7 @@ const OrdersPage = () => {
                       </p>
                       </div>
                       <div>
-                        <Link href={`/orders/${order.id}`}>
+                        <Link href={`orders/${order.id}`}>
                           <button className='bg-black text-white text-[14px] font-medium py-2 px-6 rounded-full hover:bg-[#313131] '>Details</button>
                         </Link>
                       </div>

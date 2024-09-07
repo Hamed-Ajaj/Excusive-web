@@ -38,7 +38,9 @@ const Hero = () => {
           </div>
           <div className="flex gap-4 items-center">
             <h2 className="text-white underline underline-offset-1 font-medium">
-              Shop Now!{" "}
+              <a href="#explore">
+                Shop Now!{" "}
+              </a>
             </h2>{" "}
             <img src="/icons/right.svg" alt="right" width={24} height={24} />
           </div>
@@ -57,13 +59,13 @@ const Hero = () => {
           handleScrollLeft={handleScrollLeft}
           handleScrollRight={handleScrollRight}
         />
-        <div className="scrollingCategories flex overflow-x-scroll duration-150  gap-6" style={{scrollLeft:scrollCard}} ref={containerRef}>
-          <Suspense fallback={<ProductsGroupLoader />}>
-                {categories.map((category) => (            
-                    <CategoryCard category={category} key={category.id} />
-                ))}
+          <Suspense fallback={<p>...loading</p>}>
+            <div className="scrollingCategories flex overflow-x-scroll duration-150  gap-6" style={{scrollLeft:scrollCard}} ref={containerRef}>
+                    {categories.map((category) => (            
+                        <CategoryCard category={category} key={category.id} />
+                    ))}
+            </div>
           </Suspense>
-        </div>
       </section>
     </section>
   );

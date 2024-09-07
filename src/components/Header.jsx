@@ -31,11 +31,15 @@ const Header = () => {
     <header className="border-b ">
       <ShopNow />
       <nav className="flex justify-between items-center m-auto p-4 sm:p-12 max-w-[1600px]">
-        <div className="flex items-center">
-          <h1 className="text-[19px] md:text-[24px] font-bold">
-            <Link href={"/"}>Exclusive</Link>
-          </h1>
-        </div>
+        <Link href={"/"}>
+          <div className="flex items-center gap-2 justify-center">
+            
+              <img src="/icons/transparent_logo.png" width={50} height={50} />
+              <h1 className="text-[19px] md:text-[24px] font-bold ">
+                Exclusive
+              </h1>
+          </div>
+          </Link>
         <div className="hidden lg:flex gap-12 items-center">
           {links.map((link, index) => (
             <Link href={link.href} key={index}>
@@ -111,7 +115,7 @@ const Header = () => {
                   size={32}
                 />
                 {showProfileMenu && (
-                  <div className="flex flex-col w-[200px] md:w-[280px] h-auto gap-4 absolute top-12 -right-0 transparent-black-gradient-blur p-1 md:p-3 rounded-lg text-white z-20">
+                  <div className="flex flex-col w-[200px] md:w-[220px] h-auto gap-4 absolute top-12 -right-0 transparent-black-gradient-blur p-1 md:p-3 rounded-lg text-white z-20">
                     {profileMenuItems.map((item, index) => (
                       <Link href={item?.href} key={index}>
                         <div className="flex gap-4 md:gap-6 text-[14px] text-nowrap items-center">
