@@ -13,7 +13,8 @@ const ProfilePage = () => {
     last:"",
     email:"",
   });
-   const usersCollection = doc(db,"users",auth?.currentUser?.uid)
+  if(auth.currentUser) {
+  const usersCollection = doc(db,"users",auth?.currentUser?.uid)
   const getUserInfo = async() =>{
     const userinfo = await getDoc(usersCollection)
     setUser({
@@ -26,8 +27,8 @@ const ProfilePage = () => {
   useEffect(() => {
     getUserInfo()
   }, []);
-  console.log(user)
-
+  
+  }
   const router = useRouter();
 
   
@@ -62,6 +63,7 @@ const ProfilePage = () => {
     }
     )
   }
+  console.log(auth.currentUser);
   return (
     <section className="min-h-screen px-4 md:px-20 py-20">
       <div className="flex justify-between gap-[120px] items-start w-full">
@@ -91,7 +93,7 @@ const ProfilePage = () => {
             </ul>
           </div>
         </aside>
-        <div className=" p-5 md:p-10 flex justify-center w-[70%]  shadow-lg rounded-sm">
+        <div className=" p-5 md:p-10 flex justify-center w-full lg:w-[70%]  shadow-lg rounded-sm">
           <form className="w-full flex  md:px-5 py-5 flex-col lg:w-[1300px] gap-10 "  onSubmit={handleSubmit}>
           <div className="flex justify-between items-center">
             <h1 className="text-[20px] font-medium text-[#db4444] text-nowrap">
