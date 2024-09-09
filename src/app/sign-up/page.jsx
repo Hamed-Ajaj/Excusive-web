@@ -8,6 +8,8 @@ import { collection, addDoc, getDoc, setDoc, doc } from "firebase/firestore";
 import { auth, db,provider } from "../firebase/firebase";
 import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
+import { useToast } from "@chakra-ui/react";
+import InputsError from "@/components/InputsError";
 
 const SignUpPage = () => {
   const {
@@ -16,6 +18,8 @@ const SignUpPage = () => {
     formState: { errors },
     reset,
   } = useForm();
+  
+  const toast = useToast();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   if (auth.currentUser) router.push("/");
@@ -36,6 +40,7 @@ const SignUpPage = () => {
       console.log(err);
       setLoading(false);
     }
+    
   };
 
   const handleGoogleSignUp = async () => {
@@ -80,6 +85,8 @@ const SignUpPage = () => {
               id="fname"
               {...register("fname", { required: true, maxLength: 30 })}
             />
+            {errors.fname && <InputsError error={errors?.fname} errorName={"First Name"} />}
+
           </div>
           <div className="flexCol w-full">
             {/* <label htmlFor="name">Name</label> */}
@@ -89,6 +96,8 @@ const SignUpPage = () => {
               id="lname"
               {...register("lname", { required: true, maxLength: 30 })}
             />
+            {errors.lname && <InputsError error={errors?.lname} errorName={"Last Name"} />}
+
           </div>
           <div className="flexCol w-full">
             {/* <label htmlFor="email">Email or Phone Number</label> */}
@@ -99,6 +108,7 @@ const SignUpPage = () => {
               type="email"
               {...register("email", { required: true, maxLength: 30 })}
             />
+            {errors.email && <InputsError error={errors?.email} errorName={"Email"} />}
           </div>
           <div className="flexCol w-full">
             {/* <label htmlFor="password">Password</label> */}
@@ -113,10 +123,12 @@ const SignUpPage = () => {
                 maxLength: 30,
               })}
             />
+            {errors.password && <InputsError error={errors.password} errorName={"Password"} />}
           </div>
 
-          {/* {errors.name && errors.name.type === "required" && <span>This is required</span>}
-              {errors.name && errors.name.type === "maxLength" && <span>Max length exceeded</span> } */}
+              
+
+              {/* {errors.name && errors.name.type === "maxLength" && <span>Max length exceeded</span> }  */}
           <div className="flex flex-col justify-center items-center gap-8 w-full">
             <button
               type="submit"

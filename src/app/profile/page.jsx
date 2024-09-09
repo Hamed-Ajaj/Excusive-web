@@ -1,46 +1,49 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { auth, db } from "../firebase/firebase";
 import { useRouter } from "next/navigation";
-import { collection, doc, getDoc,updateDoc } from "firebase/firestore";
-import { set } from "react-hook-form";
+import { collection, deleteDoc, doc, getDoc,updateDoc } from "firebase/firestore";
+import { Box, Button, Popover, PopoverBody, PopoverCloseButton, PopoverContent, PopoverFooter, PopoverHeader, PopoverTrigger, Portal, useDisclosure, useToast } from '@chakra-ui/react'
+import { logOut } from "../firebase/auth";
 const ProfilePage = () => {
- 
+  const toast = useToast()
+  const { isOpen, onToggle, onClose } = useDisclosure()
+  const initRef = useRef()
   const [isEditing, setIsEditing] = useState(false);
-  
   const [user, setUser] = useState({
     first:"",
     last:"",
     email:"",
   });
-  if(auth.currentUser) {
-  const usersCollection = doc(db,"users",auth?.currentUser?.uid)
-  const getUserInfo = async() =>{
-    const userinfo = await getDoc(usersCollection)
-    setUser({
-      first:userinfo.data()?.first,
-      last:userinfo.data()?.last,
-      email:userinfo.data()?.email,
-      address:userinfo.data()?.address
-    })
-  }
-  useEffect(() => {
-    getUserInfo()
-  }, []);
+    if (auth.currentUser) {
+      const usersCollection = doc(db,"users",auth?.currentUser?.uid)
+      const getUserInfo = async() =>{
+      const userinfo = await getDoc(usersCollection)
+      setUser({
+        first:userinfo.data()?.first,
+        last:userinfo.data()?.last,
+        email:userinfo.data()?.email,
+        address:userinfo.data()?.address
+      })
+      }
+      useEffect(() => {
+        getUserInfo()
+      }, []);
+    }
   
-  }
   const router = useRouter();
 
   
   if(!auth.currentUser) {
-    return (
-      <div className="min-h-screen p-20 flex flex-col  items-center gap-8">
-        <h1 className="text-[40px] font-semibold">You Have to be authenticated to open this page!</h1>
-        <button onClick={() => router.push("/sign-in")}
-        className="bg-[#db4444] text-white font-medium py-3 px-6 rounded-md"
-        >please Login!</button>
-      </div>
-    )
+    router.push("/sign-up")
+    // return (
+    //   <div className="min-h-screen p-20 flex flex-col  items-center gap-8">
+    //     <h1 className="text-[40px] font-semibold">You Have to be authenticated to open this page!</h1>
+    //     <button onClick={() => router.push("/sign-in")}
+    //     className="bg-[#db4444] text-white font-medium py-3 px-6 rounded-md"
+    //     >please Login!</button>
+    //   </div>
+    // )
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,15 +58,32 @@ const ProfilePage = () => {
 
   const handleDocUpdate = async ()=>{
     setIsEditing(false)
-    await updateDoc(usersCollection,{
+    await updateDoc(doc(db,"users",auth?.currentUser?.uid),{
       first:user.first,
       last:user.last,
       email:user.email,
-      address:user.address
+      address:user?.address
     }
     )
+    toast({
+      title: 'Details Updated',
+      description: "We've updated you're account details.",
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
+    })
   }
-  console.log(auth.currentUser);
+
+  const handleAccountDeletion = async () => {
+      try {
+        await deleteDoc(doc(db,"users",auth?.currentUser?.uid));
+        auth?.currentUser?.delete();
+        logOut();
+        router.push('/')
+      } catch (error) {
+        console.log
+      }
+  }
   return (
     <section className="min-h-screen px-4 md:px-20 py-20">
       <div className="flex justify-between gap-[120px] items-start w-full">
@@ -93,8 +113,9 @@ const ProfilePage = () => {
             </ul>
           </div>
         </aside>
-        <div className=" p-5 md:p-10 flex justify-center w-full lg:w-[70%]  shadow-lg rounded-sm">
-          <form className="w-full flex  md:px-5 py-5 flex-col lg:w-[1300px] gap-10 "  onSubmit={handleSubmit}>
+        <div className=" p-5 md:p-10 flex flex-col justify-center w-full lg:w-[70%] gap-10  shadow-lg rounded-sm">
+        <div>
+          <form className="flex  flex-col w-full gap-10 "  onSubmit={handleSubmit}>
           <div className="flex justify-between items-center">
             <h1 className="text-[20px] font-medium text-[#db4444] text-nowrap">
               Edit Your Profile
@@ -110,7 +131,7 @@ const ProfilePage = () => {
                       type="text"
                       name="first"
                       disabled={!isEditing}
-                      className="bg-[#f5f5f5] py-4 px-5 rounded-md w-full"
+                      className={`${isEditing?"text-black":"text-gray-300"} bg-[#f5f5f5] py-4 px-5 rounded-md w-full`}
                       id="first-name"
                       onChange={handleUserChange}
                       value={user.first}
@@ -122,7 +143,7 @@ const ProfilePage = () => {
                       type="email"
                       name="email"
                       disabled={!isEditing}
-                      className="bg-[#f5f5f5] py-4 px-5 rounded-md w-full"
+                      className={`${isEditing?"text-black":"text-gray-300"} bg-[#f5f5f5] py-4 px-5 rounded-md w-full`}
                       id="email"
                       onChange={handleUserChange}
                       value={user.email}
@@ -135,8 +156,9 @@ const ProfilePage = () => {
                     <input
                       type="text"
                       name="last"
+                      placeholder="Last Name"
                       disabled={!isEditing}
-                      className="bg-[#f5f5f5] py-4 px-5 rounded-md w-full"
+                      className={`${isEditing?"text-black":"text-gray-300"} bg-[#f5f5f5] py-4 px-5 rounded-md w-full`}
                       id="last-name"
                       onChange={handleUserChange}
                       value={user.last}
@@ -148,7 +170,7 @@ const ProfilePage = () => {
                       type="text"
                       name="address"
                       disabled={!isEditing}
-                      className="bg-[#f5f5f5] py-4 px-5 rounded-md w-full"
+                      className={`${isEditing?"text-black":"text-gray-300"} bg-[#f5f5f5] py-4 px-5 rounded-md w-full`}
                       id="address"
                       onChange={handleUserChange}
                       value={user.address}
@@ -181,15 +203,60 @@ const ProfilePage = () => {
                 placeholder="Confirm New Password"
                 className="bg-[#f5f5f5] py-4 px-5 rounded-md w-full"
               />
-            </div>
-            <div className="flex justify-end items-center gap-6">
-              <button className="font-medium">Cancel</button>
+              <div className="flex justify-end items-center gap-6 mt-5">
+              <button className="font-medium" onClick={()=> setIsEditing(false)}>Cancel</button>
               <button className="py-4 rounded-md px-8 bg-[#db4444] hover:opacity-90 active:opacity-85 text-white font-medium" onClick={() =>handleDocUpdate()}>
                 Save Changes
               </button>
+              </div>
             </div>
+            
+            
           </form>
         </div>
+        <hr className="w-full h-[2px] bg-[#ccc]" />
+        {/* delete account section */}
+        <div className=" flex justify-between mt-5 items-center w-full">
+            <div>
+              <h1
+                className="text-[20px] font-medium text-[#db4444] text-nowrap"
+              >
+                Delete Account
+              </h1>
+            </div>
+            <div>
+            {/* <Popover closeOnBlur={false} placement='left' initialFocusRef={initRef}>
+              {({ isOpen, onClose }) => (
+                <>
+                  <PopoverTrigger>
+                    <Button bgColor={"red"} color={"white"} paddingInline={10} paddingY={7}>Click to {isOpen ? 'close' : 'open'}</Button>
+                  </PopoverTrigger>
+                  <Portal>
+                    <PopoverContent>
+                      <PopoverBody>
+                        <Box>
+                          Are you sure you want to delete your account?
+                        </Box>
+                        <Button
+                          mt={4}
+                          colorScheme='red'
+                          onClick={() => handleAccountDeletion}
+                          ref={initRef}
+                        >
+                          Confirm
+                        </Button>
+                      </PopoverBody>
+                    </PopoverContent>
+                  </Portal>
+                </>
+              )}
+            </Popover> */}
+            <button onClick={handleAccountDeletion}>delete
+            </button>
+            </div>
+        </div>
+        </div>
+        
       </div>
     </section>
   );
