@@ -23,9 +23,9 @@ const Header = () => {
   const pathname = usePathname();
   const user = true;
   const handleLogout = () => {
-    window.location.reload()
-    logOut()
-  }
+    window.location.reload();
+    logOut();
+  };
   const cart = useSelector((state) => state.cart.items);
   return (
     <header className="border-b ">
@@ -33,13 +33,10 @@ const Header = () => {
       <nav className="flex justify-between items-center m-auto p-4 sm:p-12 max-w-[1600px]">
         <Link href={"/"}>
           <div className="flex items-center gap-2 justify-center">
-            
-              <img src="/icons/transparent_logo.png" width={50} height={50} />
-              <h1 className="text-[19px] md:text-[24px] font-bold ">
-                Exclusive
-              </h1>
+            <img src="/icons/transparent_logo.png" width={50} height={50} />
+            <h1 className="text-[19px] md:text-[24px] font-bold ">Exclusive</h1>
           </div>
-          </Link>
+        </Link>
         <div className="hidden lg:flex gap-12 items-center">
           {links.map((link, index) => (
             <Link href={link.href} key={index}>
@@ -52,11 +49,15 @@ const Header = () => {
               </span>
             </Link>
           ))}
-            <Link href={`${auth.currentUser?"/products":"/sign-up"}`}>
-              <span className={`text-xl font-normal text-black ${pathname===("/products"||"/sign-up")?"underline":""}`}>
-                  {auth.currentUser?"Products":"Sign up"}
-              </span>
-            </Link> 
+          <Link href={`${auth.currentUser ? "/products" : "/sign-up"}`}>
+            <span
+              className={`text-xl font-normal text-black ${
+                pathname === ("/products" || "/sign-up") ? "underline" : ""
+              }`}
+            >
+              {auth.currentUser ? "Products" : "Sign up"}
+            </span>
+          </Link>
         </div>
         <div className="flex gap-4 sm:gap-8 items-center ">
           <div className="block lg:hidden relative">
@@ -80,14 +81,18 @@ const Header = () => {
                     </span>
                   </Link>
                 ))}
-                  <Link href={`${auth.currentUser?"/products":"/sign-up"}`}>
-                    <span 
-                    className={`text-xl font-normal text-white ${pathname===("/products"||"/sign-up")?"underline":""}`}
+                <Link href={`${auth.currentUser ? "/products" : "/sign-up"}`}>
+                  <span
+                    className={`text-xl font-normal text-white ${
+                      pathname === ("/products" || "/sign-up")
+                        ? "underline"
+                        : ""
+                    }`}
                     onClick={() => setShowMenu(false)}
-                    >
-                        {auth.currentUser?"Products":"Sign up"}
-                    </span>
-                  </Link> 
+                  >
+                    {auth.currentUser ? "Products" : "Sign up"}
+                  </span>
+                </Link>
               </div>
             )}
           </div>
@@ -107,29 +112,39 @@ const Header = () => {
                 </div>
               </div>
               <div
-                className="flex justify-center items-center relative"
-                onClick={() => setShowProfileMenu(!showProfileMenu)}
+                className="flex justify-center gap-2 items-center relative"
+                
               >
+              <div>
                 <User
                   className="cursor-pointer hover:text-gray-500"
+                  onClick={() => setShowProfileMenu(!showProfileMenu)}
                   size={32}
                 />
-                {showProfileMenu && (
-                  <div className="flex flex-col w-[200px] md:w-[220px] h-auto gap-4 absolute top-12 -right-0 transparent-black-gradient-blur p-1 md:p-3 rounded-lg text-white z-20">
-                    {profileMenuItems.map((item, index) => (
-                      <Link href={item?.href} key={index}>
-                        <div className="flex gap-4 md:gap-6 text-[14px] text-nowrap items-center">
-                          <div>{item.img}</div>
-                          <div>{item.name}</div>
+              </div>
+
+                
+                  {auth.currentUser&& (showProfileMenu && (
+                    <div className="flex flex-col w-[200px] md:w-[220px] h-auto gap-4 absolute top-12 -right-0 transparent-black-gradient-blur p-1 md:p-3 rounded-lg text-white z-20">
+                      {profileMenuItems.map((item, index) => (
+                        <Link href={item?.href} key={index}>
+                          <div className="flex gap-4 md:gap-6 text-[14px] text-nowrap items-center">
+                            <div>{item.img}</div>
+                            <div>{item.name}</div>
+                          </div>
+                        </Link>
+                      ))}
+                      <div className="flex gap-4 md:gap-6 text-[14px] items-center">
+                        <div>
+                          <Outdent size={25} />
                         </div>
-                      </Link>
-                    ))}
-                        <div className="flex gap-4 md:gap-6 text-[14px] items-center">
-                          <div><Outdent size={25}/></div>
-                          <button type="submit" onClick={handleLogout}>Log Out</button>
-                        </div>
-                  </div>
-                )}
+                        <button type="submit" onClick={handleLogout}>
+                          Log Out
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                  }
               </div>
             </div>
           ) : (
