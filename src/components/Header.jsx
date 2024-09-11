@@ -52,10 +52,10 @@ const Header = () => {
           <Link href={`${auth.currentUser ? "/products" : "/sign-up"}`}>
             <span
               className={`text-xl font-normal text-black ${
-                pathname === ("/products" || "/sign-up") ? "underline" : ""
+                pathname === "/products" ? "underline" : ""
               }`}
             >
-              {auth.currentUser ? "Products" : "Sign up"}
+              Products
             </span>
           </Link>
         </div>
@@ -81,16 +81,16 @@ const Header = () => {
                     </span>
                   </Link>
                 ))}
-                <Link href={`${auth.currentUser ? "/products" : "/sign-up"}`}>
+                <Link href={"/products"}>
                   <span
                     className={`text-xl font-normal text-white ${
-                      pathname === ("/products" || "/sign-up")
+                      pathname === ("/products")
                         ? "underline"
                         : ""
                     }`}
                     onClick={() => setShowMenu(false)}
                   >
-                    {auth.currentUser ? "Products" : "Sign up"}
+                    Products
                   </span>
                 </Link>
               </div>
@@ -115,13 +115,30 @@ const Header = () => {
                 className="flex justify-center gap-2 items-center relative"
                 
               >
-              <div>
-                <User
-                  className="cursor-pointer hover:text-gray-500"
-                  onClick={() => setShowProfileMenu(!showProfileMenu)}
-                  size={32}
-                />
-              </div>
+              {auth.currentUser ? (
+                <div>
+                  <User
+                    className="cursor-pointer hover:text-gray-500"
+                    onClick={() => setShowProfileMenu(!showProfileMenu)}
+                    size={32}
+                  />
+                </div>
+              ):
+              ( 
+                <Link href="/sign-up">
+                  <div className="flex items-center gap-2 group">
+                    <User
+                      className="cursor-pointer group-hover:text-gray-500"
+                      // onClick={() => setShowProfileMenu(!showProfileMenu)}
+                      size={32}
+                    />
+                    <h1
+                      className="text-[18px] text-black font-bold cursor-pointer group-hover:text-gray-500"
+                    >Sign Up</h1>
+                  </div>
+                </Link>
+              )
+              }
 
                 
                   {auth.currentUser&& (showProfileMenu && (

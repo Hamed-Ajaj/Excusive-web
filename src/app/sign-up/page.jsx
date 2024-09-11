@@ -34,6 +34,13 @@ const SignUpPage = () => {
         last: data.lname,
         email: data.email,
       });
+      toast({
+        title: 'Account Created',
+        description: "You've successfully created an account with us.",
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      })
       setLoading(false);
       router.push("/");
     } catch (err) {
@@ -45,12 +52,14 @@ const SignUpPage = () => {
 
   const handleGoogleSignUp = async () => {
       try {
+        
         await signInWithPopup(auth, provider)
         await setDoc(doc(db, "users", auth?.currentUser?.uid), {
           first: auth?.currentUser?.displayName,
           last: "ajaj",
           email: auth?.currentUser?.email,
         });
+        
         router.push('/')
       } catch (error) {
         console.log(error)

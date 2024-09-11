@@ -1,6 +1,6 @@
 "use client"
 import Link from 'next/link';
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { login } from '../firebase/auth';
@@ -9,11 +9,16 @@ import { useAuth } from '../context/authContext';
 
 const SignUpPage = () => {
     const { register, handleSubmit, formState: { errors },reset, } = useForm();
+    const [error, setError] = useState(null);
     const {loading} = useAuth()
     const router = useRouter();
     const onSubmit = async data => {
-        await login(data.email,data.password)
-        reset();
+        try {
+            await login(data.email,data.password)
+        } catch (error) {
+            console.log(error.message)
+            setError(error)
+        }
     };
     if(auth.currentUser) router.push("/")
   return (
@@ -35,6 +40,7 @@ const SignUpPage = () => {
                 <div className='flexCol w-full'>
                     {/* <label htmlFor="password">Password</label> */}
                     <input placeholder='Password' id="password" className='py-2 outline-none border-b-2 border-black w-full' type='password' {...register('password', { required: true,minLength:6, maxLength: 30 })} />
+                    {error && <p className='text-red-500'>Invalid Email or Password</p>}
                 </div>
 
                 {/* {errors.name && errors.name.type === "required" && <span>This is required</span>}
