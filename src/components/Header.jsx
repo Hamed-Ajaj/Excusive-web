@@ -49,7 +49,7 @@ const Header = () => {
               </span>
             </Link>
           ))}
-          <Link href={`${auth.currentUser ? "/products" : "/sign-up"}`}>
+          <Link href={"/products"}>
             <span
               className={`text-xl font-normal text-black ${
                 pathname === "/products" ? "underline" : ""
