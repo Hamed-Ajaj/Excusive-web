@@ -7,7 +7,7 @@ import React from 'react'
 const SideProfileNav = () => {
     const pathname = usePathname()
   return (
-    <aside className="space-y-4 px-3 hidden lg:block text-nowrap">
+    <aside className="space-y-4 h-full px-3 absolute top-0 -left-[300px] z-10 bg-white lg:static lg:flex  text-nowrap">
     <div className="flex flex-col gap-4 ">
       {profileMenuItems.map((item) => (
         <Link
@@ -16,7 +16,7 @@ const SideProfileNav = () => {
           className="text-[#db4444] flex gap-4 py-5  font-medium hover:opacity-90"
         >
           <div>{item.img}</div>
-          <div className={`${pathname===`${item.subName}`?"underline":""}`}>{item.name}</div>
+          <div className={`${pathname===`${item.subName}`?"underline font-semibold":""}`}>{item.name}</div>
         </Link>
       ))}
     </div>

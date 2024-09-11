@@ -11,8 +11,8 @@ export const metadata = {
 
   export default function Layout({ children }) {
     return (
-      <div className="flex gap-10 ">
-        <div className="w-auto hidden lg:block px-4 md:px-10 py-10">
+      <div className="flex gap-10 relative">
+        <div className="w-auto absolute h-full  lg:block lg:static px-4 md:px-10 py-10">
             <SideProfileNav />
         </div>
         <div className="w-full lg:w-[80%] p-5 lg:p-0">

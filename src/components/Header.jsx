@@ -145,7 +145,10 @@ const Header = () => {
                     <div className="flex flex-col w-[200px] md:w-[220px] h-auto gap-4 absolute top-12 -right-0 transparent-black-gradient-blur p-1 md:p-3 rounded-lg text-white z-20">
                       {profileMenuItems.map((item, index) => (
                         <Link href={item?.href} key={index}>
-                          <div className="flex gap-4 md:gap-6 text-[14px] text-nowrap items-center">
+                          <div className="flex gap-4 md:gap-6 text-[14px] text-nowrap items-center" 
+                          onClick={
+                            ()=>setShowProfileMenu(false)
+                          }>
                             <div>{item.img}</div>
                             <div>{item.name}</div>
                           </div>
