@@ -3,9 +3,12 @@ import { cartItems } from "@/constants"
 import Link from "next/link"
 import { useSelector,useDispatch } from "react-redux"
 import { removeItem ,increaseItem,decreaseItem} from "../global-redux/Features/cart/cartSlice"
+import { useCart } from "../context/cartContext"
 const CartPage = () => {
-  const cart = useSelector((state) => state.cart.items)
-  const dispatch = useDispatch()
+  // const cart = useSelector((state) => state.cart.items)
+  // const dispatch = useDispatch()
+
+  const {cart} = useCart()
   console.log(cart)
   const handleRemoveItem = (id) => {
     dispatch(removeItem(id))
@@ -18,7 +21,7 @@ const CartPage = () => {
         <h1>Quantity</h1>
         <h1>Subtotal</h1>
       </div>
-      {cart?.map((item) => (
+      {/* {cart?.map((item) => (
         <div key={item.id} className="grid grid-cols-2 md:grid-cols-4 gap-10 place-items-center p-5 shadow-md rounded-md mb-10">
           <div className="flex items-center gap-6 w-full  group">
             <div className="relative">  
@@ -39,7 +42,7 @@ const CartPage = () => {
           </div>
           <h1 className="hidden md:block">{item.price * item.quantity}$</h1>
       </div>
-      ))}
+      ))} */}
       <div className="flex flex-col gap-6 sm:gap-0 sm:flex-row justify-center sm:justify-between sm:items-center">
         <Link href={"/"}><button className="bg-transparent rounded-md font-medium py-4 px-12 flex items-center justify-center border-2 border-black w-full md:w-auto">Return To Shop</button></Link>
         <button className="bg-transparent rounded-md font-medium py-4 px-12 flex items-center justify-center border-2 border-black">Update Cart</button>

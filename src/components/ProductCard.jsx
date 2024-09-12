@@ -10,10 +10,12 @@ import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { addItem } from "@/app/global-redux/Features/cart/cartSlice";
 import Link from "next/link";
+import { useCart } from "@/app/context/cartContext";
 
 const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand,availabilityStatus,thumbnail,images,reviews }) => {
+  const {loading,addToCart} = useCart()
   let priceAfterDisc = price - (price * discountPercentage/100)
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   return (
     <div className="flex flex-col items-center gap-4 w-[150px] sm:w-[200px]  md:w-[250px] lg:w-[270px]  h-auto  relative rounded-md">
       <div className="bg-[#F5F5F5] px-6 py-16 w-full flex justify-center items-center relative group rounded-md h-[220px]  sm:h-[280px]">
@@ -21,9 +23,9 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
         {/* <Image src={`${thumbnail}`} alt={title} width={200} height={200} /> */}
         <button
           className="w-full h-[50px] hidden group-hover:block hover:bg-[#373737] text-white bg-black absolute bottom-0 right-0 rounded-b-md"
-          onClick={() => dispatch(addItem(product))}
+          onClick={() => addToCart({id,title,price,discountPercentage,rating,stock,tags,brand,availabilityStatus,thumbnail,images,reviews})}
         >
-          Add To Cart
+          {loading ? "Adding to cart..." : "Add to Cart"}
         </button>
         {/* {product?.isNew && (
           <div className="py-1 px-3 bg-[#00FF66] rounded-md font-medium text-white text-[12px] absolute top-5 left-5">

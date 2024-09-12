@@ -30,14 +30,14 @@ const Header = () => {
   return (
     <header className="border-b ">
       <ShopNow />
-      <nav className="flex justify-between items-center m-auto p-4 sm:p-12 max-w-[1600px]">
+      <nav className="flex justify-between items-center m-auto p-3 lg:p-10 max-w-[1600px]">
         <Link href={"/"}>
           <div className="flex items-center gap-2 justify-center">
             <img src="/icons/transparent_logo.png" width={50} height={50} />
             <h1 className="text-[19px] md:text-[24px] font-bold ">Exclusive</h1>
           </div>
         </Link>
-        <div className="hidden lg:flex gap-12 items-center">
+        <div className="hidden lg:flex gap-4 md:gap-6 lg:gap-12 items-center">
           {links.map((link, index) => (
             <Link href={link.href} key={index}>
               <span
@@ -133,7 +133,7 @@ const Header = () => {
                       size={32}
                     />
                     <h1
-                      className="text-[18px] text-black font-bold cursor-pointer group-hover:text-gray-500"
+                      className="text-[14px] text-nowrap lg:text-[18px] hidden md:block text-black font-semibold cursor-pointer group-hover:text-gray-500"
                     >Sign Up</h1>
                   </div>
                 </Link>

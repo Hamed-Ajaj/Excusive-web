@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { auth, db } from "../firebase/firebase";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -24,8 +24,8 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { logOut } from "../firebase/auth";
-import { profileMenuItems } from "@/constants";
-import Link from "next/link";
+import { LogOut } from "lucide-react";
+import Loader from "@/components/Loader";
 const ProfilePage = () => {
   const toast = useToast();
   const { isOpen, onToggle, onClose } = useDisclosure();
@@ -97,7 +97,7 @@ const ProfilePage = () => {
   const handleAccountDeletion = async () => {
     try {
       await deleteDoc(doc(db, "users", auth?.currentUser?.uid));
-      auth?.currentUser?.delete();
+      await auth?.currentUser?.delete();
       logOut();
       toast({
         title: "Account Deleted",
@@ -111,7 +111,20 @@ const ProfilePage = () => {
       console.log;
     }
   };
+
+  const handleLogout = () => {
+    logOut();
+    toast({
+      title: "Logged Out",
+      description: "You've been logged out.",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    })
+    router.push("/");
+  }
   return (
+    <Suspense fallback={<Loader />}>
     <section className="min-h-screen  md:px-20 py-20">
         <div className=" p-5 md:p-10 flex flex-col justify-center w-full gap-10  shadow-lg rounded-sm">
           <div>
@@ -138,6 +151,7 @@ const ProfilePage = () => {
                       <input
                         type="text"
                         name="first"
+                        placeholder="First Name"
                         disabled={!isEditing}
                         className={`${
                           isEditing ? "text-black" : "text-gray-300"
@@ -152,6 +166,7 @@ const ProfilePage = () => {
                       <input
                         type="email"
                         name="email"
+                        placeholder="Email"
                         disabled={!isEditing}
                         className={`${
                           isEditing ? "text-black" : "text-gray-300"
@@ -188,6 +203,7 @@ const ProfilePage = () => {
                           isEditing ? "text-black" : "text-gray-300"
                         } bg-[#f5f5f5] py-4 px-5 rounded-md w-full`}
                         id="address"
+                        placeholder="Address"
                         onChange={handleUserChange}
                         value={user.address}
                       />
@@ -238,29 +254,26 @@ const ProfilePage = () => {
           </div>
           <hr className="w-full h-[2px] bg-[#ccc]" />
           {/* delete account section */}
-          <div className=" flex justify-between mt-5 items-center w-full">
-            <div>
+          <div className=" flex flex-col gap-5 md:flex-row md:gap-0 justify-between mt-5 items-center w-full">
+            <div className="w-full md:w-auto">
               <h1 className="text-[20px] font-medium text-[#db4444] text-nowrap">
                 Delete Account
               </h1>
             </div>
-            <div>
+            <div className="w-full md:w-auto">
               <Popover
                 closeOnBlur={false}
-                placement="left"
+                placement="top"
                 initialFocusRef={initRef}
               >
                 {({ isOpen, onClose }) => (
                   <>
                     <PopoverTrigger>
-                      <Button
-                        bgColor={"red"}
-                        color={"white"}
-                        paddingInline={10}
-                        paddingY={7}
+                      <button
+                        className="bg-[#db4444] w-full text-white font-medium py-4 md:w-[150px] rounded-md"
                       >
                         {isOpen ? "Cancel" : "Delete"}
-                      </Button>
+                      </button>
                     </PopoverTrigger>
                     <Portal>
                       <PopoverContent>
@@ -282,9 +295,28 @@ const ProfilePage = () => {
               </Popover>
             </div>
           </div>
+          <hr className="w-full h-[2px] bg-[#ccc]" />
+          {/* sign out section */}
+          <div className="flex flex-col gap-5 md:flex-row md:gap-0 justify-between mt-5 items-center w-full">
+            <div className="w-full md:w-auto">
+              <h1 className="text-[20px] font-medium text-[#db4444] text-nowrap">
+                Sign Out
+              </h1>
+            </div>
+            <div className="w-full md:w-auto">
+              <button
+                className="bg-[#db4444] flex justify-center items-center gap-2 text-white font-medium w-full md:w-[150px] py-4  rounded-md"
+                onClick={handleLogout}
+                
+              >
+                <LogOut size={20}/>
+                Sign Out
+              </button>
+            </div>
         </div>
-
+      </div>
     </section>
+    </Suspense>
   );
 };
 
