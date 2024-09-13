@@ -4,7 +4,6 @@ import ShopNow from "./ShopNow";
 import Link from "next/link";
 import SearchBar from "./SearchBar";
 import { links, profileMenuItems } from "@/constants";
-import { useSelector } from "react-redux";
 import {
   Heart,
   MenuIcon,
@@ -17,6 +16,7 @@ import {
 import { usePathname } from "next/navigation";
 import { auth } from "@/app/firebase/firebase";
 import { logOut } from "@/app/firebase/auth";
+import { useCart } from "@/app/context/cartContext";
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
@@ -26,7 +26,7 @@ const Header = () => {
     window.location.reload();
     logOut();
   };
-  const cart = useSelector((state) => state.cart.items);
+  const {cart} = useCart()
   return (
     <header className="border-b ">
       <ShopNow />

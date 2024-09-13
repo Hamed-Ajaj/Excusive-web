@@ -28,6 +28,7 @@
     "react": "^18",
     "react-card-slider-component": "^1.0.9",
     "react-dom": "^18",
+    "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.52.1",
     "react-icon": "^1.0.0",
     "react-icons": "^5.2.1",

@@ -23,7 +23,7 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
         {/* <Image src={`${thumbnail}`} alt={title} width={200} height={200} /> */}
         <button
           className="w-full h-[50px] hidden group-hover:block hover:bg-[#373737] text-white bg-black absolute bottom-0 right-0 rounded-b-md"
-          onClick={() => addToCart({id,title,price,discountPercentage,rating,stock,tags,brand,availabilityStatus,thumbnail,images,reviews})}
+          onClick={() => addToCart({id,title,priceAfterDisc,thumbnail,images,quantity:1})}
         >
           {loading ? "Adding to cart..." : "Add to Cart"}
         </button>
