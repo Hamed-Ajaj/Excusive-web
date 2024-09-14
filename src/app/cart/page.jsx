@@ -2,6 +2,8 @@
 import Link from "next/link"
 import { useCart } from "../context/cartContext"
 import { auth } from "../firebase/firebase"
+import { Minus, Plus, Trash } from "lucide-react"
+import EmptyCart from "@/components/EmptyCart"
 
 const CartPage = () => {
 
@@ -16,10 +18,7 @@ const CartPage = () => {
   }
   if(!cart.length){
     return (
-      <div className="flex flex-col items-center justify-center h-[80vh]">
-        <h1 className="text-[1.5rem] font-medium">Your Cart is Empty</h1>
-        <Link href={"/"}><button className="bg-[#db4444] text-white font-medium rounded-md py-4 px-12 mt-4">Return To Shop</button></Link>
-      </div>
+      <EmptyCart />
     )
   }
   return (
@@ -45,14 +44,18 @@ const CartPage = () => {
               <h1>{item.priceAfterDisc.toFixed(2)}$</h1>
             </div>
           <div className="flex flex-col md:flex-row gap-4">
-            <div>
-              <button className="bg-gray-200 px-2 py-1 rounded-md"
+            <div className="flex items-center">
+              <button className="bg-gray-200 fle justify-center items-center px-2 py-1 rounded-md"
               onClick={() => decreaseQuantity(item.id)}
-              >-</button>
-              <span className="px-2">{item.quantity}</span>
+              >
+                {item.quantity === 1 ? <Trash size={20}/> : <Minus size={20}/>}
+              </button>
+              <span className="px-2 flex items-center">{item.quantity}</span>
               <button className="bg-gray-200 px-2 py-1 rounded-md"
               onClick={() => increaseQuantity(item.id)}
-              >+</button>
+              >
+                <Plus size={20}/>
+              </button>
             </div>
           </div>
           <h1>{(item.priceAfterDisc * item.quantity).toFixed(2)}$</h1>

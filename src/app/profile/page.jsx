@@ -26,9 +26,11 @@ import {
 import { logOut } from "../firebase/auth";
 import { LogOut } from "lucide-react";
 import Loader from "@/components/Loader";
+import { useAuth } from "../context/authContext";
 const ProfilePage = () => {
   const toast = useToast();
   const { isOpen, onToggle, onClose } = useDisclosure();
+  const {handleLogout} = useAuth()
   const initRef = useRef();
   // const pathname = usePathname()
   const [isEditing, setIsEditing] = useState(false);
@@ -112,20 +114,20 @@ const ProfilePage = () => {
     }
   };
 
-  const handleLogout = () => {
-    logOut();
-    toast({
-      title: "Logged Out",
-      description: "You've been logged out.",
-      status: "success",
-      duration: 9000,
-      isClosable: true,
-    })
-    router.push("/");
-  }
+  // const handleLogout = () => {
+  //   logOut();
+  //   toast({
+  //     title: "Logged Out",
+  //     description: "You've been logged out.",
+  //     status: "success",
+  //     duration: 9000,
+  //     isClosable: true,
+  //   })
+  //   router.push("/");
+  // }
   return (
     <Suspense fallback={<Loader />}>
-    <section className="min-h-screen  md:px-20 py-20">
+    <section className="min-h-screen  md:px-20 py-5 lg:py-20">
         <div className=" p-5 md:p-10 flex flex-col justify-center w-full gap-10  shadow-lg rounded-sm">
           <div>
             <form

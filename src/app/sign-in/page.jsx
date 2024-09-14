@@ -4,20 +4,32 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { login } from '../firebase/auth';
-import { auth } from '../firebase/firebase';
+import { auth, db } from '../firebase/firebase';
 import { useAuth } from '../context/authContext';
+import { useToast } from '@chakra-ui/react';
 
 const SignUpPage = () => {
     const { register, handleSubmit, formState: { errors },reset, } = useForm();
     const [error, setError] = useState(null);
-    const {loading} = useAuth()
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
+    const toast = useToast()
     const onSubmit = async data => {
         try {
+            setLoading(true)
             await login(data.email,data.password)
+            toast({
+                title:"Logged in",
+                description:`Welcome back.`,
+                status:"success",
+                duration:3000,
+                isClosable:true
+            })
+            setLoading(false)
         } catch (error) {
             console.log(error.message)
             setError(error)
+            setLoading(false)
         }
     };
     if(auth.currentUser) router.push("/")
@@ -46,7 +58,7 @@ const SignUpPage = () => {
                 {/* {errors.name && errors.name.type === "required" && <span>This is required</span>}
                 {errors.name && errors.name.type === "maxLength" && <span>Max length exceeded</span> } */}
                 <div className='flex justify-between items-center gap-12 w-full'>
-                    <button  className='bg-[#DB4444] px-[10px] py-[16px] w-1/2 hover:bg-[#F43F5E]  text-white font-medium rounded-md'>{loading?"...loading":"Login"}</button>
+                    <button  className='bg-[#DB4444] px-[10px] py-[16px] w-1/2 hover:bg-[#F43F5E]  text-white font-medium rounded-md'>{loading?"Logging In...":"Login"}</button>
                     <button onClick={()=>router.push("/forgot-password")} className='bg-transparent text-[#DB4444] w-1/2 hover:text-[#F43F5E]'>Forgot Password?</button>
                 </div>
                 <p className='text-center'>Don't Have an Account? <Link href="/sign-up" className='text-blue-500 underline'>Sign Up</Link></p>

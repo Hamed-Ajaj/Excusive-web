@@ -17,19 +17,21 @@ import { usePathname } from "next/navigation";
 import { auth } from "@/app/firebase/firebase";
 import { logOut } from "@/app/firebase/auth";
 import { useCart } from "@/app/context/cartContext";
+import { useAuth } from "@/app/context/authContext";
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const pathname = usePathname();
+  const {handleLogout } = useAuth()
   const user = true;
-  const handleLogout = () => {
-    window.location.reload();
-    logOut();
-  };
+  // const handleLogout = () => {
+  //   window.location.reload();
+  //   logOut();
+  // };
   const {cart} = useCart()
   return (
     <header className="border-b ">
-      <ShopNow />
+      {/* <ShopNow /> */}
       <nav className="flex justify-between items-center m-auto p-3 lg:p-10 max-w-[1600px]">
         <Link href={"/"}>
           <div className="flex items-center gap-2 justify-center">

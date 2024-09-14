@@ -9,6 +9,7 @@ import { UseQueryProvider } from "@/lib/UseQueryProvider";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ChakraProvider } from '@chakra-ui/react'
 import { CartProvider } from "./context/cartContext";
+import { AddressesProvider } from "./context/addressesContext";
 import { auth } from "./firebase/firebase";
 export const metadata = {
   title: "Exclusive Store",
@@ -24,12 +25,13 @@ export default function RootLayout({ children }) {
           <UseQueryProvider>
             <AuthProvider>
               <CartProvider>
-                <ReduxProvider>
-                    <Header />
-                    {children}
-                    <ReactQueryDevtools />
-                    <Footer />
-                </ReduxProvider>
+                <AddressesProvider>
+                  <ReduxProvider>
+                      <Header />
+                      {children}
+                      <Footer />
+                  </ReduxProvider>
+                </AddressesProvider>
               </CartProvider>
             </AuthProvider>
           </UseQueryProvider>

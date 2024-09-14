@@ -6,6 +6,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, setDoc, updateDoc, } from 'firebase/firestore';
 import { useToast } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
+import Loader from '@/components/Loader';
 
 const CartContext = createContext();
 
@@ -48,6 +49,13 @@ export const CartProvider = ({children}) => {
                     images,
                     quantity:1,
                 })
+                toast({
+                    title:"Added to cart",
+                    description:"Check your cart to view the item",
+                    status:"success",
+                    duration:3000,
+                    isClosable:true
+                })
                 setCart([...cart,{
                     id,
                     title,
@@ -80,6 +88,13 @@ export const CartProvider = ({children}) => {
         try {
             setLoading(true)
             await deleteDoc(doc(db,"users",auth?.currentUser?.uid,"cart",String(id)))
+            toast({
+                title:"Item removed",
+                description:"Item has been removed from cart",
+                status:"success",
+                duration:3000,
+                isClosable:true
+            })
             setCart(cart.filter(item => item.id !== id)) 
             setLoading(false)
         } catch (error) {
@@ -144,7 +159,7 @@ export const CartProvider = ({children}) => {
 
     return (
         <CartContext.Provider value={values}>
-            {!loading && children}
+            {loading ? <Loader/>: children}
         </CartContext.Provider>
     )
 }
