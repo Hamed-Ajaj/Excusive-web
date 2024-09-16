@@ -122,6 +122,7 @@ export const CartProvider = ({children}) => {
         setCart(cart.map(item => item.id === id ? {...item,quantity:item.quantity - 1} : item))
     }
 
+
     async function initializeCart(user) {
         if(user) {
             // Fetch cart from firestore

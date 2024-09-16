@@ -2,9 +2,10 @@
 import { useToast } from '@chakra-ui/react';
 import { nanoid } from '@reduxjs/toolkit';
 import { onAuthStateChanged } from 'firebase/auth';
-import { collection, deleteDoc, doc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth, db } from '../firebase/firebase';
+import Loader from '@/components/Loader';
 
 const CartContext = createContext();
 
@@ -46,10 +47,21 @@ export const AddressesProvider = ({children}) => {
         }
     }
 
+    const getAddressById = (id) => {
+        return addresses.find(address => address.id === id)
+    }
+
     const deleteAddress = async (id) => {
         try {
             setLoading(true)
             await deleteDoc(doc(db,"users",auth?.currentUser?.uid,"addresses",id))
+            toast({
+                title:"Address deleted",
+                description:"Address deleted successfully",
+                status:"success",
+                duration:3000,
+                isClosable:true
+            })
             setAddresses(addresses.filter(address => address.id !== id))
             setLoading(false)
         } catch (error) {
@@ -58,21 +70,29 @@ export const AddressesProvider = ({children}) => {
         }
     }
 
-    const editAddress = async (id,{firstName,lastName,address,phoneNumber}) => {
+    const editAddress = async (id,data) => {
+        console.log(id,data)
         try {
             setLoading(true)
             await updateDoc(doc(db,"users",auth?.currentUser?.uid,"addresses",id),{
-                firstName,
-                lastName,
-                address,
-                phoneNumber,
+                firstName:data.fname,
+                lastName:data.lname,
+                address:data.address,
+                phoneNumber:data.phoneNumber,
+            })
+            toast({
+                title:"Address updated",
+                description:"Address updated successfully",
+                status:"success",
+                duration:3000,
+                isClosable:true
             })
             setAddresses(addresses.map(address => address.id === id ? {
                 ...address,
-                firstName,
-                lastName,
-                address,
-                phoneNumber,
+                firstName:data.fname,
+                lastName:data.lname,
+                address:data.address,
+                phoneNumber:data.phoneNumber,
             } : address))
             setLoading(false)
         } catch (error) {
@@ -111,12 +131,13 @@ export const AddressesProvider = ({children}) => {
         loading,
         addAddress,
         deleteAddress,
+        getAddressById,
         editAddress
     }
 
     return (
         <CartContext.Provider value={values}>
-            {!loading && children}
+            {loading ?<Loader /> : children}
         </CartContext.Provider>
     )
 }

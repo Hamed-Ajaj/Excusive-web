@@ -29,7 +29,7 @@ import Loader from "@/components/Loader";
 import { useAuth } from "../context/authContext";
 const ProfilePage = () => {
   const toast = useToast();
-  const { isOpen, onToggle, onClose } = useDisclosure();
+  // const { isOpen, onToggle, onClose } = useDisclosure();
   const {handleLogout} = useAuth()
   const initRef = useRef();
   // const pathname = usePathname()

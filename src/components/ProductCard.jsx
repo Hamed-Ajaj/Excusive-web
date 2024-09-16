@@ -11,10 +11,31 @@ import { useDispatch } from "react-redux";
 import { addItem } from "@/app/global-redux/Features/cart/cartSlice";
 import Link from "next/link";
 import { useCart } from "@/app/context/cartContext";
+import { useRecentlyViewed } from "@/app/context/recentlyViewedContext";
+import { nanoid } from "@reduxjs/toolkit";
 
 const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand,availabilityStatus,thumbnail,images,reviews }) => {
   const {loading,addToCart} = useCart()
+  const {addRecentlyViewed} = useRecentlyViewed()
   let priceAfterDisc = price - (price * discountPercentage/100)
+
+  const handleAddRecentlyViewed = () => {
+    addRecentlyViewed({
+      id:nanoid(),
+      productId:id,
+      title,
+      thumbnail,
+      priceAfterDisc,
+      price,
+      images,
+      rating,
+      stock,
+      tags,
+      brand,
+      availabilityStatus,
+      reviews
+    });
+  }
   // const dispatch = useDispatch();
   return (
     <div className="flex flex-col items-center gap-4 w-[150px] sm:w-[200px]  md:w-[250px] lg:w-[270px]  h-auto  relative rounded-md">
@@ -102,7 +123,9 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
           <Heart size={20} className='bg-white rounded-full'/>
         </div> */}
         <Link href={`/products/${id}`}>
-          <div className="flex justify-center items-center w-[30px] h-[30px] rounded-full bg-white cursor-pointer">
+          <div className="flex justify-center items-center w-[30px] h-[30px] rounded-full bg-white cursor-pointer"
+          onClick={handleAddRecentlyViewed}
+          >
             <Eye size={20} className="bg-white rounded-full " />
           </div>
         </Link>
