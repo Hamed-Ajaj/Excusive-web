@@ -1,10 +1,10 @@
 "use client"
-import { useAddresses } from '@/app/context/addressesContext';
+import { useCart } from '@/app/context/cartContext';
 import React from 'react'
-import { get, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 const EditAddress = ({params}) => {
-    const { getAddressById,editAddress } = useAddresses();
+    const { getAddressById,editAddress } = useCart();
     const {editId} = params
     const values = getAddressById(editId);
     console.log(values)

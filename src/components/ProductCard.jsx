@@ -1,22 +1,13 @@
 import {
   Eye,
   Heart,
-  Star,
-  StarHalfIcon,
-  StarIcon,
-  StarOff,
 } from "lucide-react";
-import Image from "next/image";
-import { useDispatch } from "react-redux";
-import { addItem } from "@/app/global-redux/Features/cart/cartSlice";
 import Link from "next/link";
 import { useCart } from "@/app/context/cartContext";
-import { useRecentlyViewed } from "@/app/context/recentlyViewedContext";
 import { nanoid } from "@reduxjs/toolkit";
 
 const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand,availabilityStatus,thumbnail,images,reviews }) => {
-  const {loading,addToCart} = useCart()
-  const {addRecentlyViewed} = useRecentlyViewed()
+  const {loading,addToCart,addRecentlyViewed} = useCart()
   let priceAfterDisc = price - (price * discountPercentage/100)
 
   const handleAddRecentlyViewed = () => {
@@ -25,8 +16,8 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
       productId:id,
       title,
       thumbnail,
-      priceAfterDisc,
       price,
+      discountPercentage,
       images,
       rating,
       stock,
@@ -38,7 +29,7 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
   }
   // const dispatch = useDispatch();
   return (
-    <div className="flex flex-col items-center gap-4 w-[150px] sm:w-[200px]  md:w-[250px] lg:w-[270px]  h-auto  relative rounded-md">
+    <div className="flex flex-col items-center gap-4 w-[150px] sm:w-[200px]   md:w-[250px] lg:w-[270px]  h-auto  relative rounded-md">
       <div className="bg-[#F5F5F5] px-6 py-16 w-full flex justify-center items-center relative group rounded-md h-[220px]  sm:h-[280px]">
         <img src={images&&images[0]} className="object-contain max-h-[200px]" alt={title} />
         {/* <Image src={`${thumbnail}`} alt={title} width={200} height={200} /> */}
@@ -64,7 +55,7 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
         <div className="flex flex-col gap-3">
           <p className="space-x-4">
             <span className="text-[#FFA500] font-semibold">
-              {(priceAfterDisc).toFixed(1) || "$199.99"}
+              ${(priceAfterDisc).toFixed(1) || "$199.99"}
             </span>
             <span className="text-gray-500 line-through">
               ${ price || "99.99"}

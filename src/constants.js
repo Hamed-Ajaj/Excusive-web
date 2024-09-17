@@ -237,13 +237,6 @@ export const profileMenuItems = [
     href: "/profile/addresses",
   },
   {
-    id: 5,
-    name: "WishList",
-    subName:"/profile/wishlist",
-    img: <Heart />,
-    href: "/profile/wishlist",
-  },
-  {
     id: 6,
     name: "Feedback",
     subName:"/profile/feedback",
@@ -418,7 +411,6 @@ export const orderItems = [
       },
     ],
   },
-  ,
   {
     id: 3,
     title: "Order 3",

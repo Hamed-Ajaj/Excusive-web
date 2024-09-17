@@ -1,11 +1,11 @@
 "use client";
-import { useAddresses } from "@/app/context/addressesContext";
+import { useCart } from "@/app/context/cartContext";
 import InputsError from "@/components/InputsError";
 import React from "react";
 import { useForm } from "react-hook-form";
 
 const AddAddress = () => {
-  const { addAddress } = useAddresses();
+  const { addAddress } = useCart();
   const {
     register,
     handleSubmit,

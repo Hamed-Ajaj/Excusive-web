@@ -1,10 +1,12 @@
 "use client"
 import { cartItems } from "@/constants";
 import { useState } from "react";
+import { useCart } from "../context/cartContext";
 const CheckoutPage = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
   const totalPrice = 0
-  console.log(selectedPayment);
+  const {checkoutItems} = useCart();
+  console.log(checkoutItems[0].items)
   return (
     <section className="py-20 px-4 md:px-20 min-h-screen">
       <div className="flex flex-col p-5 justify-center md:flex-row md:justify-between gap-12 md:items-center">
@@ -22,7 +24,7 @@ const CheckoutPage = () => {
                 className="w-full py-3 px-2 border-none outline-none bg-[#F5F5F5]  rounded-md"
               />
             </div>
-            <div className="flex flex-col gap-2 w-full">
+            {/* <div className="flex flex-col gap-2 w-full">
               <label htmlFor="first name" className="text-[#7D8184]">
                 Company Name
               </label>
@@ -32,10 +34,22 @@ const CheckoutPage = () => {
                 id="first name"
                 className="w-full py-3 px-2 border-none outline-none bg-[#F5F5F5]  rounded-md"
               />
+            </div> */}
+            <div className="flex flex-col gap-2 w-full">
+              <label htmlFor="first name" className="text-[#7D8184] w-full">
+                Last Name <span className="text-[#db4444]">*</span>
+              </label>
+              <input
+                type="text"
+                name="Last name"
+                required
+                id="Last name"
+                className="w-full py-3 px-2 border-none outline-none bg-[#F5F5F5]  rounded-md"
+              />
             </div>
             <div className="flex flex-col gap-2 w-full">
               <label htmlFor="first name" className="text-[#7D8184]">
-                Street Address <span className="text-[#db4444]">*</span>
+                Address  Town/City, floor, etc <span className="text-[#db4444]">*</span>
               </label>
               <input
                 type="text"
@@ -44,18 +58,7 @@ const CheckoutPage = () => {
                 className="w-full py-3 px-2 border-none outline-none bg-[#F5F5F5]  rounded-md"
               />
             </div>
-            <div className="flex flex-col gap-2 w-full">
-              <label htmlFor="first name" className="text-[#7D8184] w-full">
-                Apartment, floor, etc. (optional)
-              </label>
-              <input
-                type="text"
-                name="first name"
-                id="first name"
-                className="w-full py-3 px-2 border-none outline-none bg-[#F5F5F5]  rounded-md"
-              />
-            </div>
-            <div className="flex flex-col gap-2 w-full">
+            {/* <div className="flex flex-col gap-2 w-full">
               <label htmlFor="first name" className="text-[#7D8184]">
                 Town/City <span className="text-[#db4444]">*</span>
               </label>
@@ -65,7 +68,7 @@ const CheckoutPage = () => {
                 id="first name"
                 className="w-full py-3 px-2 border-none outline-none bg-[#F5F5F5]  rounded-md"
               />
-            </div>
+            </div> */}
             <div className="flex flex-col gap-2 w-full">
               <label htmlFor="first name" className="text-[#7D8184]">
                 Phone Number <span className="text-[#db4444]">*</span>
@@ -95,17 +98,17 @@ const CheckoutPage = () => {
           {/* so whenever we click place older we will put the items or item in a state and put the in the orders page */}
           {/* we have to use the context api or redux to get the items from cart or from direct buy ex:product detail buy  */}
           {/* it's not necessary to use backend but it's better (firebase) */}
-            {cartItems.map((item) => (
-              <div className="flex justify-between items-center w-full">
+            {checkoutItems[0]?.items?.map((item) => (
+              <div className="flex justify-between items-center w-full" key={item.id}>
                 <div className="flex items-center gap-4">
                   <img
-                    src={item.productImg}
+                    src={item.thumbnail}
                     className="w-[60px] h-[60px]"
                     alt={item.title}
                   />
                   <h1>{item.title}</h1>
                 </div>
-                <p>${item.price * item.quantity}</p>
+                <p>${(item.priceAfterDisc * item.quantity).toFixed(2)}</p>
               </div>
             ))}
           </div>
@@ -149,6 +152,7 @@ const CheckoutPage = () => {
                   name="status"
                   id="inStock"
                   className="h-5 w-5"
+                  defaultChecked
                   onClick={() => setSelectedPayment("cash")}
                 />
                 <label htmlFor="inStock">Cash On delivery</label>
@@ -213,7 +217,10 @@ const CheckoutPage = () => {
               </div>
             )}
           </div>
-            <button className="bg-[#db4444] px-8 py-4 text-white">Place Order</button>
+          <div className="w-full flex justify-between flex-col md:flex-row gap-4">
+            <button className="bg-[#db4444] px-8 py-4 font-medium text-[18px] text-white w-full md:w-1/2">Place Order</button>
+            <button className="bg-transparent border-2 border-black px-8 py-4 font-medium text-[18px] text-black w-full md:w-1/2">Cancel</button>
+          </div>
         </div>
       </div>
     </section>

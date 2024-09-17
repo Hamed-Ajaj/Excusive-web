@@ -7,7 +7,11 @@ import EmptyCart from "@/components/EmptyCart"
 
 const CartPage = () => {
 
-  const {cart,handleRemoveItem,increaseQuantity,decreaseQuantity} = useCart()
+  const {cart,handleRemoveItem,increaseQuantity,decreaseQuantity,addItemToCheckout} = useCart()
+
+  const handleAddToCheckout = () => {
+    addItemToCheckout(cart)
+  }
   if(!auth.currentUser){
     return (
       <div className="flex flex-col items-center justify-center h-[80vh]">
@@ -67,7 +71,7 @@ const CartPage = () => {
       </div>
       <div className="flex flex-col items-center lg:flex-row lg:justify-between gap-10 py-10  mt-10">
        
-        <div className="w-[380px] md:w-[400px] lg:w-[500px] h-[350px] p-2 border-2 gap-5 border-black rounded-md flex flex-col justify-center items-start">
+        <div className="w-full md:w-[400px] lg:w-[500px] h-[350px] p-2 border-2 gap-5 border-black rounded-md flex flex-col justify-center items-start">
           <h1 className="text-[1.2rem] font-medium">Cart Total</h1>
           <div className="flex w-full justify-between items-center border-b-2 border-b-black border-spacing-8 py-4">
             <div>
@@ -82,7 +86,7 @@ const CartPage = () => {
             <p>Free</p>
           </div>
           <Link href="/checkout" className="flex justify-center items-center w-full">
-            <button className="py-4 px-16 mt-2 bg-[#db4444] text-white font-medium rounded-md">
+            <button className="py-4 px-16 mt-2 bg-[#db4444] text-white font-medium rounded-md" onClick={handleAddToCheckout}>
               Process To Checkout
             </button>
           </Link>
