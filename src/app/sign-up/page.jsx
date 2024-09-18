@@ -56,10 +56,15 @@ const SignUpPage = () => {
         await signInWithPopup(auth, provider)
         await setDoc(doc(db, "users", auth?.currentUser?.uid), {
           first: auth?.currentUser?.displayName,
-          last: "ajaj",
           email: auth?.currentUser?.email,
         });
-        
+        toast({
+          title: 'Account Created',
+          description: "You've successfully created an account with us.",
+          status: 'success',
+          duration: 9000,
+          isClosable: true,
+        })
         router.push('/')
       } catch (error) {
         console.log(error)

@@ -25,6 +25,7 @@ const SignUpPage = () => {
                 duration:3000,
                 isClosable:true
             })
+            router.push('/')
             setLoading(false)
         } catch (error) {
             console.log(error.message)
@@ -32,7 +33,7 @@ const SignUpPage = () => {
             setLoading(false)
         }
     };
-    if(auth.currentUser) router.push("/")
+    // if(auth.currentUser) router.push("/")
   return (
     <section className='flex justify-center items-center p-10 gap-10'>
             <div className='hidden md:block w-[45%] h-[750px] '>

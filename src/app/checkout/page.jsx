@@ -6,7 +6,7 @@ const CheckoutPage = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
   const totalPrice = 0
   const {checkoutItems} = useCart();
-  console.log(checkoutItems[0].items)
+  console.log(checkoutItems)
   return (
     <section className="py-20 px-4 md:px-20 min-h-screen">
       <div className="flex flex-col p-5 justify-center md:flex-row md:justify-between gap-12 md:items-center">

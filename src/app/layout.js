@@ -3,13 +3,11 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
-import { ReduxProvider } from "./global-redux/Provider";
 import { AuthProvider } from "./context/authContext";
 import { UseQueryProvider } from "@/lib/UseQueryProvider";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ChakraProvider } from '@chakra-ui/react'
 import { CartProvider } from "./context/cartContext";
-import { auth } from "./firebase/firebase";
 export const metadata = {
   title: "Exclusive Store",
   description: "E-commerce store for all your needs",
@@ -24,11 +22,9 @@ export default function RootLayout({ children }) {
           <UseQueryProvider>
             <AuthProvider>
               <CartProvider>
-                    <ReduxProvider>
                         <Header />
                         {children}
                         <Footer />
-                    </ReduxProvider>
               </CartProvider>
             </AuthProvider>
           </UseQueryProvider>

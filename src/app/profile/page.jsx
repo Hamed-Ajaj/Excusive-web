@@ -1,9 +1,9 @@
 "use client";
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import { auth, db } from "../firebase/firebase";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import {
-  collection,
   deleteDoc,
   doc,
   getDoc,
@@ -11,29 +11,28 @@ import {
 } from "firebase/firestore";
 import {
   Box,
-  Button,
   Popover,
   PopoverBody,
-  PopoverCloseButton,
   PopoverContent,
-  PopoverFooter,
-  PopoverHeader,
   PopoverTrigger,
   Portal,
-  useDisclosure,
   useToast,
 } from "@chakra-ui/react";
 import { logOut } from "../firebase/auth";
 import { LogOut } from "lucide-react";
 import Loader from "@/components/Loader";
-import { useAuth } from "../context/authContext";
 const ProfilePage = () => {
   const toast = useToast();
   // const { isOpen, onToggle, onClose } = useDisclosure();
-  const {handleLogout} = useAuth()
   const initRef = useRef();
-  // const pathname = usePathname()
+
   const [isEditing, setIsEditing] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
   const [user, setUser] = useState({
     first: "",
     last: "",
@@ -58,7 +57,7 @@ const ProfilePage = () => {
   const router = useRouter();
 
   if (!auth.currentUser) {
-    router.push("/sign-up");
+    router.push("/");
     // return (
     //   <div className="min-h-screen p-20 flex flex-col  items-center gap-8">
     //     <h1 className="text-[40px] font-semibold">You Have to be authenticated to open this page!</h1>
@@ -68,9 +67,7 @@ const ProfilePage = () => {
     //   </div>
     // )
   }
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+
 
   const handleUserChange = (e) => {
     setUser({
@@ -114,17 +111,18 @@ const ProfilePage = () => {
     }
   };
 
-  // const handleLogout = () => {
-  //   logOut();
-  //   toast({
-  //     title: "Logged Out",
-  //     description: "You've been logged out.",
-  //     status: "success",
-  //     duration: 9000,
-  //     isClosable: true,
-  //   })
-  //   router.push("/");
-  // }
+  const handleLogout = async () => {
+    // load the window
+    location.reload()
+    await logOut();
+    toast({
+      title: "Logged Out",
+      description: "You've been logged out.",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    })
+  }
   return (
     <Suspense fallback={<Loader />}>
     <section className="min-h-screen  md:px-20 py-5 lg:py-20">

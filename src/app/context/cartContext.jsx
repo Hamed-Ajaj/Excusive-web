@@ -174,22 +174,12 @@ export const CartProvider = ({ children }) => {
 
   // !recently viewed functions
 
-  const addRecentlyViewed = async ({
-    id,
-    productId,
-    title,
-    thumbnail,
-    discountPercentage,
-    images,
-    rating,
-    price,
-    stock,
-    tags,
-    brand,
-    availabilityStatus,
-    reviews,
-  }) => {
-    if (recentlyViewed.some((item) => item.id === productId)) {
+  const addRecentlyViewed = async (data) => {
+    console.log(data);
+    if(!auth.currentUser){
+      return
+    }
+    if (recentlyViewed.some((item) => item.id === data?.id)) {
       return;
     } else {
       try {
@@ -200,40 +190,38 @@ export const CartProvider = ({ children }) => {
             "users",
             auth?.currentUser?.uid,
             "recentlyViewed",
-            String(id)
+            String(data.id)
           ),
           {
-            id: productId,
-            productId: id,
-            title: title,
-            thumbnail: thumbnail,
-            discountPercentage,
-            images: images,
-            rating: rating,
-            price: price,
-            stock: stock,
-            tags: tags,
-            brand: brand,
-            availabilityStatus: availabilityStatus,
-            reviews: reviews,
+            id: data?.productId,
+            productId: data?.id,
+            title: data?.title,
+            thumbnail: data?.thumbnail,
+            discountPercentage: data?.discountPercentage,
+            images: data?.images,
+            rating: data?.rating,
+            price: data?.price,
+            stock: data?.stock,
+            tags: data?.tags,
+            availabilityStatus: data?.availabilityStatus,
+            reviews: data?.reviews,
           }
         );
         setRecentlyViewed([
           ...recentlyViewed,
           {
-            id: productId,
-            productId: id,
-            title: title,
-            thumbnail: thumbnail,
-            discountPercentage,
-            images: images,
-            rating: rating,
-            price: price,
-            stock: stock,
-            tags: tags,
-            brand: brand,
-            availabilityStatus: availabilityStatus,
-            reviews: reviews,
+            id: data?.productId,
+            productId: data?.id,
+            title: data?.title,
+            thumbnail: data?.thumbnail,
+            discountPercentage: data?.discountPercentage,
+            images: data?.images,
+            rating: data?.rating,
+            price: data?.price,
+            stock: data?.stock,
+            tags: data?.tags,
+            availabilityStatus: data?.availabilityStatus,
+            reviews: data?.reviews,
           },
         ]);
         setLoading(false);
@@ -418,15 +406,12 @@ export const CartProvider = ({ children }) => {
     try {
       setLoading(true);
       await addDoc(
-        collection(db, "users", auth?.currentUser?.uid, "checkout"),
-        {
-            items:data
-        }
-      );
+        collection(db, "users", auth?.currentUser?.uid, "checkout"),data);
       setCheckoutItems([...checkoutItems, data]);
       setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
   // ! initializer functions

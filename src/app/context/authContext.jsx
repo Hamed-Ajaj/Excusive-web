@@ -7,6 +7,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { logOut } from '../firebase/auth';
 import { useToast } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
+import Loader from '@/components/Loader';
 
 const AuthContext = createContext();
 
@@ -28,8 +29,9 @@ export const AuthProvider = ({children}) => {
         }
         setLoading(false)
     }
-    const handleLogout = () => {
-        logOut();
+    const handleLogout =async () => {
+        setLoading(true)
+        await logOut();
         toast({
             title: "Logged Out",
             description: "You've been logged out.",
@@ -37,6 +39,7 @@ export const AuthProvider = ({children}) => {
             duration: 9000,
             isClosable: true,
         })
+        setLoading(false)
     }
 
     useEffect(() =>{
@@ -54,7 +57,7 @@ export const AuthProvider = ({children}) => {
 
     return (
         <AuthContext.Provider value={values}>
-            {!loading && children}
+            {loading?<Loader />: children}
         </AuthContext.Provider>
     )
 }
