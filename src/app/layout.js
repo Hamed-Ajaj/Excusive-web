@@ -7,7 +7,8 @@ import { AuthProvider } from "./context/AuthContext";
 import { UseQueryProvider } from "@/lib/UseQueryProvider";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ChakraProvider } from '@chakra-ui/react'
-import { CartProvider } from "./context/CartContext";
+import { CartProvider } from "./context/cartContext";
+
 export const metadata = {
   title: "Exclusive Store",
   description: "E-commerce store for all your needs",

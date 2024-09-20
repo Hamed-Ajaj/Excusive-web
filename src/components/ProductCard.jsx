@@ -3,7 +3,7 @@ import {
   Heart,
 } from "lucide-react";
 import Link from "next/link";
-import { useCart } from "@/app/context/CartContext";
+import { useCart } from "@/app/context/cartContext";
 import { nanoid } from "@reduxjs/toolkit";
 
 const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand,availabilityStatus,thumbnail,images,reviews }) => {
