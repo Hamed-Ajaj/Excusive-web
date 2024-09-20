@@ -6,7 +6,6 @@ import { auth } from "../firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { logOut } from "../firebase/auth";
 import { useToast } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
 import Loader from "@/components/Loader";
 
 const AuthContext = createContext();
@@ -16,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const toast = useToast();
-  const router = useRouter();
+
 
   async function initializeUser(user) {
     if (user) {
@@ -28,6 +27,7 @@ export const AuthProvider = ({ children }) => {
     }
     setLoading(false);
   }
+
   const handleLogout = async () => {
     try {
       setLoading(true);
@@ -59,6 +59,11 @@ export const AuthProvider = ({ children }) => {
     loading,
     handleLogout,
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, initializeUser);
+    return unsubscribe;
+  }, [auth.currentUser]);
 
   return (
     <AuthContext.Provider value={values}>

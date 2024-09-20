@@ -110,6 +110,9 @@ const ProfilePage = () => {
       console.log;
     }
   };
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+  }
 
   const handleLogout = async () => {
     // load the window
@@ -130,7 +133,7 @@ const ProfilePage = () => {
           <div>
             <form
               className="flex  flex-col w-full gap-10 "
-              onSubmit={handleSubmit}
+              onSubmit={handleFormSubmit}
             >
               <div className="flex justify-between items-center">
                 <h1 className="text-[20px] font-medium text-[#db4444] text-nowrap">
@@ -139,6 +142,7 @@ const ProfilePage = () => {
                 <button
                   className="bg-[#db4444] text-white font-medium py-3 px-6 rounded-md"
                   onClick={() => setIsEditing(true)}
+                  type="button"
                 >
                   Edit
                 </button>
@@ -153,6 +157,7 @@ const ProfilePage = () => {
                         name="first"
                         placeholder="First Name"
                         disabled={!isEditing}
+                        {...register("first", { required: true })}
                         className={`${
                           isEditing ? "text-black" : "text-gray-300"
                         } bg-[#f5f5f5] py-4 px-5 rounded-md w-full`}
@@ -168,6 +173,7 @@ const ProfilePage = () => {
                         name="email"
                         placeholder="Email"
                         disabled={!isEditing}
+                        {...register("email", { required: true })}
                         className={`${
                           isEditing ? "text-black" : "text-gray-300"
                         } bg-[#f5f5f5] py-4 px-5 rounded-md w-full`}
@@ -185,6 +191,7 @@ const ProfilePage = () => {
                         name="last"
                         placeholder="Last Name"
                         disabled={!isEditing}
+                        {...register("last", { required: true })}
                         className={`${
                           isEditing ? "text-black" : "text-gray-300"
                         } bg-[#f5f5f5] py-4 px-5 rounded-md w-full`}
@@ -202,6 +209,7 @@ const ProfilePage = () => {
                         className={`${
                           isEditing ? "text-black" : "text-gray-300"
                         } bg-[#f5f5f5] py-4 px-5 rounded-md w-full`}
+                        {...register("address", { required: true })}
                         id="address"
                         placeholder="Address"
                         onChange={handleUserChange}

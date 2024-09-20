@@ -17,7 +17,7 @@ import { usePathname } from "next/navigation";
 import { auth } from "@/app/firebase/firebase";
 import { logOut } from "@/app/firebase/auth";
 import { useCart } from "@/app/context/cartContext";
-import { useAuth } from "@/app/context/AuthContext";
+import { useAuth } from "@/app/context/authContext";
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
