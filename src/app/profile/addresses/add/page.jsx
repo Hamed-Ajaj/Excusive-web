@@ -1,5 +1,5 @@
 "use client";
-import { useCart } from "@/app/context/cartContext";
+import { useCart } from "@/app/context/CartContext";
 import InputsError from "@/components/InputsError";
 import React from "react";
 import { useForm } from "react-hook-form";

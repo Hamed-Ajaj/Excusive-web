@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { useCart } from "../context/cartContext"
+import { useCart } from "../context/CartContext"
 import { auth } from "../firebase/firebase"
 import { Minus, Plus, Trash } from "lucide-react"
 import EmptyCart from "@/components/EmptyCart"

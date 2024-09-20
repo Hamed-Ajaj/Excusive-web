@@ -1,7 +1,7 @@
 "use client"
 import { cartItems } from "@/constants";
 import { useState } from "react";
-import { useCart } from "../context/cartContext";
+import { useCart } from "../context/CartContext";
 const CheckoutPage = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
   const totalPrice = 0

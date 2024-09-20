@@ -46,7 +46,6 @@ export const CartProvider = ({ children }) => {
           duration: 3000,
           isClosable: true,
         });
-        router.push("/sign-in");
       }
       if (cart.some((item) => item.id === id)) {
         const item = cart.find((item) => item.id === id);
@@ -176,10 +175,11 @@ export const CartProvider = ({ children }) => {
 
   const addRecentlyViewed = async (data) => {
     console.log(data);
+    console.log(recentlyViewed);
     if(!auth.currentUser){
       return
     }
-    if (recentlyViewed.some((item) => item.id === data?.id)) {
+    if (recentlyViewed.some((item) => String(item.id) === String(data.productId))) {
       return;
     } else {
       try {
@@ -270,6 +270,20 @@ export const CartProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
+  const getAddresses = async () => {
+    try {
+      setLoading(true);
+      const addressesDoc = await getDocs(
+        collection(db, "users", auth?.currentUser?.uid, "addresses")
+      );
+      setAddresses(addressesDoc.docs.map((doc) => doc.data()));
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }
 
   const getAddressById = (id) => {
     return addresses.find((address) => address.id === id);
@@ -465,6 +479,7 @@ export const CartProvider = ({ children }) => {
     setLoading(false);
   }
 
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, initializeCart);
     return unsubscribe;
@@ -482,6 +497,7 @@ export const CartProvider = ({ children }) => {
     recentlyViewed,
     addAddress,
     getAddressById,
+    getAddresses,
     editAddress,
     deleteAddress,
     addresses,

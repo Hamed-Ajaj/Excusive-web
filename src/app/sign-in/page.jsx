@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { login } from '../firebase/auth';
 import { auth, db } from '../firebase/firebase';
-import { useAuth } from '../context/authContext';
+import { useAuth } from '../context/AuthContext';
 import { useToast } from '@chakra-ui/react';
 
 const SignUpPage = () => {

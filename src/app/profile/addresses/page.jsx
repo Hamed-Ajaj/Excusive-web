@@ -1,11 +1,11 @@
 "use client"
-import { useCart } from '@/app/context/cartContext'
+import { useCart } from '@/app/context/CartContext'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const AddressesPage = () => {
-  const {addresses,deleteAddress} = useCart()
+  const {addresses,deleteAddress,getAddresses} = useCart()
   console.log(addresses)
   return (
     <section className='py-10 min-h-[80vh] flex flex-col gap-10 px-5'>

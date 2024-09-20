@@ -1,5 +1,5 @@
 "use client";
-import { useCart } from "@/app/context/cartContext";
+import { useCart } from "@/app/context/CartContext";
 import ProductCard from "@/components/ProductCard";
 import React from "react";
 

@@ -6,7 +6,7 @@ import { FaArrowRight } from 'react-icons/fa'
 import { Truck } from 'lucide-react'
 import { IconLocation } from '@tabler/icons-react'
 import Link from 'next/link'
-import { useCart } from '@/app/context/cartContext'
+import { useCart } from '@/app/context/CartContext'
 const OrdersPage = () => {
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const [activeTab, setActiveTab] = useState('On shipping')

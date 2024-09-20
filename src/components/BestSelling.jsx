@@ -26,7 +26,7 @@ const BestSelling = () => {
           <ProductsGroupLoader />
         ) : (
           <div className="grid grid-cols-2 place-items-center sm:grid-cols-2 md:grid-cols-4 gap-5 ">
-            {data.data.products.map((product) => (
+            {data?.data?.products?.map((product) => (
               <ProductCard key={product.id} {...product} />
             ))}
           </div>

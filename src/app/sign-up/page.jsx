@@ -153,7 +153,7 @@ const SignUpPage = () => {
             >
               {loading ? <Loader /> : "Create Account"}
             </button>
-            <button className="flex gap-4 items-center justify-center bg-transparent px-[10px] py-[16px] w-full text-black font-medium rounded-md border-2 border-black" onClick={handleGoogleSignUp}>
+            <button type="button" className="flex gap-4 items-center justify-center bg-transparent px-[10px] py-[16px] w-full text-black font-medium rounded-md border-2 border-black" onClick={handleGoogleSignUp}>
               <img src="/icons/google.svg" className="w-4 h-4" alt="" /> Sign up
               with Google
             </button>
