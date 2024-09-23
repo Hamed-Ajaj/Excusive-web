@@ -37,6 +37,7 @@ const ProfilePage = () => {
     first: "",
     last: "",
     email: "",
+    address:""
   });
   if (auth.currentUser) {
     const usersCollection = doc(db, "users", auth?.currentUser?.uid);
@@ -163,7 +164,7 @@ const ProfilePage = () => {
                         } bg-[#f5f5f5] py-4 px-5 rounded-md w-full`}
                         id="first-name"
                         onChange={handleUserChange}
-                        value={user.first}
+                        value={auth.currentUser&&user?.first}
                       />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -179,7 +180,7 @@ const ProfilePage = () => {
                         } bg-[#f5f5f5] py-4 px-5 rounded-md w-full`}
                         id="email"
                         onChange={handleUserChange}
-                        value={user.email}
+                        value={auth.currentUser&&user?.email}
                       />
                     </div>
                   </div>
@@ -197,7 +198,7 @@ const ProfilePage = () => {
                         } bg-[#f5f5f5] py-4 px-5 rounded-md w-full`}
                         id="last-name"
                         onChange={handleUserChange}
-                        value={user.last}
+                        value={auth.currentUser&&user?.last}
                       />
                     </div>
                     <div className="flex flex-col gap-2 w-full">
@@ -213,7 +214,7 @@ const ProfilePage = () => {
                         id="address"
                         placeholder="Address"
                         onChange={handleUserChange}
-                        value={user.address}
+                        value={auth.currentUser&&user?.address}
                       />
                     </div>
                   </div>

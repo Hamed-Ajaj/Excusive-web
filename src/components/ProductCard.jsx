@@ -5,11 +5,12 @@ import {
 import Link from "next/link";
 import { useCart } from "@/app/context/cartContext";
 import { nanoid } from "@reduxjs/toolkit";
+import { useRouter } from "next/navigation";
 
 const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand,availabilityStatus,thumbnail,images,reviews }) => {
   const {loading,addToCart,addRecentlyViewed} = useCart()
   let priceAfterDisc = price - (price * discountPercentage/100)
-
+  const router = useRouter()
   const handleAddRecentlyViewed = () => {
     addRecentlyViewed({
       id:nanoid(),
@@ -26,6 +27,7 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
       availabilityStatus,
       reviews
     });
+    router.push(`/products/${id}`)
   }
   // const dispatch = useDispatch();
   return (
@@ -113,13 +115,13 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
         {/* <div className=' flex justify-center items-center w-[30px] h-[30px] rounded-full bg-white cursor-pointer'>
           <Heart size={20} className='bg-white rounded-full'/>
         </div> */}
-        <Link href={`/products/${id}`}>
+        {/* <Link href={`/products/${id}`}> */}
           <div className="flex justify-center items-center w-[30px] h-[30px] rounded-full bg-white cursor-pointer"
           onClick={handleAddRecentlyViewed}
           >
             <Eye size={20} className="bg-white rounded-full " />
           </div>
-        </Link>
+        {/* </Link> */}
       </div>
     </div>
   );

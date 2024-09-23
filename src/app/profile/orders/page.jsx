@@ -12,14 +12,11 @@ const OrdersPage = () => {
   const [activeTab, setActiveTab] = useState('On shipping')
   const [status, setStatus] = useState('On shipping')
   const date = new Date();
-  console.log(months[date.getMonth()])
   const {orders} = useCart();
-  console.log(orders)
   const handleTabChange = (tab) => {
     setActiveTab(tab)
     setStatus(tab)
   }
-
   // orderItems?.map((order) => {
   //   order.items.map((item) => {
   //     console.log(item)
@@ -30,8 +27,10 @@ const OrdersPage = () => {
   const filterOrders = (status) => {
     return orders?.filter((order) => order.status === status)
   }
+
+
   return (
-    <section className='py-20 px-4 md:px-20 '>
+    <section className='py-20 px-4 md:px-20 min-h-[80vh]'>
         <div className='flex flex-col gap-10'>
             <h1 className='text-[30px] font-bold'>My Orders</h1>
             <div className='p-4 hidden md:flex gap-10 items-center justify-between w-full bg-[#e1dfdf] opacity-90 rounded-full'>
@@ -62,7 +61,7 @@ const OrdersPage = () => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 w-full gap-10'>
               {
-                filterOrders(status)?.map((order) => (
+                orders.length>0?(filterOrders(status)?.map((order) => (
                   <div key={order.orderId} className='flex flex-col gap-6 p-5 items-start  rounded-lg border relative min-h-[400px]'>
                     <div className='flex flex-col md:flex-row justify-between md:items-center gap-5 w-full'>
                       <div className='flex flex-col gap-1 items-start'>
@@ -115,7 +114,11 @@ const OrdersPage = () => {
                       </div>
                     </div>
                   </div>
-                ))
+                ))):(
+                  <div className='py-5 flex justify-center col-span-3'>
+                      <h1 className='text-[20px] font-semibold'>No Orders Right Now</h1>
+                  </div>
+                )
               }
             </div>
         </div>

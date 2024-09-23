@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { useCart } from "../context/cartContext"
 import { auth } from "../firebase/firebase"
-import { Minus, Plus, Trash } from "lucide-react"
+import { Minus, Plus, Trash, X } from "lucide-react"
 import EmptyCart from "@/components/EmptyCart"
 
 const CartPage = () => {
@@ -38,7 +38,9 @@ const CartPage = () => {
           <div className="flex items-center gap-6 w-full  group">
             <div className="relative">  
               <img src={item.thumbnail} className="min-w-[55px] " width={55} height={55} alt={item.title} />
-              <span className="absolute hidden group-hover:flex cursor-pointer justify-center items-center py-2 px-2 rounded-full -top-2 -right-2 w-[10px] h-[10px] bg-red-600 text-white" onClick={()=> handleRemoveItem(item.id)}>x</span>
+              <span className="absolute hidden group-hover:flex cursor-pointer group-hover:justify-center group-hover:items-center py-2 px-2 rounded-full -top-2 -right-2 w-[10px] h-[10px] bg-red-600 text-white" onClick={()=> handleRemoveItem(item.id)}>
+                -
+              </span>
             </div>
             <Link href={`/products/${item.id}`}>
               <h1 className="text-wrap min-w-[80px]">{item.title}</h1>
@@ -78,7 +80,7 @@ const CartPage = () => {
               <p>Total:</p>
             </div>
             <p>${
-              cart?.reduce((acc, item) =>  (acc +Number((item.priceAfterDisc * item.quantity).toFixed(2))), 0)
+              cart?.reduce((acc, item) =>  (acc +Number((item.priceAfterDisc * item.quantity).toFixed(1))), 0)
             }</p>
           </div>
           <div className="flex justify-between items-center w-full border-b-2 border-b-black border-spacing-8 py-4">
