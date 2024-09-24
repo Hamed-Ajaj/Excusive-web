@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { useCart } from "../context/cartContext"
 import { auth } from "../firebase/firebase"
-import { Minus, Plus, Trash, X } from "lucide-react"
+import { Minus, Plus, Trash } from "lucide-react"
 import EmptyCart from "@/components/EmptyCart"
 
 const CartPage = () => {
@@ -87,7 +87,7 @@ const CartPage = () => {
             <p>Shipping:</p>
             <p>Free</p>
           </div>
-          <Link href="/checkout" className="flex justify-center items-center w-full">
+          <Link href="/checkout" target="_blank" className="flex justify-center items-center w-full">
             <button className="py-4 px-16 mt-2 bg-[#db4444] text-white font-medium rounded-md" onClick={handleAddToCheckout}>
               Process To Checkout
             </button>

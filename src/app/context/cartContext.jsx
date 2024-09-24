@@ -14,7 +14,6 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { useToast } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
 import Loader from "@/components/Loader";
 
 const CartContext = createContext();
@@ -27,8 +26,6 @@ export const CartProvider = ({ children }) => {
   const [checkoutItems, setCheckoutItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const toast = useToast();
-  const router = useRouter();
-
   const addToCart = async ({
     id,
     title,
@@ -183,7 +180,7 @@ export const CartProvider = ({ children }) => {
       return;
     } else {
       try {
-        setLoading(true);
+        // setLoading(true);
         await setDoc(
           doc(
             db,
@@ -224,10 +221,10 @@ export const CartProvider = ({ children }) => {
             reviews: data?.reviews,
           },
         ]);
-        setLoading(false);
+        // setLoading(false);
       } catch (error) {
         console.log(error);
-        setLoading(false);
+        // setLoading(false);
       }
     }
   };

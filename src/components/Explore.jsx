@@ -1,11 +1,9 @@
 import React, { Suspense } from "react";
 import SectionHeader from "./SectionHeader";
-import { exploreProducts } from "@/constants";
 import ProductCard from "./ProductCard";
 import Link from "next/link";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import ProductsGroupLoader from "@/loaders/ProductsGroupLoader";
 const Explore = () => {
   const { data, isLoading, isFetching, isError, refetch } = useQuery({
     queryKey: ["explore-products"],
@@ -24,7 +22,7 @@ const Explore = () => {
       <Suspense fallback={<p>Loading...</p>}>
         <div className="grid grid-cols-2 place-items-center md:grid-cols-4 grid-rows-2 gap-12 h-auto ">
           {isFetching ? (
-            <ProductsGroupLoader />
+            <p>Loading...</p>
           ) : (
             data?.data?.products?.map((product) => (
               <ProductCard key={product.id} {...product} />

@@ -4,7 +4,7 @@ import { FaShoppingCart } from 'react-icons/fa'
 const EmptyCart = () => {
   return (
     <div className="flex flex-col gap-10 items-center py-10 justify-center min-h-[80vh]">
-        <div className='p-20 flex justify-center items-center bg-slate-200 rounded-full'>
+        <div className='p-16 flex justify-center items-center bg-slate-200 rounded-full'>
             <FaShoppingCart size={200} />
         </div>
         <div className='flex flex-col items-center gap-3'>

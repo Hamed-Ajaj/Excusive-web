@@ -1,7 +1,5 @@
 "use client"
 import React, { useState } from 'react'
-import { ordersTab } from '@/constants'
-import { orderItems } from '@/constants'
 import { FaArrowRight } from 'react-icons/fa'
 import { Truck } from 'lucide-react'
 import { IconLocation } from '@tabler/icons-react'

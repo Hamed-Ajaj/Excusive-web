@@ -1,63 +1,54 @@
 "use client";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { Suspense, useEffect, useState } from "react";
-import { sizes } from "@/constants";
+import { Suspense, useState } from "react";
 import ProductDetailsSkeleton from "@/loaders/ProductDetailsSkeleton";
+import ReviewsSection from "@/components/ReviewsSection";
 const ProductDetails = ({ params }) => {
-  const [activeColor, setActiveColor] = useState(null);
-  const [activeSize, setActiveSize] = useState(null);
-  // const { data, isLoading,isFetching, isError,refetch } = useQuery({
-  //   queryKey: ['explore-products'],
-  //   queryFn: () => axios.get(`https://dummyjson.com/products?limit=0`),
-  // }
-  // )
   const { id } = params;
-
-  const {
-    data: fetchedProduct,
-    isLoading,
-    isFetching,
-    isError,
-    refetch,
-  } = useQuery({
+  const [quantity, setQuantity] = useState(1);
+  const { data: fetchedProduct, isFetching } = useQuery({
     queryKey: [`fetched-product-${id}`],
     queryFn: () => axios.get(`https://dummyjson.com/products/${id}`),
     onSuccess: (data) => {
       // invalidate the query
       queryClient.invalidateQueries(`fetched-product-${id}`);
-    }
+    },
   });
+  
+  console.log(fetchedProduct?.data)
 
+  const updateQuantity = (operation) => {
+    if(operation==="+" && quantity < fetchedProduct?.data?.stock){
+      setQuantity(quantity+1)
+    }
+    if(operation==="-" && quantity > 1){
+      setQuantity(quantity-1)
+    }
+
+  }
 
   const [activeImage, setActiveImage] = useState(
-    fetchedProduct?.data?.images[0]||fetchedProduct?.data?.thumbnail
+    fetchedProduct?.data?.images[0] || fetchedProduct?.data?.thumbnail
   );
-  const handleChangeColor = (color) => {
-    setActiveColor(color);
-  };
-
-  const handleChangeSize = (size) => {
-    setActiveSize(size);
-  };
 
   return (
     <div className=" flex flex-col justify-center items-center py-12 md:py-20 sm:px-4 md:px-20 max-w-[1600px] min-h-screen">
       <Suspense fallback={<ProductDetailsSkeleton />}>
         {isFetching ? (
           <ProductDetailsSkeleton />
-            ) : (
+        ) : (
           <div className="flex flex-col w-full max-w-[1200px] justify-center items-center lg:flex-row gap-[120px] p-10 lg:max-h-[800px]  ">
             <div className="w-full flex flex-col gap-5 lg:w-[45%] ">
               <div className="bg-[#f5f5f5] lg:max-h-[700px] p-16">
                 <img
-                  src={activeImage||fetchedProduct?.data?.images[0]}
+                  src={activeImage || fetchedProduct?.data?.images[0]}
                   className="w-full max-h-[400px] object-contain"
                   alt={fetchedProduct?.data?.title}
                 />
               </div>
               <div className="cursor-pointer flex flex-wrap gap-5 w-full">
-                {fetchedProduct?.data?.images?.map((image, index) => (
+                {fetchedProduct?.data?.images?.map((image) => (
                   <img
                     key={image}
                     src={image}
@@ -73,14 +64,12 @@ const ProductDetails = ({ params }) => {
                 <h1 className="text-[20px] sm:text-[24px] font-semibold">
                   {fetchedProduct?.data?.title}
                 </h1>
-                <div className="flex gap-2">
-                  <p>stars</p>
-                  <p>reviews</p>
+                <div className="flex flex-col gap-2">
+                  <div className="flex gap-1">
+                    <p>rating:</p>
+                    {fetchedProduct?.data?.rating}
+                  </div>
                   <p>
-                  <Suspense fallback={<p>Loading...</p>}>
-                    
-                  </Suspense>
-                    |{" "}
                     <span
                       className={`${
                         fetchedProduct?.data?.stock > 0
@@ -148,11 +137,11 @@ const ProductDetails = ({ params }) => {
               </div> */}
               <div className="flex flex-col sm:flex-row  justify-between gap-5 items-start sm:items-center h-auto">
                 <div className="flex  h-[50px] border border-black items-center rounded-md">
-                  <button className="w-[50px] h-[50px] flex justify-center items-center hover:bg-[#db4444] active:bg-[#f04c4c] hover:text-white active:text-white border-r border-r-black rounded-l-md">
+                  <button onClick={() => updateQuantity("-")} className="w-[50px] h-[50px] flex justify-center items-center hover:bg-[#db4444] active:bg-[#f04c4c] hover:text-white active:text-white border-r border-r-black rounded-l-md">
                     -
                   </button>
-                  <p className="text-[20px] font-medium px-6">1</p>
-                  <button className="w-[50px] h-[50px] flex justify-center items-center hover:bg-[#db4444] active:bg-[#f04c4c] hover:text-white active:text-white border-l border-l-black rounded-r-md">
+                  <p className="text-[20px] font-medium px-6">{quantity}</p>
+                  <button onClick={() => updateQuantity("+")} className="w-[50px] h-[50px] flex justify-center items-center hover:bg-[#db4444] active:bg-[#f04c4c] hover:text-white active:text-white border-l border-l-black rounded-r-md">
                     +
                   </button>
                 </div>
@@ -162,6 +151,9 @@ const ProductDetails = ({ params }) => {
                   </button>
                 </div>
               </div>
+              {/* <div>
+                <ReviewsSection reviews={fetchedProduct?.data?.reviews} />
+              </div> */}
               <div className="flex flex-col h-auto">
                 <div className="w-full border-2 border-black p-4 flex items-center gap-5 rounded-t-md">
                   <div>
