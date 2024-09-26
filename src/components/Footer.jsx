@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className='w-full h-auto -mb-[300px] p-4 md:p-12 bg-black text-white flex flex-col md:flex-row gap-14 justify-center  md:justify-between md:items-start overflow-hidden'>
         <div className='flex flex-col gap-5'>
-            <Link href='/'>
+            <Link href='/' as={"/"}>
                 <h1 className='text-[30px] font-semibold flex items-center'>Exclusive <img src="/icons/transparent_logo.png" className='invert' width={50} height={50} alt="" /></h1>
             </Link>
             <p>Subscribe & <br /> get 10% off on your first order!</p>
@@ -18,13 +18,13 @@ const Footer = () => {
         <div className='flex flex-col gap-3'>
             <h1 className='text-[20px] font-medium'>Account</h1>
             {myAccountLinks.map((link, index) => (
-                <a key={index} href={link.href} className='hover:text-gray-300'>{link.label}</a>
+                <a key={index} href={link.href} as={link.href} className='hover:text-gray-300'>{link.label}</a>
             ))}
         </div>
         <div className='flexCol'>
             <h1 className='text-[20px] font-medium'>Quick Link</h1>
             {quickLinks.map((link, index) => (
-                <a key={index} href={link.href} className='hover:text-gray-300'>{link.label}</a>
+                <a key={index} href={link.href} target='_blank' className='hover:text-gray-300'>{link.label}</a>
             ))}
         </div>
         <div className='flexCol md:items-center md:justify-center gap-3'>
@@ -32,7 +32,7 @@ const Footer = () => {
             <ul className='flex  gap-3 mt-12'>
                 {socialMediaLinks.map((link, index) => (
                     <li key={index}>
-                        <Link href={link.href} className='hover:text-gray-400'>{link.label}</Link>
+                        <Link href={link.href} as={link.href} className='hover:text-gray-400'>{link.label}</Link>
                     </li>
                 ))}
             </ul>

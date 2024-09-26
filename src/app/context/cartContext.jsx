@@ -171,12 +171,14 @@ export const CartProvider = ({ children }) => {
   // !recently viewed functions
 
   const addRecentlyViewed = async (data) => {
-    console.log(data);
-    console.log(recentlyViewed);
-    if(!auth.currentUser){
-      return
+    // console.log(data);
+    // console.log(recentlyViewed);
+    if (!auth.currentUser) {
+      return;
     }
-    if (recentlyViewed.some((item) => String(item.id) === String(data.productId))) {
+    if (
+      recentlyViewed.some((item) => String(item.id) === String(data.productId))
+    ) {
       return;
     } else {
       try {
@@ -280,7 +282,7 @@ export const CartProvider = ({ children }) => {
       console.log(error);
       setLoading(false);
     }
-  }
+  };
 
   const getAddressById = (id) => {
     return addresses.find((address) => address.id === id);
@@ -417,7 +419,9 @@ export const CartProvider = ({ children }) => {
     try {
       setLoading(true);
       await addDoc(
-        collection(db, "users", auth?.currentUser?.uid, "checkout"),data);
+        collection(db, "users", auth?.currentUser?.uid, "checkout"),
+        data
+      );
       setCheckoutItems([...checkoutItems, data]);
       setLoading(false);
     } catch (error) {
@@ -476,7 +480,6 @@ export const CartProvider = ({ children }) => {
     setLoading(false);
   }
 
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, initializeCart);
     return unsubscribe;
@@ -502,7 +505,7 @@ export const CartProvider = ({ children }) => {
     cancelOrder,
     orders,
     addItemToCheckout,
-    checkoutItems
+    checkoutItems,
   };
 
   return (

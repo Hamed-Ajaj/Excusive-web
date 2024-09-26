@@ -22,18 +22,18 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const pathname = usePathname();
-  const {handleLogout } = useAuth()
+  const { handleLogout } = useAuth();
   const user = true;
   // const handleLogout = () => {
   //   window.location.reload();
   //   logOut();
   // };
-  const {cart} = useCart()
+  const { cart } = useCart();
   return (
     <header className="border-b ">
       {/* <ShopNow /> */}
       <nav className="flex justify-between items-center m-auto p-3 lg:p-10 max-w-[1600px]">
-        <Link href={"/"}>
+        <Link href={"/"} as={"/"}>
           <div className="flex items-center gap-2 justify-center">
             <img src="/icons/transparent_logo.png" width={50} height={50} />
             <h1 className="text-[19px] md:text-[24px] font-bold ">Exclusive</h1>
@@ -41,7 +41,7 @@ const Header = () => {
         </Link>
         <div className="hidden lg:flex gap-4 md:gap-6 lg:gap-12 items-center">
           {links.map((link, index) => (
-            <Link href={link.href} key={index}>
+            <Link href={link.href} as={link.href} key={index}>
               <span
                 className={`text-xl  font-normal text-black ${
                   pathname === link.href ? "underline" : ""
@@ -51,7 +51,7 @@ const Header = () => {
               </span>
             </Link>
           ))}
-          <Link href={"/products"}>
+          <Link href={"/products"} as={"/products"}>
             <span
               className={`text-xl font-normal text-black ${
                 pathname === "/products" ? "underline" : ""
@@ -72,7 +72,7 @@ const Header = () => {
             {showMenu && (
               <div className="flex flex-col gap-4 absolute top-12 -right-0 border border-white bg-black p-4 rounded-lg z-20">
                 {links.map((link, index) => (
-                  <Link href={link.href} key={index}>
+                  <Link href={link.href} as={link.href} key={index}>
                     <span
                       className={`text-xl font-normal text-white ${
                         pathname === link.href ? "underline" : ""
@@ -83,12 +83,10 @@ const Header = () => {
                     </span>
                   </Link>
                 ))}
-                <Link href={"/products"}>
+                <Link href={"/products"} as={"/products"}>
                   <span
                     className={`text-xl font-normal text-white ${
-                      pathname === ("/products")
-                        ? "underline"
-                        : ""
+                      pathname === "/products" ? "underline" : ""
                     }`}
                     onClick={() => setShowMenu(false)}
                   >
@@ -103,7 +101,7 @@ const Header = () => {
           {user ? (
             <div className="flex items-center gap-3 md:gap-10">
               <div className="flex justify-center items-center relative">
-                <Link href="/cart">
+                <Link href="/cart" as={"/cart"}>
                   <ShoppingCartIcon
                     size={30}
                     className={`cursor-pointer hover:text-gray-600 `}
@@ -113,60 +111,53 @@ const Header = () => {
                   {cart.length}
                 </div>
               </div>
-              <div
-                className="flex justify-center gap-2 items-center relative"
-                
-              >
-              {auth.currentUser ? (
-                <div>
-                  <User
-                    className="cursor-pointer hover:text-gray-500"
-                    onClick={() => setShowProfileMenu(!showProfileMenu)}
-                    size={32}
-                  />
-                </div>
-              ):
-              ( 
-                <Link href="/sign-up">
-                  <div className="flex items-center gap-2 group">
+              <div className="flex justify-center gap-2 items-center relative">
+                {auth.currentUser ? (
+                  <div>
                     <User
-                      className="cursor-pointer group-hover:text-gray-500"
-                      // onClick={() => setShowProfileMenu(!showProfileMenu)}
+                      className="cursor-pointer hover:text-gray-500"
+                      onClick={() => setShowProfileMenu(!showProfileMenu)}
                       size={32}
                     />
-                    <h1
-                      className="text-[14px] text-nowrap lg:text-[18px] hidden md:block text-black font-semibold cursor-pointer group-hover:text-gray-500"
-                    >Sign Up</h1>
                   </div>
-                </Link>
-              )
-              }
-
-                
-                  {auth.currentUser&& (showProfileMenu && (
-                    <div className="flex flex-col w-[200px] md:w-[220px] h-auto gap-4 absolute top-12 -right-0 transparent-black-gradient-blur p-1 md:p-3 rounded-lg text-white z-20">
-                      {profileMenuItems.map((item, index) => (
-                        <Link href={item?.href} key={index}>
-                          <div className="flex gap-4 md:gap-6 text-[14px] text-nowrap items-center" 
-                          onClick={
-                            ()=>setShowProfileMenu(false)
-                          }>
-                            <div>{item.img}</div>
-                            <div>{item.name}</div>
-                          </div>
-                        </Link>
-                      ))}
-                      <div className="flex gap-4 md:gap-6 text-[14px] items-center">
-                        <div>
-                          <Outdent size={25} />
-                        </div>
-                        <button type="submit" onClick={handleLogout}>
-                          Log Out
-                        </button>
-                      </div>
+                ) : (
+                  <Link href="/sign-up" as={"/sign-up"}>
+                    <div className="flex items-center gap-2 group">
+                      <User
+                        className="cursor-pointer group-hover:text-gray-500"
+                        // onClick={() => setShowProfileMenu(!showProfileMenu)}
+                        size={32}
+                      />
+                      <h1 className="text-[14px] text-nowrap lg:text-[18px] hidden md:block text-black font-semibold cursor-pointer group-hover:text-gray-500">
+                        Sign Up
+                      </h1>
                     </div>
-                  ))
-                  }
+                  </Link>
+                )}
+
+                {auth.currentUser && showProfileMenu && (
+                  <div className="flex flex-col w-[200px] md:w-[220px] h-auto gap-4 absolute top-12 -right-0 transparent-black-gradient-blur p-1 md:p-3 rounded-lg text-white z-20">
+                    {profileMenuItems.map((item, index) => (
+                      <Link href={item?.href} as={item?.href} key={index}>
+                        <div
+                          className="flex gap-4 md:gap-6 text-[14px] text-nowrap items-center"
+                          onClick={() => setShowProfileMenu(false)}
+                        >
+                          <div>{item.img}</div>
+                          <div>{item.name}</div>
+                        </div>
+                      </Link>
+                    ))}
+                    <div className="flex gap-4 md:gap-6 text-[14px] items-center">
+                      <div>
+                        <Outdent size={25} />
+                      </div>
+                      <button type="submit" onClick={handleLogout}>
+                        Log Out
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ) : (

@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Suspense, useState } from "react";
 import ProductDetailsSkeleton from "@/loaders/ProductDetailsSkeleton";
 import ReviewsSection from "@/components/ReviewsSection";
+import RelatedItems from "../../../components/RelatedItems";
 const ProductDetails = ({ params }) => {
   const { id } = params;
   const [quantity, setQuantity] = useState(1);
@@ -15,18 +16,17 @@ const ProductDetails = ({ params }) => {
       queryClient.invalidateQueries(`fetched-product-${id}`);
     },
   });
-  
-  console.log(fetchedProduct?.data)
+
+  // console.log(fetchedProduct?.data)
 
   const updateQuantity = (operation) => {
-    if(operation==="+" && quantity < fetchedProduct?.data?.stock){
-      setQuantity(quantity+1)
+    if (operation === "+" && quantity < fetchedProduct?.data?.stock) {
+      setQuantity(quantity + 1);
     }
-    if(operation==="-" && quantity > 1){
-      setQuantity(quantity-1)
+    if (operation === "-" && quantity > 1) {
+      setQuantity(quantity - 1);
     }
-
-  }
+  };
 
   const [activeImage, setActiveImage] = useState(
     fetchedProduct?.data?.images[0] || fetchedProduct?.data?.thumbnail
@@ -137,11 +137,17 @@ const ProductDetails = ({ params }) => {
               </div> */}
               <div className="flex flex-col sm:flex-row  justify-between gap-5 items-start sm:items-center h-auto">
                 <div className="flex  h-[50px] border border-black items-center rounded-md">
-                  <button onClick={() => updateQuantity("-")} className="w-[50px] h-[50px] flex justify-center items-center hover:bg-[#db4444] active:bg-[#f04c4c] hover:text-white active:text-white border-r border-r-black rounded-l-md">
+                  <button
+                    onClick={() => updateQuantity("-")}
+                    className="w-[50px] h-[50px] flex justify-center items-center hover:bg-[#db4444] active:bg-[#f04c4c] hover:text-white active:text-white border-r border-r-black rounded-l-md"
+                  >
                     -
                   </button>
                   <p className="text-[20px] font-medium px-6">{quantity}</p>
-                  <button onClick={() => updateQuantity("+")} className="w-[50px] h-[50px] flex justify-center items-center hover:bg-[#db4444] active:bg-[#f04c4c] hover:text-white active:text-white border-l border-l-black rounded-r-md">
+                  <button
+                    onClick={() => updateQuantity("+")}
+                    className="w-[50px] h-[50px] flex justify-center items-center hover:bg-[#db4444] active:bg-[#f04c4c] hover:text-white active:text-white border-l border-l-black rounded-r-md"
+                  >
                     +
                   </button>
                 </div>
@@ -182,6 +188,11 @@ const ProductDetails = ({ params }) => {
           </div>
         )}
       </Suspense>
+      {/* <Suspense fallback={<p>...loading</p>}>
+        <div className="w-full flex justify-center items-center">
+          <RelatedItems keyword={fetchedProduct?.data?.category}/>
+        </div>
+      </Suspense> */}
     </div>
   );
 };

@@ -30,15 +30,14 @@ export const links = [
 ];
 
 export const myAccountLinks = [
-  { href: "/orders", label: "My Account" },
+  { href: "/profile", label: "My Account" },
   { href: "/sign-up", label: "Login/register" },
   { href: "/cart", label: "cart" },
-  { href: "/wishlist", label: "wishlist" },
-  { href: "/Shop", label: "Shop" },
+  { href: "/products", label: "Products" },
 ];
 
 export const quickLinks = [
-  { href: "/privacy", label: "Privacy policy" },
+  { href: "https://www.privacypolicies.com/live/2a63e2a7-115a-4c83-b42b-34f0b95b439d", label: "Privacy policy" },
   { href: "/terms", label: "Term of Use" },
   { href: "/FAQ", label: "FAQ" },
   { href: "/contact", label: "Contact" },

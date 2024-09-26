@@ -2,11 +2,21 @@
 import { cartItems } from "@/constants";
 import { useState } from "react";
 import { useCart } from "../context/cartContext";
+import { useToast } from "@chakra-ui/react";
 const CheckoutPage = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
   const totalPrice = 0
+  const toast = useToast()
   const {checkoutItems} = useCart();
-  console.log(checkoutItems)
+  const handlePlaceOrder = () => {
+    toast({
+      title: "Service Unavailable",
+      description: "We are currently not accepting orders, Working on it :)",
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    })
+  }
   return (
     <section className="py-20 px-4 md:px-20 min-h-screen">
       <div className="flex flex-col p-5 justify-center md:flex-row md:justify-between gap-12 md:items-center">
@@ -218,7 +228,7 @@ const CheckoutPage = () => {
             )}
           </div>
           <div className="w-full flex justify-between flex-col md:flex-row gap-4">
-            <button className="bg-[#db4444] px-8 py-4 font-medium text-[18px] text-white w-full md:w-1/2">Place Order</button>
+            <button className="bg-[#db4444] px-8 py-4 font-medium text-[18px] text-white w-full md:w-1/2" onClick={handlePlaceOrder}>Place Order</button>
             <button className="bg-transparent border-2 border-black px-8 py-4 font-medium text-[18px] text-black w-full md:w-1/2">Cancel</button>
           </div>
         </div>
