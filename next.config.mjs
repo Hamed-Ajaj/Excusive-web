@@ -2,7 +2,10 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-        domains: ['picsum.photos'],
+        remotePatterns: [{
+            protocol: 'https',
+            hostname: 'cdn.dummyjson.com',
+        }],
     },
     async headers() {
         return [

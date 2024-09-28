@@ -5,7 +5,6 @@ import React from "react";
 
 const RecentlyViewedPage = () => {
   const { recentlyViewed } = useCart();
-  console.log(recentlyViewed);
   return (
     <section className="py-10 px-4">
       {!recentlyViewed ? (

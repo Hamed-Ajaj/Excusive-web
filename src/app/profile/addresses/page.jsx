@@ -6,7 +6,6 @@ import React, { useEffect } from 'react'
 
 const AddressesPage = () => {
   const {addresses,deleteAddress,getAddresses} = useCart()
-  console.log(addresses)
   return (
     <section className='py-10 min-h-[80vh] flex flex-col gap-10 px-5'>
       <Link href="/profile/addresses/add">

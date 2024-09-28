@@ -39,7 +39,7 @@ const Header = () => {
             <h1 className="text-[19px] md:text-[24px] font-bold ">Exclusive</h1>
           </div>
         </Link>
-        <div className="hidden lg:flex gap-4 md:gap-6 lg:gap-12 items-center">
+        <div className="hidden xl:flex gap-4 md:gap-6 lg:gap-12 items-center">
           {links.map((link, index) => (
             <Link href={link.href} as={link.href} key={index}>
               <span
@@ -62,7 +62,7 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex gap-4 sm:gap-8 items-center ">
-          <div className="block lg:hidden relative">
+          <div className="block xl:hidden relative">
             <MenuIcon
               className="cursor-pointer"
               width={35}
@@ -97,7 +97,12 @@ const Header = () => {
             )}
           </div>
           {/* SearchBar component */}
-          <SearchBar />
+          {/* <SearchBar /> */}
+          <div>
+            <Link href="/wishlist" as={"/wishlist"}>
+              <Heart size={30} className="cursor-pointer hover:text-gray-600" />
+            </Link>
+          </div>
           {user ? (
             <div className="flex items-center gap-3 md:gap-10">
               <div className="flex justify-center items-center relative">

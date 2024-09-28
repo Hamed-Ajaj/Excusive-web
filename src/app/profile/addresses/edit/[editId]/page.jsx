@@ -7,7 +7,6 @@ const EditAddress = ({params}) => {
     const { getAddressById,editAddress } = useCart();
     const {editId} = params
     const values = getAddressById(editId);
-    console.log(values)
     const {
         register,
         handleSubmit,

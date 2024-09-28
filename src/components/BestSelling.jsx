@@ -13,12 +13,11 @@ const BestSelling = () => {
   });
 
   return (
-    <div className="flex flex-col gap-10 py-20 h-auto px-4 md:px-20 mb-20">
+    <div className="flex flex-col gap-10 py-10 h-auto px-4 md:px-20 mb-10">
       <div>
         <SectionHeader
           title={"This Month"}
           sectionTitle={"Best Selling Product"}
-          button={"View all"}
         />
       </div>
       <Suspense fallback={<ProductsGroupLoader />}>

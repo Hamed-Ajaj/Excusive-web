@@ -16,7 +16,6 @@ const Contact = () => {
       })
       .then(
         () => {
-          console.log("SUCCESS!");
           toast({
             title: "Email sent successfully",
             status: "success",
@@ -26,7 +25,6 @@ const Contact = () => {
           e.target.reset();
         },
         (error) => {
-          console.log("FAILED...", error);
           toast({
             title: "Email not sent",
             status: "error",

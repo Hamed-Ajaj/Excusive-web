@@ -310,7 +310,6 @@ export const CartProvider = ({ children }) => {
   };
 
   const editAddress = async (id, data) => {
-    console.log(id, data);
     try {
       setLoading(true);
       await updateDoc(
@@ -415,7 +414,6 @@ export const CartProvider = ({ children }) => {
   //   ! checkout functions
 
   const addItemToCheckout = async (data) => {
-    console.log(data);
     try {
       setLoading(true);
       await addDoc(

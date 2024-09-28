@@ -1,5 +1,4 @@
 const ReviewsSection = ({ reviews }) => {
-  console.log(reviews);
   return (
     <section className="flex flex-col md:flex-row gap-4 ">
       {reviews?.map((review) => (

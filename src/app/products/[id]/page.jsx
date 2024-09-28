@@ -5,6 +5,7 @@ import { Suspense, useState } from "react";
 import ProductDetailsSkeleton from "@/loaders/ProductDetailsSkeleton";
 import ReviewsSection from "@/components/ReviewsSection";
 import RelatedItems from "../../../components/RelatedItems";
+import Image from "next/image";
 const ProductDetails = ({ params }) => {
   const { id } = params;
   const [quantity, setQuantity] = useState(1);
@@ -32,6 +33,9 @@ const ProductDetails = ({ params }) => {
     fetchedProduct?.data?.images[0] || fetchedProduct?.data?.thumbnail
   );
 
+  const imageLoader = ({ src, width, quality }) => {
+    return `${src}`;
+  };
   return (
     <div className=" flex flex-col justify-center items-center py-12 md:py-20 sm:px-4 md:px-20 max-w-[1600px] min-h-screen">
       <Suspense fallback={<ProductDetailsSkeleton />}>
@@ -41,18 +45,28 @@ const ProductDetails = ({ params }) => {
           <div className="flex flex-col w-full max-w-[1200px] justify-center items-center lg:flex-row gap-[120px] p-10 lg:max-h-[800px]  ">
             <div className="w-full flex flex-col gap-5 lg:w-[45%] ">
               <div className="bg-[#f5f5f5] lg:max-h-[700px] p-16">
-                <img
+                <Image
+                  loader={imageLoader}
                   src={activeImage || fetchedProduct?.data?.images[0]}
                   className="w-full max-h-[400px] object-contain"
                   alt={fetchedProduct?.data?.title}
+                  width={500}
+                  height={400}
+                  quality={30}
+                  onLoad={(e) => console.log(e)}
                 />
               </div>
               <div className="cursor-pointer flex flex-wrap gap-5 w-full">
                 {fetchedProduct?.data?.images?.map((image) => (
-                  <img
+                  <Image
                     key={image}
+                    loader={imageLoader}
                     src={image}
-                    className="aspect-square w-[100px] bg-[#f5f5f5]  object-contain"
+                    className="aspect-square bg-[#f5f5f5]  object-contain"
+                    width={100}
+                    height={100}
+                    quality={30}
+                    // onLoad={(e) => console.log(e)}
                     alt={fetchedProduct?.data?.title}
                     onClick={() => setActiveImage(image)}
                   />

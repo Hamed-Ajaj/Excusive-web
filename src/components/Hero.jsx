@@ -19,7 +19,7 @@ const Hero = () => {
         containerRef.current.scrollLeft += 220;
     }
   return (
-    <section className="w-full py-20 px-4 md:p-20 mb-10 ">
+    <section className="w-full py-20 px-4 md:p-20 mb-5 ">
       {/* Hero Section */}
       <div className="flex justify-between items-center p-8 md:p-20 bg-black min-h-[400px] rounded-lg mb-20">
         <div className="flex flex-col gap-10 p-4">
@@ -51,7 +51,7 @@ const Hero = () => {
       </div>
 
       {/* Categories section */}
-      <section className="flex flex-col max-w-[1500px] gap-10 border-b-2 py-20  ">
+      <section className="flex flex-col max-w-[1500px] gap-10 border-b-2 py-10  ">
         <SectionHeader
           title={"Categories"}
           sectionTitle={"Browse By Category"}

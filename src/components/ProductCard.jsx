@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useCart } from "@/app/context/cartContext";
 import { nanoid } from "@reduxjs/toolkit";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand,availabilityStatus,thumbnail,images,reviews }) => {
   const {loading,addToCart,addRecentlyViewed} = useCart()
@@ -30,10 +31,13 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
     router.push(`/products/${id}`)
   }
   // const dispatch = useDispatch();
+  const imageLoader = ({ src, width, quality }) => {
+    return `${src}`;
+  }
   return (
     <div className="flex flex-col items-center gap-4 w-[150px] sm:w-[200px]   md:w-[250px] lg:w-[270px]  h-auto  relative rounded-md">
       <div className="bg-[#F5F5F5] px-6 py-16 w-full flex justify-center items-center relative group rounded-md h-[220px]  sm:h-[280px]">
-        <img src={images&&images[0]} className="object-contain max-h-[200px]" alt={title} />
+        <Image src={images[0]||thumbnail} loader={imageLoader}  className="object-contain bg-center max-h-[200px]" width={200} height={200} alt={title} />
         {/* <Image src={`${thumbnail}`} alt={title} width={200} height={200} /> */}
         <button
           className="w-full h-[50px] hidden group-hover:block hover:bg-[#373737] text-white bg-black absolute bottom-0 right-0 rounded-b-md"
