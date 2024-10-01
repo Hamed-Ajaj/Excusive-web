@@ -58,7 +58,7 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
         )}
       </div>
       <div className="w-full space-y-3 h-[150px]">
-        <h4 className="font-medium hover:underline" onClick={handleAddRecentlyViewed}>{ title } </h4>
+        <h4 className="font-medium hover:underline cursor-pointer" onClick={handleAddRecentlyViewed}>{ title } </h4>
         <div className="flex flex-col gap-3">
           <p className="space-x-4">
             <span className="text-[#FFA500] font-semibold">

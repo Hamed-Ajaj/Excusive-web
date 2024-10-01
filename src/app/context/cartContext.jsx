@@ -41,13 +41,6 @@ export const CartProvider = ({ children }) => {
           title: "Please login to add to cart",
           description: <p>
             You need to login to add items to cart. If you don't have an account.
-            <Link href="/sign-up">
-              <button
-                className="text-blue-500 hover:underline"
-              >
-                Sign up
-              </button>
-            </Link>
           </p>,
           status: "error",
           duration: 3000,
