@@ -32,6 +32,7 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
   }
   // const dispatch = useDispatch();
   const imageLoader = ({ src, width, quality }) => {
+    console.log(src)
     return `${src}`;
   }
   return (
@@ -57,14 +58,14 @@ const ProductCard = ({ title,id,price,discountPercentage,rating,stock,tags,brand
         )}
       </div>
       <div className="w-full space-y-3 h-[150px]">
-        <h4 className="font-medium">{ title || "The north coat"} </h4>
+        <h4 className="font-medium hover:underline" onClick={handleAddRecentlyViewed}>{ title } </h4>
         <div className="flex flex-col gap-3">
           <p className="space-x-4">
             <span className="text-[#FFA500] font-semibold">
-              ${(priceAfterDisc).toFixed(1) || "$199.99"}
+              ${(priceAfterDisc).toFixed(1) }
             </span>
             <span className="text-gray-500 line-through">
-              ${ price || "99.99"}
+              ${ price }
             </span>
           </p>
           <div className="flex items-center justify-between w-full">

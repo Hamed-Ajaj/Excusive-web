@@ -6,6 +6,7 @@ import ProductDetailsSkeleton from "@/loaders/ProductDetailsSkeleton";
 import ReviewsSection from "@/components/ReviewsSection";
 import RelatedItems from "../../../components/RelatedItems";
 import Image from "next/image";
+import Link from "next/link";
 const ProductDetails = ({ params }) => {
   const { id } = params;
   const [quantity, setQuantity] = useState(1);
@@ -166,9 +167,13 @@ const ProductDetails = ({ params }) => {
                   </button>
                 </div>
                 <div>
+                <Link href={`/checkout`}
+                  as={`/checkout`}
+                >
                   <button className="px-12 py-3  bg-[#db4444] font-medium rounded-md text-white hover:opacity-90 active:opacity-80">
                     Buy Now
                   </button>
+                </Link>
                 </div>
               </div>
               {/* <div>

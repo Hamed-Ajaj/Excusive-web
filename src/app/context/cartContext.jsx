@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import { useToast } from "@chakra-ui/react";
 import Loader from "@/components/Loader";
+import Link from "next/link";
 
 const CartContext = createContext();
 
@@ -38,7 +39,16 @@ export const CartProvider = ({ children }) => {
       if (!auth.currentUser) {
         toast({
           title: "Please login to add to cart",
-          description: "You need to login to add items to cart",
+          description: <p>
+            You need to login to add items to cart. If you don't have an account.
+            <Link href="/sign-up">
+              <button
+                className="text-blue-500 hover:underline"
+              >
+                Sign up
+              </button>
+            </Link>
+          </p>,
           status: "error",
           duration: 3000,
           isClosable: true,
